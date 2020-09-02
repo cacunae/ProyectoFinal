@@ -1,38 +1,106 @@
-<div style="width: 70%; margin: 1em auto" class="mat-elevation-z2">
-    <mat-table [dataSource]="productos">
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-        <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="nombre">
-        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-        <mat-cell *matCellDef="let productos">
-          {{ productos.nombre }}
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="marca">
-        <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
-        <mat-cell *matCellDef="let productos">
-          {{ productos.marca }}
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="descripcion">
-        <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
-        <mat-cell *matCellDef="let productos">
-          {{ productos.descripcion }}
-        </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="boton">
-        <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
-        <mat-cell *matCellDef="let productos; index as i">
-          <button mat-mini-fab color="warn" (click)="eliminar(i)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-      <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
-      <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
-    </mat-table>
+<!-- navbar -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="">
+    <img
+      src="https://image.flaticon.com/icons/svg/1414/1414029.svg"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    Productos
+  </a>
+  <div>
+    <div class="text-left">
+      <button class="btn btn-outline-warning" style="margin-left: 1em">
+        Vendedores
+      </button>
+      <button class="btn btn-outline-warning" style="margin-left: 1em">
+        Administradores
+      </button>
+    </div>
   </div>
+</nav>
 
-  <router-outlet></router-outlet>
+<div class="container">
+  <!--Barra de busqueda-->
+  <div>
+    <div class="row">
+      <div id="busqueda">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Nombre</option>
+              <option>Marca</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Text input with dropdown button"
+            placeholder="Busqueda Rápida"
+          />
+          <span class="input-group-text" style="border: 0ch; margin: 0%">
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              class="bi bi-search"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="width: 70%; margin: 1em auto" class="mat-elevation-z2">
+  <mat-table [dataSource]="productos">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.nombre }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="marca">
+      <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.marca }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.descripcion }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="boton">
+      <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+      <mat-cell *matCellDef="let productos; index as i">
+        <button mat-mini-fab color="warn" (click)="eliminar(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+  </mat-table>
+</div>
+
+<router-outlet></router-outlet>

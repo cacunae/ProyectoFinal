@@ -1,17 +1,28 @@
-.main{
+.body{
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url(https://image.freepik.com/foto-gratis/suministros-oficina-espacio-trabajo-computadora-boligrafo-papel-bloc-notas-decoracion-plantas-taza-cafe-escritorio-vista-superior_35674-515.jpg);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
     text-align: center;
-    padding: 57px;
+    position: relative;
     
+}
+.main{
+    background-image: url(C:\Users\melan.DESKTOP-CILRIH9\OneDrive\Documentos\admin-y-vendedores\ventas\src\assets\64857.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+.main:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color:black;
+    position: absolute;
+    opacity: 0.7;
 }
 .titulo{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 70px;
-    color:gray;
+    color:white;
 }
 .main2{
     background-color: blanchedalmond ;

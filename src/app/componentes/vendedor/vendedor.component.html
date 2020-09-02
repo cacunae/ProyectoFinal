@@ -1,1 +1,167 @@
-<p>vendedor works!</p>
+<!-- navbar -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="">
+    <img
+      src="https://image.flaticon.com/icons/svg/1414/1414008.svg"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    Vendedores
+  </a>
+  <div>
+    <div class="text-left">
+      <button class="btn btn-outline-warning" style="margin-left: 1em">
+        Administradores
+      </button>
+      <button class="btn btn-outline-warning" style="margin-left: 1em">
+        Productos
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div
+  class="container"
+  style="text-align: end; margin: auto; padding-right: 18%; padding-top: 1em"
+>
+  <button
+    class="btn btn-outline-warning mat-elevation-z8"
+    style="background-color: #1c9d43; color: white"
+    href="#contenido"
+    data-toggle="modal"
+    mat-mini-fab
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div style="width: 70%; margin: 1em auto" class="mat-elevation-z12">
+  <mat-table [dataSource]="estudiantes">
+    <ng-container matColumnDef="rut">
+      <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
+      <mat-cell *matCellDef="let estudiante"> {{ estudiante.rut }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let estudiante">
+        {{ estudiante.nombre }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="apellido">
+      <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+      <mat-cell *matCellDef="let estudiante">
+        {{ estudiante.apellido }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="correo">
+      <mat-header-cell *matHeaderCellDef> Correo Electrónico </mat-header-cell>
+      <mat-cell *matCellDef="let estudiante">
+        {{ estudiante.correo }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="opciones">
+      <mat-header-cell style="text-align: center" *matHeaderCellDef>
+        Opciones
+      </mat-header-cell>
+      <mat-cell *matCellDef="let estudiante; index as i">
+        <button
+          mat-mini-fab
+          style="background-color: #d8473e; margin: auto"
+          (click)="eliminar(i)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          style="background-color: #f7ae42; color: white; margin: auto"
+          (click)="modificar(i)"
+          data-toggle="modal"
+          mat-mini-fab
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+  </mat-table>
+</div>
+
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="contenido"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <h2 class="modal-title">Actualizar Estudiante</h2>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+          <div class="modal-body">
+            <form class="text-left p-3">
+              <div class="form-group">
+                <label class="" for="rut">RUT:</label>
+                <input class="form-control" type="text" name="rut" id="rut" />
+              </div>
+              <div class="form-group">
+                <label class="" for="nombres">Nombres</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="nombres"
+                  id="nombres"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="apellidos"> Apellidos </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="apellidos"
+                  id="apellidos"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="correo">Email</label>
+                <input
+                  class="form-control"
+                  type="email"
+                  name="correo"
+                  id="correo"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="idCurso">Cursos</label>
+                <select class="custom-select" name="cambios.idCurso">
+                  <option disabled>Seleccione:</option>
+                  <option value="PROGRAMA TU FUTURO">PROGRAMA TU FUTURO</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button class="btn BtnDefault" type="reset" data-dismiss="modal">
+              actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

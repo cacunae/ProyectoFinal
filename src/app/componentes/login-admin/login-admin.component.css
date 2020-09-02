@@ -1,0 +1,25 @@
+.main{
+    font-family: Arial, Helvetica, sans-serif;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://img.freepik.com/foto-gratis/lugar-trabajo-telefono-inteligente-computadora-portatil-mesa-negra-fondo-copyspace-vista-superior_144627-24860.jpg?size=626&ext=jpg);
+    background-position: center center;
+    text-align: center;
+    padding: 55px;
+    
+}
+.titulo{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 70px;
+    color: white;
+}
+.main2{
+    background-color: blanchedalmond ;
+}
+.bordes{
+    border-radius: 18px 18px 18px 18px;
+    -moz-border-radius: 18px 18px 18px 18px;
+    -webkit-border-radius: 18px 18px 18px 18px;
+    border: 0px solid #000000;
+
+}

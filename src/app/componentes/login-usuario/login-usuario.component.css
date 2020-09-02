@@ -1,0 +1,25 @@
+.main{
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(https://image.freepik.com/foto-gratis/suministros-oficina-espacio-trabajo-computadora-boligrafo-papel-bloc-notas-decoracion-plantas-taza-cafe-escritorio-vista-superior_35674-515.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    padding: 57px;
+    
+}
+.titulo{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 70px;
+    color:gray;
+}
+.main2{
+    background-color: blanchedalmond ;
+}
+.bordes{
+    border-radius: 18px 18px 18px 18px;
+    -moz-border-radius: 18px 18px 18px 18px;
+    -webkit-border-radius: 18px 18px 18px 18px;
+    border: 0px solid #000000;
+
+}

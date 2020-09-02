@@ -23,7 +23,25 @@
   </div>
 </nav>
 
-<div style="width: 70%; margin: 1em auto" class="mat-elevation-z2">
+<div
+  class="container"
+  style="text-align: end; margin: auto; padding-right: 18%; padding-top: 1em"
+>
+  <button
+    class="btn btn-outline-warning mat-elevation-z8"
+    style="background-color: #1c9d43; color: white"
+    href="#contenido"
+    data-toggle="dialog"
+    mat-mini-fab
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div
+  style="width: 70%; margin: 1em auto; border-radius: 10%"
+  class="mat-elevation-z12"
+>
   <mat-table [dataSource]="estudiantes">
     <ng-container matColumnDef="rut">
       <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
@@ -48,17 +66,22 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
-      <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
       <mat-cell *matCellDef="let estudiante; index as i">
-        <button mat-mini-fab color="warn" (click)="eliminar(i)">
+        <button
+          mat-mini-fab
+          style="background-color: #d8473e"
+          (click)="eliminar(i)"
+        >
           <mat-icon>delete</mat-icon>
         </button>
+
         <button
-          (click)="guardar(i)"
+          style="background-color: #f7ae42; color: white"
+          (click)="modificar(i)"
           href="#contenido"
           data-toggle="modal"
           mat-mini-fab
-          color="warn"
         >
           <mat-icon>edit</mat-icon>
         </button>

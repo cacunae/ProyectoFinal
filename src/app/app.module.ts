@@ -10,6 +10,7 @@ import { VendedorComponent } from './componentes/vendedor/vendedor.component';
 import { LoginAdminComponent} from './componentes/login-admin/login-admin.component';
 import { LoginUsuarioComponent} from './componentes/login-usuario/login-usuario.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdministradoresComponent } from './componentes/administradores/administradores.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProductosComponent,
     VendedorComponent,
     LoginAdminComponent,
-    LoginUsuarioComponent
+    LoginUsuarioComponent,
+    AdministradoresComponent
   ],
   imports: [
     BrowserModule,

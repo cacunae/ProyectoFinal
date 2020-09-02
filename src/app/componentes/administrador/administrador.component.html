@@ -1,48 +1,131 @@
 <!-- Image and text -->
 <nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
-        <img src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
-            width="40" height="40" class="d-inline-block align-mid" alt="" loading="lazy">
-        SDI / Administrador
-    </a>
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    SDI / Administrador
+  </a>
 </nav>
 
 <div class="container">
-    <div class="row align-items-center">
-        <!--Carta de Productos-->
-        <div class="col">
-            <div class="card mat-elevation-z4" style="width: 18rem; padding-top: 2rem;">
-                <img src="https://image.flaticon.com/icons/svg/1414/1414029.svg" height="150" width="150"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <a href="#" class="btn btn-warning">Productos</a>
-                </div>
+  <div class="row">
+    <!--Carta de Productos-->
+    <div class="col">
+      <button
+        class="mat-elevation-z4"
+        style="padding: 0%; border: 0ch"
+        routerLink="productos"
+      >
+        <div class="card" style="width: 18rem; padding-top: 2rem">
+          <img
+            src="https://image.flaticon.com/icons/svg/1414/1414029.svg"
+            height="150"
+            width="150"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <div style="text-align: center">
+              <h3><b>Productos</b></h3>
             </div>
+          </div>
         </div>
-        <!--Carta de Administradores-->
-        <div class="col">
-            <div class="card mat-elevation-z4" style="width: 18rem; padding-top: 2rem;">
-                <img src="https://image.flaticon.com/icons/svg/1414/1414024.svg" height="150" width="150"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <a href="#" class="btn btn-warning">Administradores</a>
-                </div>
+      </button>
+    </div>
+    <!--Carta de Administradores-->
+    <div class="col">
+      <button
+        class="mat-elevation-z4"
+        style="border: 0ch; padding: 0%"
+        routerLink="administradores"
+      >
+        <div class="card" style="width: 18rem; padding-top: 2rem">
+          <img
+            src="https://image.flaticon.com/icons/svg/1414/1414024.svg"
+            height="150"
+            width="150"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <div style="text-align: center">
+              <h3><b>Administradores</b></h3>
             </div>
+          </div>
         </div>
-        <!--Carta de vendedores-->
-        <div class="col">
-            <div class="card mat-elevation-z4" style="width: 18rem; padding-top: 2rem;">
-                <img src="https://image.flaticon.com/icons/svg/1414/1414008.svg" height="150" width="150"
-                    class="card-img-top" alt="...">
-                <div class="card-body">
-                    <a href="#" class="btn btn-warning" style="margin-top: 0em;">Vendedores</a>
-                </div>
-            </div>
-        </div>
+      </button>
     </div>
 
-    <!--Barra de busqueda-->
+    <!--Carta de vendedores-->
+    <div class="col">
+      <button
+        class="mat-elevation-z4"
+        style="border: 0ch; padding: 0%"
+        routerLink="vendedores"
+      >
+        <div class="card" style="width: 18rem; padding-top: 2rem">
+          <img
+            src="https://image.flaticon.com/icons/svg/1414/1414008.svg"
+            height="150"
+            width="150"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <div style="text-align: center">
+              <h3><b>Vendedores</b></h3>
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
 
+  <!--Barra de busqueda-->
+
+  <div>
     <div class="row">
-
+      <div id="busqueda">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>Nombre</option>
+              <option>Marca</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Text input with dropdown button"
+            placeholder="Busqueda Rápida"
+          />
+          <span class="input-group-text" style="border: 0ch; margin: 0%">
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              class="bi bi-search"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
+  </div>
+</div>

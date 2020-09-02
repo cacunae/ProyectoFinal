@@ -1,1 +1,38 @@
-<p>productos works!</p>
+<div style="width: 70%; margin: 1em auto" class="mat-elevation-z2">
+    <mat-table [dataSource]="productos">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let productos">
+          {{ productos.nombre }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="marca">
+        <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+        <mat-cell *matCellDef="let productos">
+          {{ productos.marca }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="descripcion">
+        <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+        <mat-cell *matCellDef="let productos">
+          {{ productos.descripcion }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="boton">
+        <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+        <mat-cell *matCellDef="let productos; index as i">
+          <button mat-mini-fab color="warn" (click)="eliminar(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+    </mat-table>
+  </div>
+
+  <router-outlet></router-outlet>

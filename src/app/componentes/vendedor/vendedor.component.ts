@@ -13,31 +13,31 @@ export class VendedorComponent implements OnInit {
     {
       rut: 123456789,
       nombre: 'Pedro',
-      apellido: 'Smith',
+      apellido: 'Luih',
       correo: 'example@exmaple.com',
     },
     {
       rut: 123456789,
       nombre: 'Pedro',
-      apellido: 'Smith',
+      apellido: 'Luih',
       correo: 'example@exmaple.com',
     },
     {
       rut: 123456789,
       nombre: 'Pedro',
-      apellido: 'Smith',
+      apellido: 'Luih',
       correo: 'example@exmaple.com',
     },
     {
       rut: 123456789,
       nombre: 'Pedro',
-      apellido: 'Smith',
+      apellido: 'Luih',
       correo: 'example@exmaple.com',
     },
     {
       rut: 123456789,
       nombre: 'Pedro',
-      apellido: 'Smith',
+      apellido: 'Luih',
       correo: 'example@exmaple.com',
     },
   ];

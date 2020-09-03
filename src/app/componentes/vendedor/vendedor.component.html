@@ -66,8 +66,12 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
+<<<<<<< HEAD
       <mat-header-cell class="titulo" *matHeaderCellDef>
       </mat-header-cell>
+=======
+      <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+>>>>>>> f973af144987b365b310ac5c114881e55714d682
       <mat-cell *matCellDef="let estudiante; index as i">
         <button
           mat-mini-fab
@@ -79,7 +83,7 @@
 
         <button
           style="background-color: #f7ae42; color: white; margin: auto"
-          (click)="modificar(i)"
+          z(click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
         >

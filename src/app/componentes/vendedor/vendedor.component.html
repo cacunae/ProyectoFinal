@@ -57,7 +57,7 @@
 
 <!--TABLA-->
 <div
-  style="width: 60%; margin: 1em auto; text-align: center"
+  style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
   <mat-table [dataSource]="estudiantes">
@@ -86,10 +86,13 @@
     <ng-container matColumnDef="opciones">
       <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
 
-      <mat-cell *matCellDef="let estudiante; index as i">
+      <mat-cell
+        style="justify-content: center"
+        *matCellDef="let estudiante; index as i"
+      >
         <button
           mat-mini-fab
-          style="background-color: #d8473e; margin: auto"
+          style="background-color: #d8473e"
           (click)="eliminar(i)"
         >
           <mat-icon>delete</mat-icon>
@@ -102,9 +105,10 @@
             margin-left: 1em;
             padding-left: 0%;
           "
-          z(click)="modificar(i)"
+          (click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
+          href="#EDITAR"
         >
           <mat-icon>edit</mat-icon>
         </button>

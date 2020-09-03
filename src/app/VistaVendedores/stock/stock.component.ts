@@ -16,14 +16,23 @@ export class StockComponent implements OnInit {
       nombre: 'S7',
       marca: 'Samsung',
       descripcion: 'hola',
+      stock: 5,
     },
     {
       id: 123456789,
       nombre: 'P20',
       marca: 'huawei',
       descripcion: 'chao',
+      stock: 11,
     },
   ];
 
-  columnasAMostrar: string[] = ['id', 'nombre', 'marca', 'descripcion'];
+  columnasAMostrar: string[] = [
+    'status',
+    'id',
+    'nombre',
+    'marca',
+    'descripcion',
+    'stock',
+  ];
 }

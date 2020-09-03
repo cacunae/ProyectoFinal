@@ -23,16 +23,16 @@
 
   <div>
     <div class="text-left">
-      <a href="administradores">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Administradores
-        </button></a
+      <button
+        class="btn btn-outline-warning"
+        style="margin-left: 1em"
+        routerLink="administradores"
       >
-      <a href="productos">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Productos
-        </button>
-      </a>
+        Administradores
+      </button>
+      <button class="btn btn-outline-warning" style="margin-left: 1em">
+        Productos
+      </button>
     </div>
   </div>
 </nav>
@@ -46,7 +46,7 @@
   <button
     class="btn btn-outline-warning mat-elevation-z8"
     style="background-color: #1c9d43; color: white"
-    href="#AGREGAR"
+    href="#contenido"
     data-toggle="modal"
     mat-mini-fab
   >
@@ -57,7 +57,7 @@
 
 <!--TABLA-->
 <div
-  style="width: 70%; margin: 1em auto; text-align: center"
+  style="width: 60%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
   <mat-table [dataSource]="estudiantes">
@@ -84,15 +84,17 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
-      <mat-header-cell style="justify-content: center" *matHeaderCellDef>
-      </mat-header-cell>
-      <mat-cell
-        style="justify-content: center"
-        *matCellDef="let estudiante; index as i"
-      >
+      <<<<<<< HEAD
+      <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
+      =======
+      <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+      >>>>>>> f973af144987b365b310ac5c114881e55714d682 =======
+      <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+      >>>>>>> 6e476d5ef9c14a198e91eea2834e6764f7df9d1c
+      <mat-cell *matCellDef="let estudiante; index as i">
         <button
           mat-mini-fab
-          style="background-color: #d8473e"
+          style="background-color: #d8473e; margin: auto"
           (click)="eliminar(i)"
         >
           <mat-icon>delete</mat-icon>
@@ -108,7 +110,6 @@
           z(click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
-          href="#EDITAR"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -120,12 +121,12 @@
 </div>
 <!--FIN DE LA TABLA-->
 
-<!--MODAL AGREGAR-->
+<!--MODAL-->
 <div class="text-right mt-4">
   <div>
     <div
       class="modal fade"
-      id="AGREGAR"
+      id="contenido"
       style="margin-top: 40px; margin-bottom: 30px"
     >
       <div class="modal-dialog text-center">
@@ -209,6 +210,8 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
+<<<<<<< HEAD
+=======
 
 <!--MODAL EDITAR-->
 <div class="text-right mt-4">
@@ -299,3 +302,4 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
+>>>>>>> 5a2e356b1d650b7014a71307ee2ecfb7d50645f6

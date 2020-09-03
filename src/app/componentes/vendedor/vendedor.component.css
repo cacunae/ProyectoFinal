@@ -1,0 +1,7 @@
+ng-container {
+  text-align: center !important;
+  padding: 0;
+}
+.titulo {
+  width: 4em;
+}

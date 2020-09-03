@@ -38,10 +38,13 @@
   </button>
 </div>
 
-<div style="width: 70%; margin: 1em auto" class="mat-elevation-z12">
+<div
+  style="width: 70%; margin: 1em auto; text-align: center"
+  class="mat-elevation-z12"
+>
   <mat-table [dataSource]="estudiantes">
     <ng-container matColumnDef="rut">
-      <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
+      <mat-header-cell  *matHeaderCellDef> RUT </mat-header-cell>
       <mat-cell *matCellDef="let estudiante"> {{ estudiante.rut }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="nombre">
@@ -63,8 +66,7 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
-      <mat-header-cell style="text-align: center" *matHeaderCellDef>
-        Opciones
+      <mat-header-cell class="titulo" *matHeaderCellDef>
       </mat-header-cell>
       <mat-cell *matCellDef="let estudiante; index as i">
         <button

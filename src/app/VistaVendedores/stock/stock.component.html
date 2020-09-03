@@ -1,1 +1,88 @@
-<p>stock works!</p>
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="portalventas">
+    <img
+      src="./assets/stock2.png"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    Stock
+  </a>
+
+  <div class="text-left">
+    <a href="ventas">
+      <button
+        class="btn btn-outline-warning"
+        style="margin-left: 1em"
+        routerLink="ventas"
+      >
+        Ventas
+      </button>
+    </a>
+  </div>
+</nav>
+
+<div
+  style="width: 70%; margin: 1em auto; text-align: center"
+  class="mat-elevation-z12"
+>
+  <mat-table [dataSource]="productos">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.nombre }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="marca">
+      <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.marca }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef>descripcion</mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.descripcion }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="opciones">
+      <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
+
+      <mat-cell
+        style="justify-content: center"
+        *matCellDef="let estudiante; index as i"
+      >
+        <button
+          mat-mini-fab
+          style="background-color: #d8473e"
+          (click)="eliminar(i)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          style="
+            background-color: #f7ae42;
+            color: white;
+            margin-left: 1em;
+            padding-left: 0%;
+          "
+          (click)="modificar(i)"
+          data-toggle="modal"
+          mat-mini-fab
+          href="#EDITAR"
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+  </mat-table>
+</div>

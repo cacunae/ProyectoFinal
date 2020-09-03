@@ -11,8 +11,8 @@ import { StockComponent } from './VistaVendedores/stock/stock.component';
 import { VentasComponent } from './VistaVendedores/ventas/ventas.component';
 
 const routes: Routes = [
-  { path: '', component: LoginUsuarioComponent },
-  { path: 'inicio', component: InicioComponent },
+  { path: 'login-usuario', component: LoginUsuarioComponent },
+  { path: 'portalventas', component: InicioComponent },
   { path: 'stock', component: StockComponent },
   { path: 'ventas', component: VentasComponent },
   { path: 'productos', component: ProductosComponent },

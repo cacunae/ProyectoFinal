@@ -44,7 +44,7 @@
 >
   <mat-table [dataSource]="estudiantes">
     <ng-container matColumnDef="rut">
-      <mat-header-cell  *matHeaderCellDef> RUT </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
       <mat-cell *matCellDef="let estudiante"> {{ estudiante.rut }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="nombre">
@@ -66,12 +66,10 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
-<<<<<<< HEAD
-      <mat-header-cell class="titulo" *matHeaderCellDef>
-      </mat-header-cell>
-=======
+      <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
+      =======
       <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
->>>>>>> f973af144987b365b310ac5c114881e55714d682
+      >>>>>>> f973af144987b365b310ac5c114881e55714d682
       <mat-cell *matCellDef="let estudiante; index as i">
         <button
           mat-mini-fab

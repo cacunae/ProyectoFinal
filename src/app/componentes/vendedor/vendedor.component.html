@@ -75,7 +75,7 @@
 
         <button
           style="background-color: #f7ae42; color: white; margin: auto"
-          (click)="modificar(i)"
+          z(click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
         >
@@ -88,6 +88,7 @@
   </mat-table>
 </div>
 
+<!--MODAL-->
 <div class="text-right mt-4">
   <div>
     <div
@@ -99,7 +100,21 @@
         <div class="modal-content">
           <!--encabezado del modal-->
           <div class="modal-header">
-            <h2 class="modal-title">Actualizar Estudiante</h2>
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: left">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Add-256.png"
+                  height="30"
+                  width="30"
+                  style="margin-right: 3px"
+                />
+                Agregar vendedor
+              </h2>
+            </div>
+
             <button
               type="button"
               class="close"
@@ -143,19 +158,17 @@
                   id="correo"
                 />
               </div>
-              <div class="form-group">
-                <label class="" for="idCurso">Cursos</label>
-                <select class="custom-select" name="cambios.idCurso">
-                  <option disabled>Seleccione:</option>
-                  <option value="PROGRAMA TU FUTURO">PROGRAMA TU FUTURO</option>
-                </select>
-              </div>
             </form>
           </div>
           <!--footer-->
           <div class="modal-footer">
-            <button class="btn BtnDefault" type="reset" data-dismiss="modal">
-              actualizar
+            <button
+              class="btn BtnDefault"
+              style="background-color: #1c9d43; color: aliceblue"
+              type="reset"
+              data-dismiss="modal"
+            >
+              Agregar
             </button>
           </div>
         </div>
@@ -163,3 +176,4 @@
     </div>
   </div>
 </div>
+<!--FIN DEL MODAL-->

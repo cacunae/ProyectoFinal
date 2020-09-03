@@ -1,0 +1,8 @@
+.body {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#op {
+  opacity: 0.5;
+}

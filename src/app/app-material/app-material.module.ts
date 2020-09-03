@@ -10,17 +10,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
-import { MatDialogModule } from "@angular/material/dialog";
-
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
-  exports:
-  [
+  imports: [CommonModule],
+  exports: [
     MatFormFieldModule,
     MatButtonModule,
     MatToolbarModule,
@@ -31,8 +28,8 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatCheckboxModule,
     FormsModule,
     MatDialogModule,
-    
-  ]
-
+    MatGridListModule,
+    MatCardModule,
+  ],
 })
-export class AppMaterialModule { }
+export class AppMaterialModule {}

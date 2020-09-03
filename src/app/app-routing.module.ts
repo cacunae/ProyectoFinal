@@ -8,12 +8,12 @@ import { LoginUsuarioComponent } from './componentes/login-usuario/login-usuario
 import { LoginAdminComponent } from './componentes/login-admin/login-admin.component';
 
 const routes: Routes = [
-  { path:"", component: AdministradorComponent},
+  { path:"", component: LoginUsuarioComponent},
   { path:"productos", component: ProductosComponent },
   { path:"vendedores", component: VendedorComponent },
+  { path:"administrador", component:AdministradorComponent },
   { path:"administradores", component: AdministradoresComponent},
-  { path:"login-usuario", component:LoginUsuarioComponent},
-  { path:"login-admin", component: LoginAdminComponent},
+  { path:"login-admin", component: LoginAdminComponent}
 ];
 
 @NgModule({

@@ -39,7 +39,7 @@
 </div>
 
 <div
-  style="width: 70%; margin: 1em auto; text-align: center"
+  style="width: 60%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
   <mat-table [dataSource]="estudiantes">
@@ -66,10 +66,14 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
+<<<<<<< HEAD
       <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
       =======
       <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
       >>>>>>> f973af144987b365b310ac5c114881e55714d682
+=======
+      <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+>>>>>>> 6e476d5ef9c14a198e91eea2834e6764f7df9d1c
       <mat-cell *matCellDef="let estudiante; index as i">
         <button
           mat-mini-fab
@@ -80,8 +84,13 @@
         </button>
 
         <button
-          style="background-color: #f7ae42; color: white; margin: auto"
-          z(click)="modificar(i)"
+          style="
+            background-color: #f7ae42;
+            color: white;
+            margin-left: 1em;
+            padding-left: 0%;
+          "
+          (click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
         >

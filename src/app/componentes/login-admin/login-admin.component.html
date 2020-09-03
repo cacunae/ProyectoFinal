@@ -1,31 +1,39 @@
 <div class="main">
- <br>
- <br>   
-<div class="body"> 
-    <h1 class="titulo">SDI Group</h1>
-    <p style="font-family:Arial, Helvetica, sans-serif; color:white; font-size: 25px;"><mat-icon>work_outline</mat-icon> Bienvenido al portal de administradores</p>
-    <br />
-    <div class="bordes" style="width: 35%; margin: 2em auto">
-      <form  class="mat-elevation-z4; bordes" style="padding: 1em; background-color: white; ">
-          <button type="button" class="btn btn-outline-info" style="margin-left: 8cm;" routerLink="">Soy vendedor</button> 
-          <h2 style="margin-right: 7cm; color: gray;">Iniciar sesión</h2>
-          <mat-form-field style="width: 100%;" appearance="outline">
-              <mat-label style="width: 100%">Usuario</mat-label>
-              <input matInput required placeholder="Tu usuario">
-          </mat-form-field>
-          <br />
-          <mat-form-field  style="width: 100%;"appearance="outline">
-              <mat-label>Contraseña</mat-label>
-              <input matInput type="password" required placeholder="Tu Contraseña">
-          </mat-form-field>
-          <br />
-          <button type="button" class="btn btn-secondary btn-lg btn-block">Ingresar</button>
-          <br />
-          <p style="margin-right: 6cm;">¿Olvidaste tu contraseña?</p>
-          <a style="margin-right: 8cm;" href="#">Haz click aquí.</a>
-      </form>
-  </div>
-</div>
-<br>
-<br>
-</div>
+    <br>
+    <br> 
+    <br>
+    <br>
+    <br>
+    <br>  
+   <div class="body"> 
+       <h1 class="titulo">SDI Group</h1>
+       <br />
+       <p style="font-family:Arial, Helvetica, sans-serif; color:white; font-size: 25px;"><mat-icon>work_outline</mat-icon> Bienvenido al portal de administradores</p>
+       <br />
+       <div class="bordes" style="width: 35%; margin: 2em auto">
+         <form  class="mat-elevation-z4; bordes" style="padding: 1em; background-color: white; ">
+             <button type="button" class="btn btn-outline-info" style="margin-left: 8cm;" (click)="vendedor()">Soy vendedor</button> 
+             <h2 style="margin-right: 7cm; color: gray; font-size: 30px">Iniciar sesión</h2>
+             <mat-form-field style="width: 100%;" appearance="outline">
+                 <mat-label style="width: 100%">Usuario</mat-label>
+                 <input matInput required placeholder="Tu usuario">
+             </mat-form-field>
+             <br />
+             <mat-form-field  style="width: 100%;"appearance="outline">
+                 <mat-label>Contraseña</mat-label>
+                 <input matInput type="password" required placeholder="Tu Contraseña">
+             </mat-form-field>
+             <br />
+             <button type="button" class="btn btn-secondary btn-lg btn-block">Ingresar</button>
+             <br />
+             <p style="margin-right: 6cm;">¿Olvidaste tu contraseña?</p>
+             <a style="margin-right: 8cm;" href="#">Haz click aquí.</a>
+         </form>
+     </div>
+   </div>
+   <br>
+   <br>
+   <br>
+   <br>
+   </div>
+   

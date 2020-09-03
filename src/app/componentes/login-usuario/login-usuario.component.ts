@@ -7,9 +7,14 @@ import { Router } from '@angular/router'
   styleUrls: ['./login-usuario.component.css']
 })
 export class LoginUsuarioComponent implements OnInit {
-
-  constructor(router:Router) { }
+    
+  constructor( private router:Router) {
+    this.router = router;
+   }
 
   ngOnInit(): void {
+  }
+  admin(){
+    this.router.navigate(['login-admin'])
   }
 }

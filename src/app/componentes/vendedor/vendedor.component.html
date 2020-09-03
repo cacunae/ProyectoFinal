@@ -13,16 +13,16 @@
   </a>
   <div>
     <div class="text-left">
-      <a href="administradores">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Administradores
-        </button></a
+      <button
+        class="btn btn-outline-warning"
+        style="margin-left: 1em"
+        routerLink="administradores"
       >
-      <a href="productos">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Productos
-        </button>
-      </a>
+        Administradores
+      </button>
+      <button class="btn btn-outline-warning" style="margin-left: 1em">
+        Productos
+      </button>
     </div>
   </div>
 </nav>
@@ -34,7 +34,7 @@
   <button
     class="btn btn-outline-warning mat-elevation-z8"
     style="background-color: #1c9d43; color: white"
-    href="#AGREGAR"
+    href="#contenido"
     data-toggle="modal"
     mat-mini-fab
   >
@@ -43,7 +43,7 @@
 </div>
 
 <div
-  style="width: 70%; margin: 1em auto; text-align: center"
+  style="width: 60%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
   <mat-table [dataSource]="estudiantes">
@@ -70,26 +70,17 @@
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
-
+      <<<<<<< HEAD
       <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
-    
+      =======
       <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
-   
-
+      >>>>>>> f973af144987b365b310ac5c114881e55714d682 =======
       <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
-
+      >>>>>>> 6e476d5ef9c14a198e91eea2834e6764f7df9d1c
       <mat-cell *matCellDef="let estudiante; index as i">
-
-      <mat-header-cell style="justify-content: center" *matHeaderCellDef>
-      </mat-header-cell>
-      <mat-cell
-        style="justify-content: center"
-        *matCellDef="let estudiante; index as i"
-      >
->>>>>>> 33ebdcad149aebee91d7a161b404845b2c43a6aa
         <button
           mat-mini-fab
-          style="background-color: #d8473e"
+          style="background-color: #d8473e; margin: auto"
           (click)="eliminar(i)"
         >
           <mat-icon>delete</mat-icon>
@@ -105,7 +96,6 @@
           (click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
-          href="#EDITAR"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -116,12 +106,12 @@
   </mat-table>
 </div>
 
-<!--MODAL AGREGAR-->
+<!--MODAL-->
 <div class="text-right mt-4">
   <div>
     <div
       class="modal fade"
-      id="AGREGAR"
+      id="contenido"
       style="margin-top: 40px; margin-bottom: 30px"
     >
       <div class="modal-dialog text-center">
@@ -205,94 +195,3 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
-
-<!--MODAL EDITAR-->
-<div class="text-right mt-4">
-  <div>
-    <div
-      class="modal fade"
-      id="EDITAR"
-      style="margin-top: 40px; margin-bottom: 30px"
-    >
-      <div class="modal-dialog text-center">
-        <div class="modal-content">
-          <!--encabezado del modal-->
-          <div class="modal-header">
-            <div
-              class="modal-title"
-              style="padding: 3em 0em 0em 1em; width: 100%"
-            >
-              <h2 style="text-align: left">
-                <img
-                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Pen-256.png"
-                  height="30"
-                  width="30"
-                  style="margin-right: 3px"
-                />
-                Editar vendedor
-              </h2>
-            </div>
-
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-hidden="true"
-            >
-              &times;
-            </button>
-          </div>
-          <!--cuerpo del modal-->
-          <div class="modal-body">
-            <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="rut">RUT:</label>
-                <input class="form-control" type="text" name="rut" id="rut" />
-              </div>
-              <div class="form-group">
-                <label class="" for="nombres">Nombres</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="nombres"
-                  id="nombres"
-                />
-              </div>
-              <div class="form-group">
-                <label class="" for="apellidos"> Apellidos </label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="apellidos"
-                  id="apellidos"
-                />
-              </div>
-              <div class="form-group">
-                <label class="" for="correo">Email</label>
-                <input
-                  class="form-control"
-                  type="email"
-                  name="correo"
-                  id="correo"
-                />
-              </div>
-            </form>
-          </div>
-          <!--footer-->
-          <div class="modal-footer">
-            <button
-              class="btn BtnDefault"
-              style="background-color: #f7ae42; color: aliceblue"
-              type="reset"
-              data-dismiss="modal"
-            >
-              Editar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--FIN DEL MODAL-->
-<router-outlet></router-outlet>

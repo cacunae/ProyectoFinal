@@ -13,7 +13,7 @@ export class LoginAdminComponent implements OnInit {
   ngOnInit(): void {
   }
   vendedor(){
-    this.router.navigate(['login-usuario'])
+    this.router.navigate([""])
   }
 
 }

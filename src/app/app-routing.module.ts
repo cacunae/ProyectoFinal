@@ -11,14 +11,11 @@ import { StockComponent } from './VistaVendedores/stock/stock.component';
 import { VentasComponent } from './VistaVendedores/ventas/ventas.component';
 
 const routes: Routes = [
-  { path: '', component: AdministradorComponent },
-  { path: 'inicio', component: InicioComponent },
-  { path: 'stock', component: StockComponent },
-  { path: 'ventas', component: VentasComponent },
+  { path: '', component: LoginUsuarioComponent },
   { path: 'productos', component: ProductosComponent },
   { path: 'vendedores', component: VendedorComponent },
+  { path: 'administrador', component: AdministradorComponent },
   { path: 'administradores', component: AdministradoresComponent },
-  { path: 'login-usuario', component: LoginUsuarioComponent },
   { path: 'login-admin', component: LoginAdminComponent },
 ];
 

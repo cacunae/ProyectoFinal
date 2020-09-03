@@ -80,7 +80,25 @@
   </div>
 </div>
 
-<div style="width: 70%; margin: 1em auto" class="mat-elevation-z2">
+<div
+  class="container"
+  style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
+>
+  <button
+    class="btn btn-outline-warning mat-elevation-z8"
+    style="background-color: #1c9d43; color: white"
+    href="#AGREGAR"
+    data-toggle="modal"
+    mat-mini-fab
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div
+  style="width: 70%; margin: 1em auto; text-align: center"
+  class="mat-elevation-z12"
+>
   <mat-table [dataSource]="productos">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -104,11 +122,34 @@
         {{ productos.descripcion }}
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="boton">
-      <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
-      <mat-cell *matCellDef="let productos; index as i">
-        <button mat-mini-fab color="warn" (click)="eliminar(i)">
+    <ng-container matColumnDef="opciones">
+      <mat-header-cell style="justify-content: center" *matHeaderCellDef>
+      </mat-header-cell>
+      <mat-cell
+        style="justify-content: center"
+        *matCellDef="let estudiante; index as i"
+      >
+        <button
+          mat-mini-fab
+          style="background-color: #d8473e"
+          (click)="eliminar(i)"
+        >
           <mat-icon>delete</mat-icon>
+        </button>
+
+        <button
+          style="
+            background-color: #f7ae42;
+            color: white;
+            margin-left: 1em;
+            padding-left: 0%;
+          "
+          (click)="modificar(i)"
+          data-toggle="modal"
+          mat-mini-fab
+          href="#EDITAR"
+        >
+          <mat-icon>edit</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
@@ -117,4 +158,182 @@
   </mat-table>
 </div>
 
-<router-outlet></router-outlet>
+<!--MODAL AGREGAR-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="AGREGAR"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: left">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Add-256.png"
+                  height="30"
+                  width="30"
+                  style="margin-right: 3px"
+                />
+                Agregar Producto
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+          <div class="modal-body">
+            <form class="text-left p-3">
+              <div class="form-group">
+                <label class="" for="id">ID:</label>
+                <input class="form-control" type="text" name="id" id="id" />
+              </div>
+              <div class="form-group">
+                <label class="" for="nombre">Nombre</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="nombres"
+                  id="nombres"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="marca"> Marca </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="marca"
+                  id="marca"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="descripcion">Descripción</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="descripcion"
+                  id="descripcion"
+                />
+              </div>
+            </form>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="background-color: #1c9d43; color: aliceblue"
+              type="reset"
+              data-dismiss="modal"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN DEL MODAL-->
+
+<!--MODAL EDITAR-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="EDITAR"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: left">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Pen-256.png"
+                  height="30"
+                  width="30"
+                  style="margin-right: 3px"
+                />
+                Editar productos
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+          <div class="modal-body">
+            <form class="text-left p-3">
+              <div class="form-group">
+                <label class="" for="id">ID:</label>
+                <input class="form-control" type="text" name="id" id="id" />
+              </div>
+              <div class="form-group">
+                <label class="" for="nombre">Nombre</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="nombres"
+                  id="nombres"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="marca"> Marca </label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="marca"
+                  id="marca"
+                />
+              </div>
+              <div class="form-group">
+                <label class="" for="descripcion">Descripción</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="descripcion"
+                  id="descripcion"
+                />
+              </div>
+            </form>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="background-color: #f7ae42; color: aliceblue"
+              type="reset"
+              data-dismiss="modal"
+            >
+              Editar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN DEL MODAL-->

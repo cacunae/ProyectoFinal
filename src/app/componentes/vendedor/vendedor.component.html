@@ -1,4 +1,4 @@
-<!-- navbar -->
+<!--NAVBAR-->
 <nav class="navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">
     <img
@@ -36,10 +36,12 @@
     </div>
   </div>
 </nav>
+<!--FIN DEL NAVBAR-->
 
+<!--BOTON DE AGREGAR-->
 <div
   class="container"
-  style="text-align: end; margin: auto; padding-right: 18%; padding-top: 1em"
+  style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
 >
   <button
     class="btn btn-outline-warning mat-elevation-z8"
@@ -51,7 +53,9 @@
     <mat-icon>add</mat-icon>
   </button>
 </div>
+<!--FIN DEL BOTON DE AGREGAR-->
 
+<!--TABLA-->
 <div
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
@@ -114,6 +118,7 @@
     <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
   </mat-table>
 </div>
+<!--FIN DE LA TABLA-->
 
 <!--MODAL AGREGAR-->
 <div class="text-right mt-4">
@@ -294,4 +299,3 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
-<router-outlet></router-outlet>

@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "SDI"
+  "defaultProject": "SDI",
+  "cli": {
+    "analytics": false
+  }
 }

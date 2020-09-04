@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -30,6 +33,11 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogModule,
     MatGridListModule,
     MatCardModule,
+    MatStepperModule,
+    MatMenuModule,
+    MatListModule
+
+
   ],
 })
-export class AppMaterialModule {}
+export class AppMaterialModule { }

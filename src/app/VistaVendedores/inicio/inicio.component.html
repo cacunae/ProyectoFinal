@@ -1,16 +1,19 @@
 <!-- navbar -->
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="inicio">
-    <img src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
-      width="40" height="40" class="d-inline-block align-mid" alt="" loading="lazy" />
-    /
-    <img src="https://image.flaticon.com/icons/svg/1414/1414024.svg" width="40" height="40"
-      class="d-inline-block align-mid" alt="" loading="lazy" />
-    Vendedor
+  <a class="navbar-brand" href="portalventas">
+    <img
+      src="https://cdn0.iconfinder.com/data/icons/simpline-mix/64/simpline_41-256.png"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    SDI / Ventas
   </a>
   <div>
     <div class="text-left">
-      <a href="vendedores">
+      <a href="">
         <button class="btn btn-outline-warning" style="margin-left: 1em">
           Cerrar Sesión
         </button>
@@ -24,19 +27,24 @@
     Bienvenido al portal de ventas
   </h1>
 
-  <p style="
+  <p
+    style="
       text-align: center;
       padding-top: 40px;
       font-size: larger;
       color: black;
-    ">
+    "
+  >
     Seleccione su proceso:
   </p>
 </div>
 <mat-grid-list cols="2" style="width: 50%; margin: auto">
   <mat-grid-tile>
-    <button class="example-card mat-elevation-z4" style="margin: 20px; padding: 0%; border: 0ch; cursor: pointer"
-      (click)="ventas()">
+    <button
+      class="example-card mat-elevation-z4"
+      style="margin: 20px; padding: 0%; border: 0ch; cursor: pointer"
+      (click)="ventas()"
+    >
       <mat-card>
         <mat-card-title>
           <p style="font-size: larger; text-align: center">Ventas</p>
@@ -47,8 +55,11 @@
   </mat-grid-tile>
 
   <mat-grid-tile>
-    <button class="example-card mat-elevation-z4" style="margin: 20px; padding: 0%; border: 0ch; cursor: pointer"
-      (click)="stock()">
+    <button
+      class="example-card mat-elevation-z4"
+      style="margin: 20px; padding: 0%; border: 0ch; cursor: pointer"
+      (click)="stock()"
+    >
       <mat-card>
         <mat-card-title>
           <p style="font-size: larger; text-align: center">Stock</p>

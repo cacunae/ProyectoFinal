@@ -43,11 +43,11 @@
 <!--FIN DEL NAVBAR-->
 
 <!--BOTON DE AGREGAR-->
-<div
-  class="container"
-  style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
->
+<div class="container" style="text-align: unset; padding-top: 1em">
   <button
+    mat-raised-button
+    matTooltip="Agregar un vendedor nuevo"
+    matTooltipPosition="right"
     class="btn btn-outline-warning mat-elevation-z8"
     style="background-color: #1c9d43; color: white"
     href="#contenido"
@@ -95,6 +95,9 @@
         *matCellDef="let estudiante; index as i"
       >
         <button
+          mat-raised-button
+          matTooltip="Eliminar a este vendedor"
+          matTooltipPosition="above"
           mat-mini-fab
           style="background-color: #d8473e"
           (click)="eliminar(i)"
@@ -103,6 +106,9 @@
         </button>
 
         <button
+          mat-raised-button
+          matTooltip="Editar a este vendedor"
+          matTooltipPosition="above"
           style="
             background-color: #f7ae42;
             color: white;

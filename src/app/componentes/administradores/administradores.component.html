@@ -43,6 +43,9 @@
   style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
 >
   <button
+    mat-raised-button
+    matTooltip="Agregar un Administrador nuevo"
+    matTooltipPosition="right"
     class="btn btn-outline-warning mat-elevation-z8"
     style="background-color: #1c9d43; color: white"
     href="#AGREGAR"
@@ -90,6 +93,9 @@
         *matCellDef="let estudiante; index as i"
       >
         <button
+          mat-raised-button
+          matTooltip="Eliminar este administrador"
+          matTooltipPosition="above"
           mat-mini-fab
           style="background-color: #d8473e"
           (click)="eliminar(i)"
@@ -98,6 +104,9 @@
         </button>
 
         <button
+          mat-raised-button
+          matTooltip="Modificar este administrador"
+          matTooltipPosition="above"
           style="
             background-color: #f7ae42;
             color: white;

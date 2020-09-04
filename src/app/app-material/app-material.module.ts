@@ -13,13 +13,10 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-<<<<<<< HEAD
 import { MatTooltipModule } from '@angular/material/tooltip';
-=======
-import { MatStepperModule } from "@angular/material/stepper";
-import { MatMenuModule } from "@angular/material/menu";
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
->>>>>>> ea91cab55fe89975869fea7767ef6ad5440ebb56
 
 @NgModule({
   declarations: [],
@@ -37,15 +34,10 @@ import { MatListModule } from '@angular/material/list';
     MatDialogModule,
     MatGridListModule,
     MatCardModule,
-<<<<<<< HEAD
     MatTooltipModule,
-=======
     MatStepperModule,
     MatMenuModule,
-    MatListModule
-
-
->>>>>>> ea91cab55fe89975869fea7767ef6ad5440ebb56
+    MatListModule,
   ],
 })
-export class AppMaterialModule { }
+export class AppMaterialModule {}

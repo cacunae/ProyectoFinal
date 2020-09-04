@@ -1,134 +1,157 @@
 <!-- navbar -->
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="inicio">
-    <img src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
-      width="40" height="40" class="d-inline-block align-mid" alt="" loading="lazy" />
-    /
-    <img src="https://image.flaticon.com/icons/svg/1414/1414024.svg" width="40" height="40"
-      class="d-inline-block align-mid" alt="" loading="lazy" />
-    Vendedor
+  <a class="navbar-brand" href="portalventas">
+    <img
+      src="https://github.com/cacunae/ProyectoFinal/blob/master/src/assets/ventas2.png?raw=true"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    / Nueva venta
   </a>
   <div>
     <div class="text-left">
-      <a href="vendedores">
+      <a href="stock">
         <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Cerrar Sesión
+          Stock
         </button>
       </a>
     </div>
   </div>
 </nav>
+<!--FIN DEL NAVBAR-->
 
-
-<!-- Side navigation -->
-<div class="sidenav">
-  <a href="localhost:4200/ventas">
-    <img src="./assets/car2.png" style="margin-left:-3px;
-    width: 60%;">
-  </a>
-  <a href="localhost:4200/ventas">
-    <img src="./assets/c3.png" style="margin-left:-5px;
-      width: 60%;">
-  </a>
-</div>
-
-
-<body>
-  <mat-card class="example-card mat-elevation-z12" style="width: 45%; margin:auto">
-    <mat-card-header>
-      <mat-card-title style="text-align: center; padding-left: 370px;">
-        <p>Busca los productos</p>
-      </mat-card-title>
-      <mat-card-subtitle style="text-align: center; padding-left: 370px;">Arma tu pedido</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="./assets/telefono.jpg" alt="Photo of a Shiba Inu" style="margin-bottom: 5%;" />
-    <div style="margin-left: 55px">
-      <form class="form-inline my-2 my-lg-0">
-        <input style="width: 360px; padding-left: 650px;" class="form-control mr-sm-2" type="search"
-          placeholder="Buscar" aria-label="Search" />
-        <a class="btn btn-outline-primary my-2 my-sm-0 botones" mat-raised-button style="margin-left: 1em;">
-          Buscar
-        </a>
-      </form>
+<!--INICIO DE LA CARTA-->
+<div>
+  <div class="row">
+    <!--BARRA DE BUSQUEDA-->
+    <div class="col-4 mat-elevation-z4" style="padding: 1em 0em 0em 1em">
+      <div>
+        <form class="form-inline my-2 my-lg-0" style="padding: 1em 0em 0em 1em">
+          <input
+            style="width: 75%; margin-left: 2em"
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Agregar productos"
+            aria-label="Search"
+          />
+          <button mat-button>
+            <mat-icon> search</mat-icon>
+          </button>
+        </form>
+      </div>
     </div>
-    <mat-card-content>
-      <div style="width: 90%; margin: 4em auto;" class="mat-elevation-z2">
-        <mat-table [dataSource]="ventas">
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-            <mat-cell *matCellDef="let ventas">
-              {{ ventas.id }}
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="descripcion">
-            <mat-header-cell *matHeaderCellDef>
-              Descripcion
-            </mat-header-cell>
-            <mat-cell *matCellDef="let ventas">
-              {{ ventas.descripcion }}
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="precio">
-            <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-            <mat-cell *matCellDef="let ventas">
-              {{ ventas.precio }}
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="subtotal">
-            <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
-            <mat-cell *matCellDef="let ventas">
-              {{ ventas.subtotal }}
-            </mat-cell>
-          </ng-container>
+    <!--FIN DE LA BARRA DE BUSQUEDA-->
 
-          <ng-container matColumnDef="input">
-            <mat-header-cell *matHeaderCellDef> Cantidad</mat-header-cell>
-            <mat-cell *matCellDef="let ventas">
-              <div>
-                <input style="width: 60px" type="number" id="cantidad" name="cantidad" min="0" max="100000" />
-              </div>
-            </mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="boton">
-            <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
-            <mat-cell *matCellDef="let ventas; index as i">
-              <div style="padding-left: 10px">
-                <button mat-mini-fab color="ward" (click)="eliminar(i)">
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </div>
-            </mat-cell>
-          </ng-container>
+    <!--CARTA DE ARTICULOS A VENDER-->
+    <div class="col-8 mat-elevation-z4" style="padding-left: 1em">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title style="text-align: center; padding-left: 370px">
+            <p>Busca los productos</p>
+          </mat-card-title>
+          <mat-card-subtitle style="text-align: center; padding-left: 370px"
+            >Arma tu pedido</mat-card-subtitle
+          >
+        </mat-card-header>
+        <!--INICIO DE LA TABLA-->
+        <mat-card-content>
+          <button mat-button (click)="toggleOpciones()">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <div style="width: 90%; margin-top: 0%" class="mat-elevation-z2">
+            <mat-table [dataSource]="ventas">
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                <mat-cell *matCellDef="let ventas">
+                  {{ ventas.id }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="descripcion">
+                <mat-header-cell *matHeaderCellDef>
+                  Descripcion
+                </mat-header-cell>
+                <mat-cell *matCellDef="let ventas">
+                  {{ ventas.descripcion }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="precio">
+                <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+                <mat-cell *matCellDef="let ventas">
+                  {{ ventas.precio }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="subtotal">
+                <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
+                <mat-cell *matCellDef="let ventas">
+                  {{ ventas.precio * ventas.cantidad }}
+                </mat-cell>
+              </ng-container>
 
-          <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
-          <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
-        </mat-table>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <div style="text-align: center;">
-        <label style="color: gray; font-size: x-large" for="total">Total:</label>
-        <input style="width: 30%; font-size: x-large" type="" name="total" placeholder="800.000" />
-      </div>
-      <div style="text-align: center; margin: 5%">
-        <mat-form-field appearance="fill">
-          <mat-label>Formas de pago:</mat-label>
-          <select matNativeControl required>
-            <option value="efectivo">Efectivo</option>
-            <option value="debito">Débito</option>
-            <option value="credito">Crédito</option>
-            <option value="otros">Otros</option>
-          </select>
-        </mat-form-field>
-        <a class="btn btn-outline-primary my-2 my-sm-0 botones" mat-raised-button style="margin-left: 1em;">
-          Procesar pago
-        </a>
-      </div>
+              <ng-container matColumnDef="cantidad">
+                <mat-header-cell *matHeaderCellDef> Cantidad</mat-header-cell>
+                <mat-cell *matCellDef="let ventas">
+                  <div>
+                    {{ ventas.cantidad }}
+                  </div>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="boton">
+                <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+                <mat-cell *matCellDef="let ventas; index as i">
+                  <div style="padding-left: 10px">
+                    <button mat-button (click)="eliminar(i)">
+                      <mat-icon style="color: #d8473e">remove_circle</mat-icon>
+                    </button>
+                  </div>
+                </mat-cell>
+              </ng-container>
 
+              <mat-header-row
+                *matHeaderRowDef="columnasAMostrar"
+              ></mat-header-row>
+              <mat-row
+                *matRowDef="let myRowData; columns: columnasAMostrar"
+              ></mat-row>
+            </mat-table>
+            <hr />
+            <div style="text-align: end; padding-right: 10em">
+              <label style="color: black; font-size: x-large" for="total">
+                <h1>
+                  <b>Total: {{ total }}</b>
+                </h1>
+              </label>
+            </div>
 
-    </mat-card-actions>
+            <div style="text-align: end; margin: 5%">
+              <mat-form-field appearance="fill">
+                <mat-label>Formas de pago:</mat-label>
+                <select matNativeControl required>
+                  <option value="efectivo">Efectivo</option>
+                  <option value="debito">Débito</option>
+                  <option value="credito">Crédito</option>
+                  <option value="otros">Otros</option>
+                </select>
+              </mat-form-field>
+              <button
+                style="margin-bottom: 1em; margin-left: 1em"
+                type="button"
+                class="btn btn-success btn-lg"
+              >
+                Procesar Venta
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
 
-  </mat-card>
+        <!--FIN DE LA TABLA-->
 
-</body>
-<router-outlet></router-outlet>
+        <mat-card-actions> </mat-card-actions>
+      </mat-card>
+    </div>
+    <!--FIN DE LA CARTA DE ARTICULOS A VENDER-->
+  </div>
+  <router-outlet></router-outlet>
+</div>

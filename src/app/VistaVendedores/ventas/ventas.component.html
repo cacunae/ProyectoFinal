@@ -1,176 +1,134 @@
-<body>
-  <mat-grid-list cols="2" rowHeight="1000px" style="widows: 100%; margin: auto">
-    <mat-grid-tile
-      style="text-align: center; margin-bottom: 0%; padding-bottom: 5%"
-    >
-      <mat-card class="example-card mat-elevation-z12" style="width: 65%">
-        <mat-card-header>
-          <div mat-card-avatar style="margin: auto"></div>
-          <mat-card-title style="text-align: center">
-            Busca los productos</mat-card-title
-          >
-          <mat-card-subtitle style="text-align: center"
-            >Arma tu pedido</mat-card-subtitle
-          >
-        </mat-card-header>
-        <img
-          mat-card-image
-          src="./assets/telefono.jpg"
-          alt="Photo of a Shiba Inu"
-        />
-        <mat-card-content>
-          <div style="width: 100%" class="mat-elevation-z2">
-            <mat-table [dataSource]="ventas">
-              <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.id }}
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="descripcion">
-                <mat-header-cell *matHeaderCellDef>
-                  Descripcion
-                </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.descripcion }}
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="precio">
-                <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.precio }}
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="subtotal">
-                <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.subtotal }}
-                </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="input">
-                <mat-header-cell *matHeaderCellDef> Cantidad</mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  <div>
-                    <input
-                      style="width: 60px"
-                      type="number"
-                      id="cantidad"
-                      name="cantidad"
-                      min="0"
-                      max="100000"
-                    />
-                  </div>
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="boton">
-                <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
-                <mat-cell *matCellDef="let ventas; index as i">
-                  <div style="padding-left: 10px">
-                    <button mat-mini-fab color="ward" (click)="eliminar(i)">
-                      <mat-icon>delete</mat-icon>
-                    </button>
-                  </div>
-                </mat-cell>
-              </ng-container>
-
-              <mat-header-row
-                *matHeaderRowDef="columnasAMostrar"
-              ></mat-header-row>
-              <mat-row
-                *matRowDef="let myRowData; columns: columnasAMostrar"
-              ></mat-row>
-            </mat-table>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <div style="padding: 0%; margin: 0%">
-            <label style="color: gray; font-size: larger" for="total"
-              >Total:</label
-            >
-            <input type="" name="total" placeholder="1.000.000" />
-          </div>
-        </mat-card-actions>
-      </mat-card>
-    </mat-grid-tile>
-
-    <mat-grid-tile
-      style="text-align: center; margin-bottom: 0%; padding-bottom: 0%"
-    >
-      <div style="margin-left: 55px">
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            style="width: 360px"
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Buscar"
-            aria-label="Search"
-          />
-        </form>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <div
-    id="op"
-    class="mat-elevation-z2"
-    style="
-      width: 50%;
-      padding: 5%;
-      margin: auto;
-      background-color: rgb(255, 183, 225);
-      margin-bottom: 5%;
-    "
-  >
-    <fieldset class="form-group">
-      <div class="row">
-        <legend>Metodo de pago</legend>
-        <br />
-        <div class="col-sm-10">
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios1"
-              value="option1"
-              checked
-            />
-            <label class="form-check-label" for="gridRadios1">
-              <img src="./assets/ch4.png" style="width: 60px" />
-            </label>
-          </div>
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios1"
-              value="option1"
-              checked
-            />
-            <label class="form-check-label" for="gridRadios1">
-              <img src="./assets/b.png" style="width: 60px" />
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="radio"
-              name="gridRadios"
-              id="gridRadios1"
-              value="option1"
-              checked
-            />
-            <label class="form-check-label" for="gridRadios1">
-              <img src="./assets/a.png" style="width: 60px" />
-            </label>
-          </div>
-        </div>
-      </div>
-    </fieldset>
+<!-- navbar -->
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="inicio">
+    <img src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
+      width="40" height="40" class="d-inline-block align-mid" alt="" loading="lazy" />
+    /
+    <img src="https://image.flaticon.com/icons/svg/1414/1414024.svg" width="40" height="40"
+      class="d-inline-block align-mid" alt="" loading="lazy" />
+    Vendedor
+  </a>
+  <div>
+    <div class="text-left">
+      <a href="vendedores">
+        <button class="btn btn-outline-warning" style="margin-left: 1em">
+          Cerrar Sesión
+        </button>
+      </a>
+    </div>
   </div>
-</body>
+</nav>
 
+
+<!-- Side navigation -->
+<div class="sidenav">
+  <a href="localhost:4200/ventas">
+    <img src="./assets/car2.png" style="margin-left:-3px;
+    width: 60%;">
+  </a>
+  <a href="localhost:4200/ventas">
+    <img src="./assets/c3.png" style="margin-left:-5px;
+      width: 60%;">
+  </a>
+</div>
+
+
+<body>
+  <mat-card class="example-card mat-elevation-z12" style="width: 45%; margin:auto">
+    <mat-card-header>
+      <mat-card-title style="text-align: center; padding-left: 370px;">
+        <p>Busca los productos</p>
+      </mat-card-title>
+      <mat-card-subtitle style="text-align: center; padding-left: 370px;">Arma tu pedido</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="./assets/telefono.jpg" alt="Photo of a Shiba Inu" style="margin-bottom: 5%;" />
+    <div style="margin-left: 55px">
+      <form class="form-inline my-2 my-lg-0">
+        <input style="width: 360px; padding-left: 650px;" class="form-control mr-sm-2" type="search"
+          placeholder="Buscar" aria-label="Search" />
+        <a class="btn btn-outline-primary my-2 my-sm-0 botones" mat-raised-button style="margin-left: 1em;">
+          Buscar
+        </a>
+      </form>
+    </div>
+    <mat-card-content>
+      <div style="width: 90%; margin: 4em auto;" class="mat-elevation-z2">
+        <mat-table [dataSource]="ventas">
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+            <mat-cell *matCellDef="let ventas">
+              {{ ventas.id }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="descripcion">
+            <mat-header-cell *matHeaderCellDef>
+              Descripcion
+            </mat-header-cell>
+            <mat-cell *matCellDef="let ventas">
+              {{ ventas.descripcion }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="precio">
+            <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+            <mat-cell *matCellDef="let ventas">
+              {{ ventas.precio }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="subtotal">
+            <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
+            <mat-cell *matCellDef="let ventas">
+              {{ ventas.subtotal }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="input">
+            <mat-header-cell *matHeaderCellDef> Cantidad</mat-header-cell>
+            <mat-cell *matCellDef="let ventas">
+              <div>
+                <input style="width: 60px" type="number" id="cantidad" name="cantidad" min="0" max="100000" />
+              </div>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="boton">
+            <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
+            <mat-cell *matCellDef="let ventas; index as i">
+              <div style="padding-left: 10px">
+                <button mat-mini-fab color="ward" (click)="eliminar(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+          <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+        </mat-table>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div style="text-align: center;">
+        <label style="color: gray; font-size: x-large" for="total">Total:</label>
+        <input style="width: 30%; font-size: x-large" type="" name="total" placeholder="800.000" />
+      </div>
+      <div style="text-align: center; margin: 5%">
+        <mat-form-field appearance="fill">
+          <mat-label>Formas de pago:</mat-label>
+          <select matNativeControl required>
+            <option value="efectivo">Efectivo</option>
+            <option value="debito">Débito</option>
+            <option value="credito">Crédito</option>
+            <option value="otros">Otros</option>
+          </select>
+        </mat-form-field>
+        <a class="btn btn-outline-primary my-2 my-sm-0 botones" mat-raised-button style="margin-left: 1em;">
+          Procesar pago
+        </a>
+      </div>
+
+
+    </mat-card-actions>
+
+  </mat-card>
+
+</body>
 <router-outlet></router-outlet>

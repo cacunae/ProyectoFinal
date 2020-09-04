@@ -6,8 +6,9 @@ import { DataSource } from '@angular/cdk/table';
   templateUrl: './ventas.component.html',
   styleUrls: ['./ventas.component.css'],
 })
+
 export class VentasComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
   columnasAMostrar: string[] = [
     'id',
@@ -44,5 +45,5 @@ export class VentasComponent implements OnInit {
     },
   ];
 
-  ngOnInit(): void {}
-}
+  ngOnInit(): void { }
+} 

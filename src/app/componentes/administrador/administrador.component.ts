@@ -21,6 +21,4 @@ export class AdministradorComponent implements OnInit {
   vendedores(){
     this.router.navigate(["vendedores"])
   }
-
-
 }

@@ -15,5 +15,8 @@ export class LoginAdminComponent implements OnInit {
   vendedor(){
     this.router.navigate([""])
   }
+  administrador(){
+    this.router.navigate(["administrador"])
+  }
 
 }

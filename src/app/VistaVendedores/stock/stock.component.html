@@ -37,7 +37,7 @@
         style="width: fit-content"
         *matCellDef="let productos; index as i"
       >
-        <div *ngIf="productos.stock > 10; else elseBlock">
+        <div *ngIf="productos.stock > productos.minino; else elseBlock">
           <span style="color: #1c9d43" class="material-icons">
             check_circle
           </span>

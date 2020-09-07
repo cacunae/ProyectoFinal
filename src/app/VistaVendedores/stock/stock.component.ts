@@ -16,14 +16,14 @@ export class StockComponent implements OnInit {
       nombre: 'S7',
       marca: 'Samsung',
       descripcion: 'hola',
-      stock: 5,
+      stock: 20,
     },
     {
       id: 123456789,
       nombre: 'P20',
       marca: 'huawei',
       descripcion: 'chao',
-      stock: 11,
+      stock: 3,
     },
   ];
 

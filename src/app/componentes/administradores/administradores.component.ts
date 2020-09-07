@@ -10,33 +10,33 @@ export class AdministradoresComponent implements OnInit {
 
   ngOnInit() {}
 
-  estudiantes = [
+  administradores = [
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
@@ -44,15 +44,10 @@ export class AdministradoresComponent implements OnInit {
   ];
 
   columnasAMostrar: string[] = [
-    'rut',
+    'usuario',
     'nombre',
     'apellido',
     'correo',
     'opciones',
   ];
-
-  eliminar(i: number) {
-    this.estudiantes.splice(i, 1);
-    console.log(this.estudiantes);
-  }
 }

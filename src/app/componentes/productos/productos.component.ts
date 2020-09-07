@@ -13,7 +13,9 @@ export class ProductosComponent implements OnInit {
     'id',
     'nombre',
     'marca',
-    'descripcion',
+    'precio',
+    'stock',
+    'categoria',
     'opciones',
   ];
 
@@ -22,20 +24,19 @@ export class ProductosComponent implements OnInit {
       id: '123',
       nombre: 'iphone',
       marca: 'apple',
-      descripcion: 'un telefono muy caro',
+      precio: 900000,
+      stock: 50,
+      categoria: 'Telefonia',
     },
     {
-      id: '321',
-      nombre: 'moto g8',
-      marca: 'motorola',
-      descripcion: 'un telefono',
+      id: '123',
+      nombre: 'Moto g6 play',
+      marca: 'Motorola',
+      precio: 270000,
+      stock: 25,
+      categoria: 'Telefonia',
     },
   ];
-
-  eliminar(i: number) {
-    this.productos.splice(i, 1);
-    console.log(this.productos);
-  }
 
   ngOnInit(): void {}
 }

@@ -100,6 +100,9 @@
           matTooltipPosition="above"
           mat-mini-fab
           style="background-color: #d8473e"
+          data-toggle="modal"
+          mat-mini-fab
+          href="#BORRAR"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -307,3 +310,47 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
+
+<!--MODAL BORRAR-->
+<div class="text-right mt-4">
+  <div class="modal fade" id="BORRAR">
+    <div class="modal-dialog text-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div
+            class="modal-title"
+            style="padding: 1em 1em 0em 1em; width: 100%"
+          >
+            <h2 style="text-align: center">
+              ¿Está seguro de que quiere borrar este administrador?
+            </h2>
+          </div>
+
+          <div style="text-align: center">
+            <div style="padding: 1em 1em 1em 1em; width: 100%">
+              <button
+                class="btn BtnDefault"
+                style="background-color: #d8473e; color: aliceblue; width: 89px"
+                type="reset"
+                data-dismiss="modal"
+              >
+                Borrar
+              </button>
+            </div>
+            <div>
+              <button
+                class="btn BtnDefault"
+                style="background-color: #f7ae42; color: aliceblue"
+                type="reset"
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN MODAL BORRAR-->

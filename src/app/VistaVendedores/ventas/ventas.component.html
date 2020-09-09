@@ -116,32 +116,45 @@
                 *matRowDef="let myRowData; columns: columnasAMostrar"
               ></mat-row>
             </mat-table>
-            <hr />
-            <div style="text-align: end; padding-right: 10em">
-              <label style="color: black; font-size: x-large" for="total">
-                <h1>
-                  <b>Total: {{ total }}</b>
-                </h1>
-              </label>
-            </div>
-
-            <div style="text-align: end; margin: 5%">
-              <mat-form-field appearance="fill">
-                <mat-label>Formas de pago:</mat-label>
-                <select matNativeControl required>
-                  <option value="efectivo">Efectivo</option>
-                  <option value="debito">Débito</option>
-                  <option value="credito">Crédito</option>
-                  <option value="otros">Otros</option>
-                </select>
-              </mat-form-field>
-              <button
-                style="margin-bottom: 1em; margin-left: 1em"
-                type="button"
-                class="btn btn-success btn-lg"
-              >
-                Procesar Venta
-              </button>
+            <div>
+              <mat-grid-list cols="2" rowHeight="100px">
+                <mat-grid-tile [colspan]="1" [rowspan]="2">
+                  <img
+                    src="https://github.com/cacunae/ProyectoFinal/blob/master/src/assets/logo.jpg?raw=true"
+                    width="400"
+                    height="400"
+                  />
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                  <div style="text-align: end; padding-right: 10em">
+                    <label style="color: black; font-size: x-large" for="total">
+                      <h1>
+                        <b>Total: {{ total }}</b>
+                      </h1>
+                    </label>
+                  </div></mat-grid-tile
+                >
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                  <div style="text-align: end; margin: 5%">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Formas de pago:</mat-label>
+                      <select matNativeControl required>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="debito">Débito</option>
+                        <option value="credito">Crédito</option>
+                        <option value="otros">Otros</option>
+                      </select>
+                    </mat-form-field>
+                    <button
+                      style="margin-bottom: 1em; margin-left: 1em"
+                      type="button"
+                      class="btn btn-success btn-lg"
+                    >
+                      Procesar Venta
+                    </button>
+                  </div>
+                </mat-grid-tile>
+              </mat-grid-list>
             </div>
           </div>
         </mat-card-content>

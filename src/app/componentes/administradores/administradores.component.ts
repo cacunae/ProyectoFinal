@@ -12,31 +12,31 @@ export class AdministradoresComponent implements OnInit {
 
   administradores = [
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
     },
     {
-      rut: 123456789,
+      usuario: 123456789,
       nombre: 'Pedro',
       apellido: 'Smith',
       correo: 'example@exmaple.com',
@@ -44,7 +44,7 @@ export class AdministradoresComponent implements OnInit {
   ];
 
   columnasAMostrar: string[] = [
-    'rut',
+    'usuario',
     'nombre',
     'apellido',
     'correo',

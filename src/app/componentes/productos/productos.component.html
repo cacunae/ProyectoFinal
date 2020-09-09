@@ -119,10 +119,22 @@
         {{ productos.marca }}
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="descripcion">
-      <mat-header-cell *matHeaderCellDef> Descripcion </mat-header-cell>
+    <ng-container matColumnDef="precio">
+      <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
       <mat-cell *matCellDef="let productos">
-        {{ productos.descripcion }}
+        {{ productos.precio }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.stock }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="categoria">
+      <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.categoria }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
@@ -139,6 +151,9 @@
           mat-mini-fab
           style="background-color: #d8473e"
           (click)="eliminar(i)"
+          data-toggle="modal"
+          mat-mini-fab
+          href="#BORRAR"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -175,7 +190,7 @@
       id="AGREGAR"
       style="margin-top: 40px; margin-bottom: 30px"
     >
-      <div class="modal-dialog text-center">
+      <div class="modal-dialog modal-lg text-center">
         <div class="modal-content">
           <!--encabezado del modal-->
           <div class="modal-header">
@@ -206,36 +221,79 @@
           <!--cuerpo del modal-->
           <div class="modal-body">
             <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="id">ID:</label>
-                <input class="form-control" type="text" name="id" id="id" />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="id">ID:</label>
+                    <input class="form-control" type="text" name="id" id="id" />
+                  </div>
+                  <div class="form-group col-sm">
+                    <label for="marca"> Marca </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="marca"
+                      id="marca"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="nombre">Nombre</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="nombres"
-                  id="nombres"
-                />
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="nombre">Nombre</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="nombres"
+                      id="nombres"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="marca"> Marca </label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="marca"
-                  id="marca"
-                />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="stock">Stock inicial</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="stock"
+                        id="stock"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="precio">Precio</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="precio"
+                        id="precio"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="descripcion">Descripción</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="descripcion"
-                  id="descripcion"
-                />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="categoria">Categoría</label>
+                    <div class="input-group-prepend">
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option>Telefonía</option>
+                        <option>Computación</option>
+                        <option>Tablets</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -319,13 +377,23 @@
                 />
               </div>
               <div class="form-group">
-                <label class="" for="descripcion">Descripción</label>
+                <label class="" for="precio">Precio</label>
                 <input
                   class="form-control"
                   type="text"
-                  name="descripcion"
-                  id="descripcion"
+                  name="precio"
+                  id="precio"
                 />
+              </div>
+              <div class="form-group">
+                <label class="" for="categoria">Categoría</label>
+                <div class="input-group-prepend">
+                  <select class="form-control" id="exampleFormControlSelect1">
+                    <option>Telefonía</option>
+                    <option>Computación</option>
+                    <option>Tablets</option>
+                  </select>
+                </div>
               </div>
             </form>
           </div>
@@ -346,3 +414,47 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
+
+<!--MODAL DE BORRAR-->
+<div class="text-right mt-4">
+  <div class="modal fade" id="BORRAR">
+    <div class="modal-dialog text-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div
+            class="modal-title"
+            style="padding: 1em 1em 0em 1em; width: 100%"
+          >
+            <h2 style="text-align: center">
+              ¿Está seguro de que quiere borrar este producto?
+            </h2>
+          </div>
+
+          <div style="text-align: center">
+            <div style="padding: 1em 1em 1em 1em; width: 100%">
+              <button
+                class="btn BtnDefault"
+                style="background-color: #d8473e; color: aliceblue; width: 89px"
+                type="reset"
+                data-dismiss="modal"
+              >
+                Borrar
+              </button>
+            </div>
+            <div>
+              <button
+                class="btn BtnDefault"
+                style="background-color: #f7ae42; color: aliceblue"
+                type="reset"
+                data-dismiss="modal"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN DEL MODAL BORRAR-->

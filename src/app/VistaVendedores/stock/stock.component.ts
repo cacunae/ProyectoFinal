@@ -15,15 +15,17 @@ export class StockComponent implements OnInit {
       id: 123456789,
       nombre: 'S7',
       marca: 'Samsung',
-      descripcion: 'hola',
-      stock: 5,
+      precio: 500000,
+      stock: 20,
+      minimo: 10,
     },
     {
       id: 123456789,
       nombre: 'P20',
       marca: 'huawei',
-      descripcion: 'chao',
-      stock: 11,
+      precio: 2300000,
+      stock: 3,
+      minimo: 10,
     },
   ];
 
@@ -32,7 +34,7 @@ export class StockComponent implements OnInit {
     'id',
     'nombre',
     'marca',
-    'descripcion',
+    'precio',
     'stock',
   ];
 }

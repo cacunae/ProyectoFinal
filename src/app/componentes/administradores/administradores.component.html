@@ -43,6 +43,9 @@
   style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
 >
   <button
+    mat-raised-button
+    matTooltip="Agregar un Administrador nuevo"
+    matTooltipPosition="right"
     class="btn btn-outline-warning mat-elevation-z8"
     style="background-color: #1c9d43; color: white"
     href="#AGREGAR"
@@ -59,27 +62,27 @@
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
-  <mat-table [dataSource]="estudiantes">
+  <mat-table [dataSource]="administradores">
     <ng-container matColumnDef="rut">
       <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante"> {{ estudiante.rut }} </mat-cell>
+      <mat-cell *matCellDef="let administradores"> {{ administradores.rut }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="nombre">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante">
-        {{ estudiante.nombre }}
+      <mat-cell *matCellDef="let administradores">
+        {{ administradores.nombre }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="apellido">
       <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante">
-        {{ estudiante.apellido }}
+      <mat-cell *matCellDef="let administradores">
+        {{ administradores.apellido }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="correo">
       <mat-header-cell *matHeaderCellDef> Correo Electrónico </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante">
-        {{ estudiante.correo }}
+      <mat-cell *matCellDef="let administradores">
+        {{ administradores.correo }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
@@ -87,9 +90,12 @@
       </mat-header-cell>
       <mat-cell
         style="justify-content: center"
-        *matCellDef="let estudiante; index as i"
+        *matCellDef="let administradores; index as i"
       >
         <button
+          mat-raised-button
+          matTooltip="Eliminar este administrador"
+          matTooltipPosition="above"
           mat-mini-fab
           style="background-color: #d8473e"
           (click)="eliminar(i)"
@@ -98,13 +104,16 @@
         </button>
 
         <button
+          mat-raised-button
+          matTooltip="Modificar este administrador"
+          matTooltipPosition="above"
           style="
             background-color: #f7ae42;
             color: white;
             margin-left: 1em;
             padding-left: 0%;
           "
-          z(click)="modificar(i)"
+          (click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
           href="#EDITAR"

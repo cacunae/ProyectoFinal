@@ -10,7 +10,7 @@ export class AdministradoresComponent implements OnInit {
 
   ngOnInit() {}
 
-  estudiantes = [
+  administradores = [
     {
       rut: 123456789,
       nombre: 'Pedro',
@@ -52,7 +52,7 @@ export class AdministradoresComponent implements OnInit {
   ];
 
   eliminar(i: number) {
-    this.estudiantes.splice(i, 1);
-    console.log(this.estudiantes);
+    this.administradores.splice(i, 1);
+    console.log(this.administradores);
   }
 }

@@ -1,0 +1,81 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="portalventas">
+    <img
+      src="./assets/stock2.png"
+      width="40"
+      height="40"
+      class="d-inline-block align-mid"
+      alt=""
+      loading="lazy"
+    />
+    Stock
+  </a>
+
+  <div class="text-left">
+    <a href="ventas">
+      <button
+        class="btn btn-outline-warning"
+        style="margin-left: 1em"
+        routerLink="ventas"
+      >
+        Ventas
+      </button>
+    </a>
+  </div>
+</nav>
+
+<div
+  style="width: 70%; margin: 1em auto; text-align: center"
+  class="mat-elevation-z12"
+>
+  <mat-table [dataSource]="productos">
+    <ng-container matColumnDef="status">
+      <mat-header-cell style="width: fit-content" *matHeaderCellDef>
+        Estado
+      </mat-header-cell>
+      <mat-cell
+        style="width: fit-content"
+        *matCellDef="let productos; index as i"
+      >
+        <div *ngIf="productos.stock > 10; else elseBlock">
+          <span style="color: #1c9d43" class="material-icons">
+            check_circle
+          </span>
+        </div>
+        <ng-template #elseBlock>
+          <span style="color: #d8473e" class="material-icons"> error </span>
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.nombre }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="marca">
+      <mat-header-cell *matHeaderCellDef> Marca </mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.marca }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef>descripcion</mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.descripcion }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef>Stock</mat-header-cell>
+      <mat-cell *matCellDef="let productos">
+        {{ productos.stock }}
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+  </mat-table>
+</div>

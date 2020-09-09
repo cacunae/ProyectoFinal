@@ -37,7 +37,7 @@
         style="width: fit-content"
         *matCellDef="let productos; index as i"
       >
-        <div *ngIf="productos.stock > productos.minino; else elseBlock">
+        <div *ngIf="productos.stock > productos.minimo; else elseBlock">
           <span style="color: #1c9d43" class="material-icons">
             check_circle
           </span>
@@ -63,10 +63,10 @@
         {{ productos.marca }}
       </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="descripcion">
-      <mat-header-cell *matHeaderCellDef>descripcion</mat-header-cell>
+    <ng-container matColumnDef="precio">
+      <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
       <mat-cell *matCellDef="let productos">
-        {{ productos.descripcion }}
+        {{ productos.precio }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stock">

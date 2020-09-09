@@ -187,7 +187,7 @@
       id="AGREGAR"
       style="margin-top: 40px; margin-bottom: 30px"
     >
-      <div class="modal-dialog text-center">
+      <div class="modal-dialog modal-lg text-center">
         <div class="modal-content">
           <!--encabezado del modal-->
           <div class="modal-header">
@@ -218,54 +218,78 @@
           <!--cuerpo del modal-->
           <div class="modal-body">
             <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="id">ID:</label>
-                <input class="form-control" type="text" name="id" id="id" />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="id">ID:</label>
+                    <input class="form-control" type="text" name="id" id="id" />
+                  </div>
+                  <div class="form-group col-sm">
+                    <label for="marca"> Marca </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="marca"
+                      id="marca"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="nombre">Nombre</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="nombres"
-                  id="nombres"
-                />
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="nombre">Nombre</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="nombres"
+                      id="nombres"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="marca"> Marca </label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="marca"
-                  id="marca"
-                />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="stock">Stock inicial</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="stock"
+                        id="stock"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="precio">Precio</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="precio"
+                        id="precio"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="precio">Precio</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="precio"
-                  id="precio"
-                />
-              </div>
-              <div class="form-group">
-                <label class="" for="stock">Stock inicial</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="stock"
-                  id="stock"
-                />
-              </div>
-              <div class="form-group">
-                <label class="" for="categoria">Categoría</label>
-                <div class="input-group-prepend">
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Telefonía</option>
-                    <option>Computación</option>
-                    <option>Tablets</option>
-                  </select>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="categoria">Categoría</label>
+                    <div class="input-group-prepend">
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option>Telefonía</option>
+                        <option>Computación</option>
+                        <option>Tablets</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>

@@ -168,38 +168,65 @@
             </button>
           </div>
           <!--cuerpo del modal-->
+
           <div class="modal-body">
             <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="rut">RUT:</label>
-                <input class="form-control" type="text" name="rut" id="rut" />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="usuario">Usuario:</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="usuario"
+                      [(ngModel)]="administrador.usuario"
+                    />
+                  </div>
+                  <div class="form-group col-sm">
+                    <label for="contrasenha"> Contraseña </label>
+                    <input
+                      class="form-control"
+                      type="password"
+                      name="contrasenha"
+                      [(ngModel)]="administrador.contrasenha"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="nombres">Nombres</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="nombres"
-                  id="nombres"
-                />
-              </div>
-              <div class="form-group">
-                <label class="" for="apellidos"> Apellidos </label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="apellidos"
-                  id="apellidos"
-                />
-              </div>
-              <div class="form-group">
-                <label class="" for="correo">Email</label>
-                <input
-                  class="form-control"
-                  type="email"
-                  name="correo"
-                  id="correo"
-                />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="nombre">Nombres</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="nombre"
+                      [(ngModel)]="administrador.nombre"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="apellido"> Apellidos </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="apellido"
+                      [(ngModel)]="administrador.apellido"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="correo">Email</label>
+                    <input
+                      class="form-control"
+                      type="email"
+                      name="correo"
+                      [(ngModel)]="administrador.correo"
+                    />
+                  </div>
+                </div>
               </div>
             </form>
           </div>
@@ -210,6 +237,7 @@
               style="background-color: #1c9d43; color: aliceblue"
               type="reset"
               data-dismiss="modal"
+              (click)="agregarAdministrador()"
             >
               Agregar
             </button>
@@ -261,35 +289,20 @@
           <div class="modal-body">
             <form class="text-left p-3">
               <div class="form-group">
-                <label class="" for="rut">RUT:</label>
-                <input class="form-control" type="text" name="rut" id="rut" />
+                <label class="" for="usuario">Usuario:</label>
+                <input class="form-control" type="text" name="usuario" />
               </div>
               <div class="form-group">
-                <label class="" for="nombres">Nombres</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="nombres"
-                  id="nombres"
-                />
+                <label class="" for="nombre">Nombres</label>
+                <input class="form-control" type="text" name="nombre" />
               </div>
               <div class="form-group">
-                <label class="" for="apellidos"> Apellidos </label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="apellidos"
-                  id="apellidos"
-                />
+                <label class="" for="apellido"> Apellidos </label>
+                <input class="form-control" type="text" name="apellido" />
               </div>
               <div class="form-group">
-                <label class="" for="correo">Email</label>
-                <input
-                  class="form-control"
-                  type="email"
-                  name="correo"
-                  id="correo"
-                />
+                <label class="" for="correo">Correo</label>
+                <input class="form-control" type="email" name="correo" />
               </div>
             </form>
           </div>

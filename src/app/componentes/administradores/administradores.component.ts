@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+//interface
+import { Empleados } from 'src/app/Models/empleado.model';
+//servicio
+import { AdministradorService } from 'src/app/services/administrador.service';
 
 @Component({
   selector: 'app-administradores',
@@ -6,43 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./administradores.component.css'],
 })
 export class AdministradoresComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-
-  administradores = [
-    {
-      usuario: 123456789,
-      nombre: 'Pedro',
-      apellido: 'Smith',
-      correo: 'example@exmaple.com',
-    },
-    {
-      usuario: 123456789,
-      nombre: 'Pedro',
-      apellido: 'Smith',
-      correo: 'example@exmaple.com',
-    },
-    {
-      usuario: 123456789,
-      nombre: 'Pedro',
-      apellido: 'Smith',
-      correo: 'example@exmaple.com',
-    },
-    {
-      usuario: 123456789,
-      nombre: 'Pedro',
-      apellido: 'Smith',
-      correo: 'example@exmaple.com',
-    },
-    {
-      usuario: 123456789,
-      nombre: 'Pedro',
-      apellido: 'Smith',
-      correo: 'example@exmaple.com',
-    },
-  ];
-
+  administradores: Empleados[] = [];
   columnasAMostrar: string[] = [
     'usuario',
     'nombre',
@@ -50,4 +18,30 @@ export class AdministradoresComponent implements OnInit {
     'correo',
     'opciones',
   ];
+
+  constructor(private service: AdministradorService) {}
+
+  ngOnInit() {
+    this.service
+      .obtenerAdministradores()
+      .subscribe((administradores) => (this.administradores = administradores));
+    console.log(this.administradores);
+  }
+  administrador: Empleados = {
+    usuario: '',
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasenha: '',
+    esAdmin: 1,
+  };
+
+  agregarAdministrador() {
+    console.log(this.administrador);
+    this.service
+      .agregarAdministrador(this.administrador)
+      .subscribe((administrador) =>
+        this.administradores.push(this.administrador)
+      );
+  }
 }

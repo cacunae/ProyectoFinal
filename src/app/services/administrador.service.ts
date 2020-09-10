@@ -22,10 +22,11 @@ export class AdministradorService {
   }
 
   agregarAdministrador(administrador: Empleados): Observable<Empleados> {
-    return this.http.post<Empleados>(
-      this.apiURL,
-      administrador,
-      this.httpOptions
-    );
+    return this.http.post<Empleados>(this.apiURL, administrador);
+  }
+
+  borrarAdministrador(usuario: string): Observable<string> {
+    this.apiURL = `${this.apiURL}/${usuario}`;
+    return this.http.delete<string>(this.apiURL, this.httpOptions);
   }
 }

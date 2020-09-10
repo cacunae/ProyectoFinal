@@ -45,4 +45,15 @@ export class AdministradoresComponent implements OnInit {
       );
     this.ngOnInit();
   }
+
+  eliminarAdministrador(i: number) {
+    this.administradores[i].usuario;
+    console.log(this.administradores[i].usuario);
+    this.service
+      .borrarAdministrador(this.administradores[i].usuario)
+      .subscribe();
+    this.administradores = this.administradores.filter(
+      (c) => c.usuario != this.administradores[i].usuario
+    );
+  }
 }

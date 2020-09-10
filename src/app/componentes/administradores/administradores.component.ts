@@ -43,5 +43,6 @@ export class AdministradoresComponent implements OnInit {
       .subscribe((administrador) =>
         this.administradores.push(this.administrador)
       );
+    this.ngOnInit();
   }
 }

@@ -45,6 +45,13 @@ export class AdministradoresComponent implements OnInit {
       );
     this.ngOnInit();
   }
+  index: number = null;
+
+  guardar(i: number) {
+    this.index = i;
+    console.log(this.index);
+    console.log(this.administradores[i].usuario);
+  }
 
   eliminarAdministrador(i: number) {
     this.administradores[i].usuario;
@@ -52,6 +59,7 @@ export class AdministradoresComponent implements OnInit {
     this.service
       .borrarAdministrador(this.administradores[i].usuario)
       .subscribe();
+    //actualiza tabla
     this.administradores = this.administradores.filter(
       (c) => c.usuario != this.administradores[i].usuario
     );

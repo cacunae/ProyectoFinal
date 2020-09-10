@@ -102,7 +102,8 @@
           style="background-color: #d8473e"
           data-toggle="modal"
           mat-mini-fab
-          (click)="eliminarAdministrador(i)"
+          (click)="guardar(i)"
+          href="#BORRAR"
         >
           <mat-icon>delete</mat-icon>
         </button>
@@ -346,6 +347,7 @@
                 style="background-color: #d8473e; color: aliceblue; width: 89px"
                 type="reset"
                 data-dismiss="modal"
+                (click)="eliminarAdministrador(index)"
               >
                 Borrar
               </button>

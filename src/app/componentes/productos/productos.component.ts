@@ -62,11 +62,12 @@ export class ProductosComponent implements OnInit {
   onKey(event) {
     console.log(this.busqueda);
     console.log(this.filtro);
-
+    if (this.busqueda == '') {
+      this.busquedafiltrada = this.productos;
+    }
     this.busquedafiltrada = this.busquedafiltrada.filter((producto) =>
-      this.busquedafiltrada[this.filtro].includes(this.busqueda)
+      producto[this.filtro].includes(this.busqueda)
     );
-    if (this.busqueda == '') this.busquedafiltrada = this.productos;
 
     //console.log(
     //this.productos.filter((producto) =>

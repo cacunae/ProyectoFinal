@@ -38,14 +38,35 @@ export class ProductosComponent implements OnInit {
     },
   ];
 
+  busquedafiltrada = [
+    {
+      id: '123',
+      nombre: 'iphone',
+      marca: 'apple',
+      precio: 900000,
+      stock: 50,
+      categoria: 'Telefonia',
+    },
+    {
+      id: '123',
+      nombre: 'Moto g6 play',
+      marca: 'Motorola',
+      precio: 270000,
+      stock: 25,
+      categoria: 'Telefonia',
+    },
+  ];
+
   ngOnInit(): void {}
 
   onKey(event) {
     console.log(this.busqueda);
     console.log(this.filtro);
-    this.productos = this.productos.filter((producto) =>
-      producto[this.filtro].includes(this.busqueda)
+
+    this.busquedafiltrada = this.busquedafiltrada.filter((producto) =>
+      this.busquedafiltrada[this.filtro].includes(this.busqueda)
     );
+    if (this.busqueda == '') this.busquedafiltrada = this.productos;
 
     //console.log(
     //this.productos.filter((producto) =>

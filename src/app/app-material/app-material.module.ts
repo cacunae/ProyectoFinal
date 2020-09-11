@@ -17,7 +17,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
-
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -38,6 +39,8 @@ import { MatListModule } from '@angular/material/list';
     MatStepperModule,
     MatMenuModule,
     MatListModule,
+    MatButtonToggleModule,
+    MatTabsModule,
   ],
 })
 export class AppMaterialModule {}

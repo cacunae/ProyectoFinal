@@ -11,7 +11,7 @@ export class AdministradorService {
   constructor(private http: HttpClient) {}
 
   Administradores: Empleados[] = [];
-  apiURL = 'http://localhost:8080/api/administrador/';
+  apiURL = 'http://localhost:8080/api/administrador';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -22,11 +22,15 @@ export class AdministradorService {
   }
 
   agregarAdministrador(administrador: Empleados): Observable<Empleados> {
-    return this.http.post<Empleados>(this.apiURL, administrador);
+    return this.http.post<Empleados>(
+      this.apiURL,
+      administrador,
+      this.httpOptions
+    );
   }
 
   borrarAdministrador(usuario: string): Observable<string> {
-    this.apiURL = `${this.apiURL}/${usuario}`;
-    return this.http.delete<string>(this.apiURL, this.httpOptions);
+    let url = `${this.apiURL}/${usuario}`;
+    return this.http.delete<string>(url, this.httpOptions);
   }
 }

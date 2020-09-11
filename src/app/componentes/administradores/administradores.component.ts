@@ -26,6 +26,7 @@ export class AdministradoresComponent implements OnInit {
       .obtenerAdministradores()
       .subscribe((administradores) => (this.administradores = administradores));
     console.log(this.administradores);
+    this.clear();
   }
   administrador: Empleados = {
     usuario: '',
@@ -36,6 +37,17 @@ export class AdministradoresComponent implements OnInit {
     esAdmin: 1,
   };
 
+  clear() {
+    this.administrador = {
+      usuario: '',
+      nombre: '',
+      apellido: '',
+      correo: '',
+      contrasenha: '',
+      esAdmin: 1,
+    };
+  }
+
   agregarAdministrador() {
     console.log(this.administrador);
     this.service
@@ -45,8 +57,8 @@ export class AdministradoresComponent implements OnInit {
       );
     this.ngOnInit();
   }
-  index: number = null;
 
+  index: number = null;
   guardar(i: number) {
     this.index = i;
     console.log(this.index);

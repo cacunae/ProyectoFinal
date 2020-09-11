@@ -14,8 +14,9 @@ import { AdministradoresComponent } from './componentes/administradores/administ
 import { VentasComponent } from './VistaVendedores/ventas/ventas.component';
 import { StockComponent } from './VistaVendedores/stock/stock.component';
 import { InicioComponent } from './VistaVendedores/inicio/inicio.component';
-import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarAdministradorComponent } from './componentes/navbar-administrador/navbar-administrador.component';
+import { NavbarVendedorComponent } from './componentes/navbar-vendedor/navbar-vendedor.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     VentasComponent,
     StockComponent,
     InicioComponent,
+    NavbarAdministradorComponent,
+    NavbarVendedorComponent,
   ],
   imports: [
     BrowserModule,

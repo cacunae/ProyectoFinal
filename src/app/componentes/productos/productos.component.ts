@@ -39,4 +39,20 @@ export class ProductosComponent implements OnInit {
   ];
 
   ngOnInit(): void {}
+
+  onKey(event) {
+    console.log(this.busqueda);
+    console.log(this.filtro);
+    this.productos = this.productos.filter(
+      (producto) => producto[this.filtro] === this.busqueda
+    );
+
+    //console.log(
+    //this.productos.filter((producto) =>
+    // producto[this.filtro].includes(this.busqueda)
+    // )
+    //);
+  }
+  busqueda: string = '';
+  filtro: string = '';
 }

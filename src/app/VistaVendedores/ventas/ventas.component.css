@@ -1,5 +1,22 @@
-/*.body {
-  background-repeat: no-repeat;
-  background-size: cover;
+table {
+  width: 100%;
 }
-*/
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.col-5-busqueda {
+  padding-left: 1em;
+}
+tr.mat-footer-row {
+  font-weight: bold;
+}
+.pagar {
+  background-color: #343a40;
+  color: white;
+}
+.pagar:hover {
+  background-color: #1c9d43;
+  color: white;
+}

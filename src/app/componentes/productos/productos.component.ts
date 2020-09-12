@@ -29,7 +29,7 @@ export class ProductosComponent implements OnInit {
       categoria: 'Telefonia',
     },
     {
-      id: '123',
+      id: '1012',
       nombre: 'Moto g6 play',
       marca: 'Motorola',
       precio: 270000,
@@ -48,7 +48,7 @@ export class ProductosComponent implements OnInit {
       categoria: 'Telefonia',
     },
     {
-      id: '123',
+      id: '1012',
       nombre: 'Moto g6 play',
       marca: 'Motorola',
       precio: 270000,

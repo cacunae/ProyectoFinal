@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [],
   imports: [CommonModule],
@@ -41,6 +42,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatListModule,
     MatButtonToggleModule,
     MatTabsModule,
+    MatPaginatorModule,
   ],
 })
 export class AppMaterialModule {}

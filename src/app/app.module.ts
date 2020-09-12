@@ -15,6 +15,7 @@ import { VentasComponent } from './VistaVendedores/ventas/ventas.component';
 import { StockComponent } from './VistaVendedores/stock/stock.component';
 import { InicioComponent } from './VistaVendedores/inicio/inicio.component';
 import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { Router } from '@angular/router';
     BrowserAnimationsModule,
     AppMaterialModule,
     NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

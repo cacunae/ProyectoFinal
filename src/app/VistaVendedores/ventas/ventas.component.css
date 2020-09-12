@@ -6,8 +6,10 @@ table {
   font-size: 14px;
   width: 100%;
 }
-.col-5-busqueda {
-  padding-left: 1em;
+.busqueda {
+  background-color: #343a40;
+  color: white;
+  padding: 1em;
 }
 tr.mat-footer-row {
   font-weight: bold;

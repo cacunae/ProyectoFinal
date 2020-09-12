@@ -3,13 +3,13 @@
 <!--FIN DEL NAVBAR-->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5">
+    <div class="busqueda col-4">
       <mat-form-field>
-        <mat-label>Filter</mat-label>
+        <mat-label style="color: white">Agregar productos</mat-label>
         <input
+          style="color: white"
           matInput
           (keyup)="applyFilter($event)"
-          placeholder="Ex. ium"
           #input
         />
       </mat-form-field>

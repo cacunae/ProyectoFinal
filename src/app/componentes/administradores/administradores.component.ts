@@ -31,6 +31,7 @@ export class AdministradoresComponent implements OnInit {
   ngOnInit() {
     this.obtenerAdministradores();
   }
+
   administrador: Empleados = {
     usuario: '',
     nombre: '',
@@ -60,12 +61,18 @@ export class AdministradoresComponent implements OnInit {
 
   agregarAdministrador() {
     console.log(this.administrador);
-    this.service
-      .agregarAdministrador(this.administrador)
-      .subscribe((administrador) =>
-        this.administradores.push(this.administrador)
-      );
+    this.service.agregarAdministrador(this.administrador).subscribe(
+      (administrador) => this.administradores.push(this.administrador),
+      (error) => {
+        if (error.status == 409) {
+          alert('Este usuario ya esta regristrado');
+        } else if (error.status == 411) {
+          alert('Este correo ya esta registrado');
+        }
+      }
+    );
     this.obtenerAdministradores();
+    this.clear();
   }
 
   eliminarAdministrador(i: number) {
@@ -90,7 +97,7 @@ export class AdministradoresComponent implements OnInit {
   };
 
   editarAdmin(i: number): void {
-    console.log(i);
+    this.index = i;
     let usuario = this.administradores[i].usuario;
     this.cambios.usuario = this.administradores[i].usuario;
     this.cambios.nombre = this.administradores[i].nombre;
@@ -99,9 +106,16 @@ export class AdministradoresComponent implements OnInit {
     this.cambios.contrasenha = this.administradores[i].contrasenha;
     this.cambios.esAdmin = this.administradores[i].esAdmin;
     console.log(this.cambios);
+  }
 
+  confirmarCambio() {
+    let usuario = this.administradores[this.index].usuario;
+    console.log(usuario);
     this.service
-      .editarAdministrador(usuario, this.cambios)
+      .editarAdministrador(
+        this.administradores[this.index].usuario,
+        this.cambios
+      )
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerAdministradores();
   }

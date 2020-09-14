@@ -29,4 +29,5 @@ export class AdministradorService {
     this.apiURL = `${this.apiURL}/${usuario}`;
     return this.http.delete<string>(this.apiURL, this.httpOptions);
   }
+
 }

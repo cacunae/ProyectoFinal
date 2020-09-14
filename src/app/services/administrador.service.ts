@@ -33,4 +33,9 @@ export class AdministradorService {
     let url = `${this.apiURL}/${usuario}`;
     return this.http.delete<string>(url, this.httpOptions);
   }
+
+  editarAdministrador(usuario: string, body: Empleados): Observable<{}> {
+    let url = `${this.apiURL}/${usuario}`;
+    return this.http.put(url, body, this.httpOptions);
+  }
 }

@@ -3,64 +3,79 @@
 <!--FIN DEL NAVBAR-->
 <div class="container-fluid">
   <div class="row">
-    <div class="busqueda col-4">
-      <mat-form-field>
-        <mat-label style="color: white">Agregar productos</mat-label>
-        <input
-          style="color: white"
-          matInput
-          (keyup)="applyFilter($event)"
-          #input
-        />
-      </mat-form-field>
+    <div class="col-5 container">
+      <div>
+        <div>
+          <input
+            class="busqueda"
+            (keyup)="applyFilter($event)"
+            placeholder="Buscar productos"
+            onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'Buscar productos'"
+            #input
+          />
+          <mat-icon class="lupa">search</mat-icon>
+        </div>
+        <table mat-table [dataSource]="dataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.id }}</td>
+          </ng-container>
 
-      <table mat-table [dataSource]="dataSource">
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let element">{{ element.position }}</td>
-        </ng-container>
+          <!-- Name Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.nombre }}</td>
+          </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-        </ng-container>
+          <!-- Weight Column -->
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let producto">
+              {{ producto.precio | currency }}
+            </td>
+          </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef>Weight</th>
-          <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
-        </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.stock }}</td>
+          </ng-container>
 
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef>Symbol</th>
-          <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
-        </ng-container>
+          <ng-container matColumnDef="agregar">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; index as i">
+              <button href="#AGREGAR" mat-icon-button class="boton-agregar">
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+          </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          <tr mat-header-row *matHeaderRowDef="columnasBusqueda"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasBusqueda"></tr>
 
-        <!-- Row shown when there is no matching data. -->
-        <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">
-            No data matching the filter "{{ input.value }}"
-          </td>
-        </tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[10, 20, 30]"></mat-paginator>
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              Ningún producto con este nombre: "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+        <div>
+          <mat-paginator [pageSizeOptions]="[10]">Productos</mat-paginator>
+        </div>
+      </div>
     </div>
 
     <!--Simulacion de la factura-->
-    <div class="col-sm">
+    <div class="factura col-sm">
       <!--ENCABEZADO-->
-      <div class="row">
-        <div class="col-2">
-          <img src="./../../../assets/logosdi.png" width="120" height="120" />
+      <div class="encabezado row">
+        <div class="col-2" style="padding-top: 0">
+          <img src="./../../../assets/logopng.png" width="120 " height="120" />
         </div>
-        <div class="col-7" style="padding-top: 1em">
+        <div class="col-7">
           <h3>SDI-GROUP</h3>
           <p style="width: 100%">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
@@ -68,39 +83,13 @@
             vitae
           </p>
         </div>
-        <div class="col-3" style="padding-top: 2em">
+        <div class="col-3">
           <h2 style="text-align: center">FACTURA N°</h2>
           <button style="width: 100%" mat-flat-button disabled>00001</button>
         </div>
       </div>
       <!--CUERPO-->
-      <div>
-        <table mat-table [dataSource]="transactions">
-          <!-- Item Column -->
-          <ng-container matColumnDef="item">
-            <th mat-header-cell *matHeaderCellDef>Item</th>
-            <td mat-cell *matCellDef="let transaction">
-              {{ transaction.item }}
-            </td>
-            <td mat-footer-cell *matFooterCellDef>Total</td>
-          </ng-container>
-
-          <!-- Cost Column -->
-          <ng-container matColumnDef="cost">
-            <th mat-header-cell *matHeaderCellDef>Cost</th>
-            <td mat-cell *matCellDef="let transaction">
-              {{ transaction.cost | currency }}
-            </td>
-            <td mat-footer-cell *matFooterCellDef>
-              {{ getTotalCost() | currency }}
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedC"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedC"></tr>
-          <tr mat-footer-row *matFooterRowDef="displayedC"></tr>
-        </table>
-      </div>
+      <div class="cuerpo"></div>
       <!--PIE DE FACTURA-->
       <div class="row" style="padding-top: 1em">
         <div class="col-7">
@@ -128,3 +117,136 @@
     </div>
   </div>
 </div>
+
+<!--MODAL AGREGAR PRODUCTOS A LA FACTURA-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="AGREGAR"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog modal-lg text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: left">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Add-256.png"
+                  height="30"
+                  width="30"
+                  style="margin-right: 3px"
+                />
+                Agregar Producto
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+          <div class="modal-body">
+            <form class="text-left p-3">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="id">ID:</label>
+                    <input class="form-control" type="text" name="id" id="id" />
+                  </div>
+                  <div class="form-group col-sm">
+                    <label for="marca"> Marca </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="marca"
+                      id="marca"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="nombre">Nombre</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="nombres"
+                      id="nombres"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="stock">Stock inicial</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="stock"
+                        id="stock"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="precio">Precio</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="precio"
+                        id="precio"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="categoria">Categoría</label>
+                    <div class="input-group-prepend">
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option>Telefonía</option>
+                        <option>Computación</option>
+                        <option>Tablets</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="background-color: #1c9d43; color: aliceblue"
+              type="reset"
+              data-dismiss="modal"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FINAL DEL MODAL AGREGAR PRODUCTOS A LA FACTURA-->

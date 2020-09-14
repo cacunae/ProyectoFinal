@@ -2,34 +2,54 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { Productos } from './../../Models/producto.model';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-export interface Transaction {
-  item: string;
-  cost: number;
+export interface ProductosF {
+  id: number;
+  nombre: string;
+  marca: string;
+  precio: number;
+  cantidad: number;
+  subtotal: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const ELEMENT_DATA: Productos[] = [
+  {
+    id: 1,
+    nombre: 'Galaxy S9',
+    marca: 'Samsung',
+    precio: 450000,
+    stock: 86,
+    minimo: 15,
+    categoria: 'Telefonia',
+  },
+  {
+    id: 2,
+    nombre: 'P20 lite',
+    marca: 'Huawei',
+    precio: 520000,
+    stock: 120,
+    minimo: 20,
+    categoria: 'Telefonia',
+  },
+  {
+    id: 3,
+    nombre: 'Macbook pro',
+    marca: 'Apple',
+    precio: 30000000,
+    stock: 12,
+    minimo: 10,
+    categoria: 'Telefonia',
+  },
+  {
+    id: 4,
+    nombre: 'Ipad',
+    marca: 'Apple',
+    precio: 12000000,
+    stock: 7,
+    minimo: 12,
+    categoria: 'Tablets',
+  },
 ];
 
 @Component({
@@ -39,23 +59,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class VentasComponent implements OnInit {
   constructor() {}
-  displayedC: string[] = ['item', 'cost'];
-  transactions: Transaction[] = [
-    { item: 'Beach ball', cost: 4 },
-    { item: 'Towel', cost: 5 },
-    { item: 'Frisbee', cost: 2 },
-    { item: 'Sunscreen', cost: 4 },
-    { item: 'Cooler', cost: 25 },
-    { item: 'Swim suit', cost: 15 },
-  ];
-  /** Gets the total cost of all transactions. */
-  getTotalCost() {
-    return this.transactions
-      .map((t) => t.cost)
-      .reduce((acc, value) => acc + value, 0);
-  }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  columnasBusqueda: string[] = ['id', 'nombre', 'precio', 'stock', 'agregar'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   applyFilter(event: Event) {

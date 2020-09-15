@@ -1,170 +1,252 @@
 <!-- navbar -->
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="portalventas">
-    <img
-      src="https://github.com/cacunae/ProyectoFinal/blob/master/src/assets/ventas2.png?raw=true"
-      width="40"
-      height="40"
-      class="d-inline-block align-mid"
-      alt=""
-      loading="lazy"
-    />
-    / Nueva venta
-  </a>
-  <div>
-    <div class="text-left">
-      <a href="stock">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Stock
-        </button>
-      </a>
-    </div>
-  </div>
-</nav>
+<app-navbar-vendedor></app-navbar-vendedor>
 <!--FIN DEL NAVBAR-->
-
-<!--INICIO DE LA CARTA-->
-<div>
+<div class="container-fluid">
   <div class="row">
-    <!--BARRA DE BUSQUEDA-->
-    <div class="col-4 mat-elevation-z4" style="padding: 1em 0em 0em 1em">
+    <div class="col-5 container">
       <div>
-        <form class="form-inline my-2 my-lg-0" style="padding: 1em 0em 0em 1em">
+        <div>
           <input
-            style="width: 75%; margin-left: 2em"
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Agregar productos"
-            aria-label="Search"
+            class="busqueda"
+            (keyup)="applyFilter($event)"
+            placeholder="Buscar productos"
+            onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'Buscar productos'"
+            #input
           />
-          <button mat-button>
-            <mat-icon> search</mat-icon>
-          </button>
-        </form>
+          <mat-icon class="lupa">search</mat-icon>
+        </div>
+        <table mat-table [dataSource]="dataSource">
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.id }}</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.nombre }}</td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let producto">
+              {{ producto.precio | currency }}
+            </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.stock }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="agregar">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element; index as i">
+              <button href="#AGREGAR" mat-icon-button class="boton-agregar">
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasBusqueda"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasBusqueda"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              Ningún producto con este nombre: "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+        <div>
+          <mat-paginator [pageSizeOptions]="[10]">Productos</mat-paginator>
+        </div>
       </div>
     </div>
-    <!--FIN DE LA BARRA DE BUSQUEDA-->
 
-    <!--CARTA DE ARTICULOS A VENDER-->
-    <div class="col-8 mat-elevation-z4" style="padding-left: 1em">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title style="text-align: center; padding-left: 370px">
-            <p>Busca los productos</p>
-          </mat-card-title>
-          <mat-card-subtitle style="text-align: center; padding-left: 370px"
-            >Arma tu pedido</mat-card-subtitle
+    <!--Simulacion de la factura-->
+    <div class="factura col-sm">
+      <!--ENCABEZADO-->
+      <div class="encabezado row">
+        <div class="col-2" style="padding-top: 0">
+          <img src="./../../../assets/logopng.png" width="120 " height="120" />
+        </div>
+        <div class="col-7">
+          <h3>SDI-GROUP</h3>
+          <p style="width: 100%">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+            reiciendis minima voluptates labore, excepturi doloribus, explicabo
+            vitae
+          </p>
+        </div>
+        <div class="col-3">
+          <h2 style="text-align: center">FACTURA N°</h2>
+          <button style="width: 100%" mat-flat-button disabled>00001</button>
+        </div>
+      </div>
+      <!--CUERPO-->
+      <div class="cuerpo"></div>
+      <!--PIE DE FACTURA-->
+      <div class="row" style="padding-top: 1em">
+        <div class="col-7">
+          <mat-form-field appearance="fill">
+            <mat-label>Formas de pago:</mat-label>
+            <select matNativeControl required>
+              <option value="efectivo">Efectivo</option>
+              <option value="debito">Débito</option>
+              <option value="credito">Crédito</option>
+              <option value="otros">Otros</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col-5">
+          <button
+            style="width: 100%; padding: 8px; margin: 0%"
+            mat-stroked-button
+            color="warn"
+            class="pagar"
           >
-        </mat-card-header>
-        <!--INICIO DE LA TABLA-->
-        <mat-card-content>
-          <button mat-button (click)="toggleOpciones()">
-            <mat-icon>edit</mat-icon>
+            GENERAR VENTA
           </button>
-          <div style="width: 90%; margin-top: 0%" class="mat-elevation-z2">
-            <mat-table [dataSource]="ventas">
-              <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.id }}
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="descripcion">
-                <mat-header-cell *matHeaderCellDef>
-                  Descripcion
-                </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.descripcion }}
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="precio">
-                <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.precio }}
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="subtotal">
-                <mat-header-cell *matHeaderCellDef> Subtotal </mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  {{ ventas.precio * ventas.cantidad }}
-                </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="cantidad">
-                <mat-header-cell *matHeaderCellDef> Cantidad</mat-header-cell>
-                <mat-cell *matCellDef="let ventas">
-                  <div>
-                    {{ ventas.cantidad }}
-                  </div>
-                </mat-cell>
-              </ng-container>
-              <ng-container matColumnDef="boton">
-                <mat-header-cell *matHeaderCellDef> Eliminar </mat-header-cell>
-                <mat-cell *matCellDef="let ventas; index as i">
-                  <div style="padding-left: 10px">
-                    <button mat-button>
-                      <mat-icon style="color: #d8473e">remove_circle</mat-icon>
-                    </button>
-                  </div>
-                </mat-cell>
-              </ng-container>
-
-              <mat-header-row
-                *matHeaderRowDef="columnasAMostrar"
-              ></mat-header-row>
-              <mat-row
-                *matRowDef="let myRowData; columns: columnasAMostrar"
-              ></mat-row>
-            </mat-table>
-            <div>
-              <mat-grid-list cols="2" rowHeight="100px">
-                <mat-grid-tile [colspan]="1" [rowspan]="2">
-                  <img
-                    src="https://github.com/cacunae/ProyectoFinal/blob/master/src/assets/logo.jpg?raw=true"
-                    width="400"
-                    height="400"
-                  />
-                </mat-grid-tile>
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                  <div style="text-align: end; padding-right: 10em">
-                    <label style="color: black; font-size: x-large" for="total">
-                      <h1>
-                        <b>Total: {{ total }}</b>
-                      </h1>
-                    </label>
-                  </div></mat-grid-tile
-                >
-                <mat-grid-tile [colspan]="1" [rowspan]="1">
-                  <div style="text-align: end; margin: 5%">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Formas de pago:</mat-label>
-                      <select matNativeControl required>
-                        <option value="efectivo">Efectivo</option>
-                        <option value="debito">Débito</option>
-                        <option value="credito">Crédito</option>
-                        <option value="otros">Otros</option>
-                      </select>
-                    </mat-form-field>
-                    <button
-                      style="margin-bottom: 1em; margin-left: 1em"
-                      type="button"
-                      class="btn btn-success btn-lg"
-                    >
-                      Procesar Venta
-                    </button>
-                  </div>
-                </mat-grid-tile>
-              </mat-grid-list>
-            </div>
-          </div>
-        </mat-card-content>
-
-        <!--FIN DE LA TABLA-->
-
-        <mat-card-actions> </mat-card-actions>
-      </mat-card>
+        </div>
+      </div>
     </div>
-    <!--FIN DE LA CARTA DE ARTICULOS A VENDER-->
   </div>
-  <router-outlet></router-outlet>
 </div>
+
+<!--MODAL AGREGAR PRODUCTOS A LA FACTURA-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="AGREGAR"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog modal-lg text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: left">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Add-256.png"
+                  height="30"
+                  width="30"
+                  style="margin-right: 3px"
+                />
+                Agregar Producto
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+          <div class="modal-body">
+            <form class="text-left p-3">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="id">ID:</label>
+                    <input class="form-control" type="text" name="id" id="id" />
+                  </div>
+                  <div class="form-group col-sm">
+                    <label for="marca"> Marca </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="marca"
+                      id="marca"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="nombre">Nombre</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="nombres"
+                      id="nombres"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="stock">Stock inicial</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="stock"
+                        id="stock"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-sm">
+                    <div class="form-group">
+                      <label class="" for="precio">Precio</label>
+                      <input
+                        class="form-control"
+                        type="text"
+                        name="precio"
+                        id="precio"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="categoria">Categoría</label>
+                    <div class="input-group-prepend">
+                      <select
+                        class="form-control"
+                        id="exampleFormControlSelect1"
+                      >
+                        <option>Telefonía</option>
+                        <option>Computación</option>
+                        <option>Tablets</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="background-color: #1c9d43; color: aliceblue"
+              type="reset"
+              data-dismiss="modal"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FINAL DEL MODAL AGREGAR PRODUCTOS A LA FACTURA-->

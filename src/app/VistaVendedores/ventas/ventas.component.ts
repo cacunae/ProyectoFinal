@@ -1,5 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { Productos } from './../../Models/producto.model';
+
+export interface ProductosF {
+  id: number;
+  nombre: string;
+  marca: string;
+  precio: number;
+  cantidad: number;
+  subtotal: number;
+}
+
+const ELEMENT_DATA: Productos[] = [
+  {
+    id: 1,
+    nombre: 'Galaxy S9',
+    marca: 'Samsung',
+    precio: 450000,
+    stock: 86,
+    minimo: 15,
+    categoria: 'Telefonia',
+  },
+  {
+    id: 2,
+    nombre: 'P20 lite',
+    marca: 'Huawei',
+    precio: 520000,
+    stock: 120,
+    minimo: 20,
+    categoria: 'Telefonia',
+  },
+  {
+    id: 3,
+    nombre: 'Macbook pro',
+    marca: 'Apple',
+    precio: 30000000,
+    stock: 12,
+    minimo: 10,
+    categoria: 'Telefonia',
+  },
+  {
+    id: 4,
+    nombre: 'Ipad',
+    marca: 'Apple',
+    precio: 12000000,
+    stock: 7,
+    minimo: 12,
+    categoria: 'Tablets',
+  },
+];
 
 @Component({
   selector: 'app-ventas',
@@ -9,53 +60,17 @@ import { DataSource } from '@angular/cdk/table';
 export class VentasComponent implements OnInit {
   constructor() {}
 
-  columnasAMostrar: string[] = [
-    'id',
-    'descripcion',
-    'precio',
-    'cantidad',
-    'subtotal',
-  ];
+  columnasBusqueda: string[] = ['id', 'nombre', 'precio', 'stock', 'agregar'];
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  total: number = 600000;
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ventas = [
-    {
-      id: '876555555',
-      descripcion: 'celular',
-      precio: '100.000',
-      cantidad: 2,
-      subtotal: '200.000',
-    },
-    {
-      id: '876555555',
-      descripcion: 'celular',
-      precio: '100.000',
-      cantidad: 2,
-      subtotal: '200.000',
-    },
-    {
-      id: '876555555',
-      descripcion: 'celular',
-      precio: '100.000',
-      cantidad: 1,
-      subtotal: '100.000',
-    },
-    {
-      id: '876555555',
-      descripcion: 'celular',
-      precio: '100.000',
-      cantidad: 1,
-      subtotal: '100.000',
-    },
-  ];
-
-  toggleOpciones() {
-    if (!this.columnasAMostrar.includes('boton')) {
-      this.columnasAMostrar.unshift('boton');
-    } else {
-      this.columnasAMostrar.splice(0, 1);
-    }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {}

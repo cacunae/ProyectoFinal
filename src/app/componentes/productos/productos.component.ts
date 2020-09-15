@@ -29,7 +29,26 @@ export class ProductosComponent implements OnInit {
       categoria: 'Telefonia',
     },
     {
+      id: '1012',
+      nombre: 'Moto g6 play',
+      marca: 'Motorola',
+      precio: 270000,
+      stock: 25,
+      categoria: 'Telefonia',
+    },
+  ];
+
+  busquedafiltrada = [
+    {
       id: '123',
+      nombre: 'iphone',
+      marca: 'apple',
+      precio: 900000,
+      stock: 50,
+      categoria: 'Telefonia',
+    },
+    {
+      id: '1012',
       nombre: 'Moto g6 play',
       marca: 'Motorola',
       precio: 270000,
@@ -39,4 +58,23 @@ export class ProductosComponent implements OnInit {
   ];
 
   ngOnInit(): void {}
+
+  onKey(event) {
+    console.log(this.busqueda);
+    console.log(this.filtro);
+    if (this.busqueda == '') {
+      this.busquedafiltrada = this.productos;
+    }
+    this.busquedafiltrada = this.busquedafiltrada.filter((producto) =>
+      producto[this.filtro].includes(this.busqueda)
+    );
+
+    //console.log(
+    //this.productos.filter((producto) =>
+    // producto[this.filtro].includes(this.busqueda)
+    // )
+    //);
+  }
+  busqueda: string = '';
+  filtro: string = '';
 }

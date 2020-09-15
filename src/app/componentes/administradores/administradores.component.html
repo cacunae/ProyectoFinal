@@ -1,40 +1,5 @@
 <!-- navbar -->
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="administrador">
-    <img
-      src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
-      width="40"
-      height="40"
-      class="d-inline-block align-mid"
-      alt=""
-      loading="lazy"
-    />
-    /
-    <img
-      src="https://image.flaticon.com/icons/svg/1414/1414024.svg"
-      width="40"
-      height="40"
-      class="d-inline-block align-mid"
-      alt=""
-      loading="lazy"
-    />
-    Administradores
-  </a>
-  <div>
-    <div class="text-left">
-      <a href="vendedores">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Vendedores
-        </button>
-      </a>
-      <a href="productos">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Productos
-        </button>
-      </a>
-    </div>
-  </div>
-</nav>
+<app-navbar-administrador></app-navbar-administrador>
 <!--FIN DEL NAVBAR-->
 
 <!--BOTON DE AGREGAR-->
@@ -47,6 +12,7 @@
     matTooltip="Agregar un Administrador nuevo"
     matTooltipPosition="right"
     class="btn btn-outline-warning mat-elevation-z8"
+    type="reset"
     style="background-color: #1c9d43; color: white"
     href="#AGREGAR"
     data-toggle="modal"
@@ -121,6 +87,7 @@
           data-toggle="modal"
           mat-mini-fab
           href="#EDITAR"
+          (click)="editarAdmin(i)"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -289,24 +256,57 @@
           <!--cuerpo del modal-->
           <div class="modal-body">
             <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="usuario">Usuario:</label>
-                <input class="form-control" type="text" name="usuario" />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="usuario">Usuario:</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="usuario"
+                      [(ngModel)]="cambios.usuario"
+                    />
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label class="" for="nombre">Nombres</label>
-                <input class="form-control" type="text" name="nombre" />
-              </div>
-              <div class="form-group">
-                <label class="" for="apellido"> Apellidos </label>
-                <input class="form-control" type="text" name="apellido" />
-              </div>
-              <div class="form-group">
-                <label class="" for="correo">Correo</label>
-                <input class="form-control" type="email" name="correo" />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="nombre">Nombres</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="nombre"
+                      [(ngModel)]="cambios.nombre"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="apellido"> Apellidos </label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="apellido"
+                      [(ngModel)]="cambios.apellido"
+                    />
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label class="" for="correo">Email</label>
+                    <input
+                      class="form-control"
+                      type="email"
+                      name="correo"
+                      [(ngModel)]="cambios.correo"
+                    />
+                  </div>
+                </div>
               </div>
             </form>
           </div>
+
           <!--footer-->
           <div class="modal-footer">
             <button

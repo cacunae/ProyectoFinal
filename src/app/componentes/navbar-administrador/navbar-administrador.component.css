@@ -1,0 +1,19 @@
+a.boton:hover {
+  color: white;
+  text-decoration: none;
+  background-color: white;
+  color: black;
+}
+
+a.boton {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 5px 5px;
+  margin-right: 5px;
+}
+
+img {
+  filter: invert(100%);
+}
+img:hover {
+  filter: invert(0%);
+}

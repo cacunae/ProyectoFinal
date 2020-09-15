@@ -11,7 +11,7 @@ export class VendedorService {
   constructor(private http: HttpClient) {}
 
   Vendedor: Empleados[] = [];
-  apiURL = 'http://localhost:8080/api/vendedor/';
+  apiURL = 'http://localhost:8080/api/vendedor';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -28,6 +28,11 @@ export class VendedorService {
   borrarVendedor(usuario: string): Observable<string> {
     this.apiURL = `${this.apiURL}/${usuario}`;
     return this.http.delete<string>(this.apiURL, this.httpOptions);
+  }
+
+  editarVendedor(usuario: string, body: Empleados): Observable<{}> {
+    let url = `${this.apiURL}/${usuario}`;
+    return this.http.put(url, body, this.httpOptions);
   }
 }
 

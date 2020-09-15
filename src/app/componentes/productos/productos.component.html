@@ -1,41 +1,5 @@
 <!-- navbar -->
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="administrador">
-    <img
-      src="https://cdn1.iconfinder.com/data/icons/e-commerce-retro-pack-vol-1/115/inventory_management-256.png"
-      width="40"
-      height="40"
-      class="d-inline-block align-mid"
-      alt=""
-      loading="lazy"
-    />
-    /
-    <img
-      src="https://image.flaticon.com/icons/svg/1414/1414029.svg"
-      width="40"
-      height="40"
-      class="d-inline-block align-mid"
-      alt=""
-      loading="lazy"
-    />
-    Productos
-  </a>
-
-  <div>
-    <div class="text-left">
-      <a href="vendedores">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Vendedores
-        </button>
-      </a>
-      <a href="administradores">
-        <button class="btn btn-outline-warning" style="margin-left: 1em">
-          Administradores
-        </button>
-      </a>
-    </div>
-  </div>
-</nav>
+<app-navbar-administrador></app-navbar-administrador>
 
 <div class="container">
   <!--Barra de busqueda-->
@@ -44,9 +8,9 @@
       <div id="busqueda">
         <div class="input-group mb-3">
           <div class="input-group-prepend">
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>Nombre</option>
-              <option>Marca</option>
+            <select class="form-control" [(ngModel)]="filtro">
+              <option value="nombre">Nombre</option>
+              <option value="marca">Marca</option>
             </select>
           </div>
           <input
@@ -54,6 +18,8 @@
             class="form-control"
             aria-label="Text input with dropdown button"
             placeholder="Busqueda"
+            [(ngModel)]="busqueda"
+            (keyup)="onKey($event)"
           />
           <span class="input-group-text" style="border: 0ch; margin: 0%">
             <svg
@@ -102,7 +68,7 @@
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
-  <mat-table [dataSource]="productos">
+  <mat-table [dataSource]="busquedafiltrada">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
       <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>

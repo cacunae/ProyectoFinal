@@ -16,7 +16,7 @@ export class StockComponent implements OnInit {
       nombre: 'S7',
       marca: 'Samsung',
       precio: 500000,
-      stock: 20,
+      stock: 5,
       minimo: 10,
     },
     {
@@ -24,7 +24,7 @@ export class StockComponent implements OnInit {
       nombre: 'P20',
       marca: 'huawei',
       precio: 2300000,
-      stock: 3,
+      stock: 20,
       minimo: 10,
     },
   ];

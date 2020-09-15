@@ -19,13 +19,17 @@ export class VendedorComponent implements OnInit {
     'opciones',
   ];
 
+  index: number = null;
+  guardar(i: number) {
+    this.index = i;
+    console.log(this.index);
+    console.log(this.vendedores[i].usuario);
+  }
+
   constructor(private service: VendedorService) {}
 
-  ngOnInit(): void {
-    this.service
-      .obtenerVendedores()
-      .subscribe((vendedores) => (this.vendedores = vendedores));
-    console.log(this.vendedores);
+  ngOnInit() {
+    this.obtenerVendedores();
   }
   vendedor: Empleados = {
     usuario: '',
@@ -35,6 +39,24 @@ export class VendedorComponent implements OnInit {
     contrasenha: '',
     esAdmin: 0,
   };
+
+  clear() {
+    this.vendedor = {
+      usuario: '',
+      nombre: '',
+      apellido: '',
+      correo: '',
+      contrasenha: '',
+      esAdmin: 0,
+    };
+  }
+
+obtenerVendedores() {
+  this.service
+    .obtenerVendedores()
+    .subscribe((vendedores) => (this.vendedores = vendedores));
+  console.log(this.vendedores);
+}
   
   agregarVendedor() {
     console.log(this.vendedor);
@@ -43,14 +65,7 @@ export class VendedorComponent implements OnInit {
       .subscribe((vendedor) =>
         this.vendedores.push(this.vendedor)
       );
-    
-  }
-  index: number = null;
-
-  guardar(i: number) {
-    this.index = i;
-    console.log(this.index);
-    console.log(this.vendedores[i].usuario);
+      this.obtenerVendedores();
   }
 
   eliminarVendedor(i: number) {
@@ -63,5 +78,31 @@ export class VendedorComponent implements OnInit {
     this.vendedores = this.vendedores.filter(
       (c) => c.usuario != this.vendedores[i].usuario
     );
+  }
+
+  cambios: Empleados = {
+    usuario: '',
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasenha: '',
+    esAdmin: 0,
+  };
+
+  editarVendedor(i: number): void {
+    console.log(i);
+    let usuario = this.vendedores[i].usuario;
+    this.cambios.usuario = this.vendedores[i].usuario;
+    this.cambios.nombre = this.vendedores[i].nombre;
+    this.cambios.apellido = this.vendedores[i].apellido;
+    this.cambios.correo = this.vendedores[i].correo;
+    this.cambios.contrasenha = this.vendedores[i].contrasenha;
+    this.cambios.esAdmin = this.vendedores[i].esAdmin;
+    console.log(this.cambios);
+
+    this.service
+      .editarVendedor(usuario, this.cambios)
+      .subscribe((resp) => console.log('cambios realizados'));
+    this.obtenerVendedores();
   }
 }

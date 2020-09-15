@@ -19,13 +19,17 @@ export class AdministradoresComponent implements OnInit {
     'opciones',
   ];
 
+  index: number = null;
+  guardar(i: number) {
+    this.index = i;
+    console.log(this.index);
+    console.log(this.administradores[i].usuario);
+  }
+
   constructor(private service: AdministradorService) {}
 
   ngOnInit() {
-    this.service
-      .obtenerAdministradores()
-      .subscribe((administradores) => (this.administradores = administradores));
-    console.log(this.administradores);
+    this.obtenerAdministradores();
   }
   administrador: Empleados = {
     usuario: '',
@@ -36,6 +40,24 @@ export class AdministradoresComponent implements OnInit {
     esAdmin: 1,
   };
 
+  clear() {
+    this.administrador = {
+      usuario: '',
+      nombre: '',
+      apellido: '',
+      correo: '',
+      contrasenha: '',
+      esAdmin: 1,
+    };
+  }
+
+  obtenerAdministradores() {
+    this.service
+      .obtenerAdministradores()
+      .subscribe((administradores) => (this.administradores = administradores));
+    console.log(this.administradores);
+  }
+
   agregarAdministrador() {
     console.log(this.administrador);
     this.service
@@ -43,14 +65,7 @@ export class AdministradoresComponent implements OnInit {
       .subscribe((administrador) =>
         this.administradores.push(this.administrador)
       );
-    this.ngOnInit();
-  }
-  index: number = null;
-
-  guardar(i: number) {
-    this.index = i;
-    console.log(this.index);
-    console.log(this.administradores[i].usuario);
+    this.obtenerAdministradores();
   }
 
   eliminarAdministrador(i: number) {
@@ -63,5 +78,31 @@ export class AdministradoresComponent implements OnInit {
     this.administradores = this.administradores.filter(
       (c) => c.usuario != this.administradores[i].usuario
     );
+  }
+
+  cambios: Empleados = {
+    usuario: '',
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasenha: '',
+    esAdmin: 1,
+  };
+
+  editarAdmin(i: number): void {
+    console.log(i);
+    let usuario = this.administradores[i].usuario;
+    this.cambios.usuario = this.administradores[i].usuario;
+    this.cambios.nombre = this.administradores[i].nombre;
+    this.cambios.apellido = this.administradores[i].apellido;
+    this.cambios.correo = this.administradores[i].correo;
+    this.cambios.contrasenha = this.administradores[i].contrasenha;
+    this.cambios.esAdmin = this.administradores[i].esAdmin;
+    console.log(this.cambios);
+
+    this.service
+      .editarAdministrador(usuario, this.cambios)
+      .subscribe((resp) => console.log('cambios realizados'));
+    this.obtenerAdministradores();
   }
 }

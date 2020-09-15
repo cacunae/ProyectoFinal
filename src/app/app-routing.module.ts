@@ -18,7 +18,10 @@ const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'vendedores', component: VendedorComponent },
   { path: 'administrador', component: AdministradorComponent },
-  { path: 'administradores', component: AdministradoresComponent },
+  {
+    path: 'administradores',
+    component: AdministradoresComponent,
+  },
   { path: 'login-admin', component: LoginAdminComponent },
 ];
 

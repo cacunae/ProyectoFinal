@@ -1,19 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { Productos } from './../../Models/producto.model';
 
-export interface ProductosF {
+export interface enSeleccion {
   id: number;
   nombre: string;
-  marca: string;
   precio: number;
   cantidad: number;
-  subtotal: number;
 }
 
-const ELEMENT_DATA: Productos[] = [
+const stock: Productos[] = [
   {
     id: 1,
     nombre: 'Galaxy S9',
@@ -42,7 +40,7 @@ const ELEMENT_DATA: Productos[] = [
     categoria: 'Telefonia',
   },
   {
-    id: 4,
+    id: 2012,
     nombre: 'Ipad',
     marca: 'Apple',
     precio: 12000000,
@@ -58,11 +56,11 @@ const ELEMENT_DATA: Productos[] = [
   styleUrls: ['./ventas.component.css'],
 })
 export class VentasComponent implements OnInit {
-  constructor() {}
+  constructor(private changeDetectorRefs: ChangeDetectorRef) {}
 
   columnasBusqueda: string[] = ['id', 'nombre', 'precio', 'stock', 'agregar'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-
+  dataSource = new MatTableDataSource(stock);
+  //METODOS Y FUNCIONES DE LA SECCION DE BUSQUEDA DE PRODUCTOS
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -72,6 +70,73 @@ export class VentasComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+  productoSeleccionado: enSeleccion = {
+    id: null,
+    nombre: '',
+    precio: 0,
+    cantidad: 1,
+  };
 
-  ngOnInit(): void {}
+  seleccionar(producto: Productos) {
+    console.log(producto);
+    let i = stock.indexOf(producto);
+    console.log(i);
+    this.productoSeleccionado.id = stock[i].id;
+    this.productoSeleccionado.nombre = stock[i].nombre;
+    this.productoSeleccionado.precio = stock[i].precio;
+  }
+  agregarProductoSeleccionado() {
+    this.productosSeleccionados.push(this.productoSeleccionado);
+    console.log(this.productosSeleccionados);
+    this.obtenerTotal();
+  }
+  // FIN DE BUSQUEDA DE PRODUCTOS
+  ngOnInit(): void {
+    console.log(this.productosSeleccionados);
+  }
+
+  productosSeleccionados: enSeleccion[] = [
+    {
+      id: 20,
+      nombre: 'Iphone 8x',
+      precio: 1000000,
+      cantidad: 2,
+    },
+    {
+      id: 20,
+      nombre: 'Iphone 8x',
+      precio: 1000000,
+      cantidad: 2,
+    },
+    {
+      id: 20,
+      nombre: 'Iphone 8x',
+      precio: 1000000,
+      cantidad: 2,
+    },
+    {
+      id: 20,
+      nombre: 'Iphone 8x',
+      precio: 1000000,
+      cantidad: 2,
+    },
+  ];
+
+  columnasFactura: string[] = [
+    'id',
+    'nombre',
+    'precio',
+    'cantidad',
+    'subtotal',
+  ];
+
+  total = 0;
+  obtenerTotal() {
+    let i: number = 0;
+    for (i = 0; i < this.productosSeleccionados.length; i++) {
+      this.total +=
+        this.productosSeleccionados[i].precio *
+        this.productosSeleccionados[i].cantidad;
+    }
+  }
 }

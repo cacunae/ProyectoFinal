@@ -38,15 +38,31 @@
           </ng-container>
 
           <!-- Symbol Column -->
+
           <ng-container matColumnDef="stock">
             <th mat-header-cell *matHeaderCellDef>Stock</th>
-            <td mat-cell *matCellDef="let producto">{{ producto.stock }}</td>
+            <td mat-cell *matCellDef="let producto">
+              <div *ngIf="producto.stock > producto.minimo; else elseBlock">
+                {{ producto.stock }}
+              </div>
+              <ng-template #elseBlock>
+                <span style="color: #d8473e">
+                  <b>{{ producto.stock }} </b>
+                </span>
+              </ng-template>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="agregar">
             <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element; index as i">
-              <button href="#AGREGAR" mat-icon-button class="boton-agregar">
+            <td mat-cell *matCellDef="let producto; index as i">
+              <button
+                href="#AGREGAR"
+                mat-icon-button
+                data-toggle="modal"
+                class="boton-agregar"
+                (click)="seleccionar(producto)"
+              >
                 <mat-icon>add</mat-icon>
               </button>
             </td>
@@ -89,7 +105,57 @@
         </div>
       </div>
       <!--CUERPO-->
-      <div class="cuerpo"></div>
+      <div class="cuerpo">
+        <table
+          mat-table
+          [dataSource]="productosSeleccionados"
+          class="mat-elevation-z8"
+        >
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let productos">{{ productos.id }}</td>
+            <td mat-footer-cell *matFooterCellDef>Total</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let productos">{{ productos.nombre }}</td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let productos">{{ productos.precio }}</td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.cantidad }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="subtotal">
+            <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.precio * productos.cantidad }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef>
+              {{ total }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasFactura"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasFactura"></tr>
+          <tr mat-footer-row *matFooterRowDef="columnasFactura"></tr>
+        </table>
+      </div>
       <!--PIE DE FACTURA-->
       <div class="row" style="padding-top: 1em">
         <div class="col-7">
@@ -109,6 +175,7 @@
             mat-stroked-button
             color="warn"
             class="pagar"
+            (click)="obtenerTotal()"
           >
             GENERAR VENTA
           </button>
@@ -126,7 +193,7 @@
       id="AGREGAR"
       style="margin-top: 40px; margin-bottom: 30px"
     >
-      <div class="modal-dialog modal-lg text-center">
+      <div class="modal-dialog text-center">
         <div class="modal-content">
           <!--encabezado del modal-->
           <div class="modal-header">
@@ -134,15 +201,7 @@
               class="modal-title"
               style="padding: 3em 0em 0em 1em; width: 100%"
             >
-              <h2 style="text-align: left">
-                <img
-                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Add-256.png"
-                  height="30"
-                  width="30"
-                  style="margin-right: 3px"
-                />
-                Agregar Producto
-              </h2>
+              <h2 style="text-align: center">Seleccione cantidad</h2>
             </div>
 
             <button
@@ -155,93 +214,37 @@
             </button>
           </div>
           <!--cuerpo del modal-->
-          <div class="modal-body">
-            <form class="text-left p-3">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="form-group col-sm">
-                    <label for="id">ID:</label>
-                    <input class="form-control" type="text" name="id" id="id" />
-                  </div>
-                  <div class="form-group col-sm">
-                    <label for="marca"> Marca </label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="marca"
-                      id="marca"
-                    />
-                  </div>
-                </div>
-              </div>
 
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="form-group col-sm">
-                    <label class="" for="nombre">Nombre</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="nombres"
-                      id="nombres"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-sm">
-                    <div class="form-group">
-                      <label class="" for="stock">Stock inicial</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="stock"
-                        id="stock"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-sm">
-                    <div class="form-group">
-                      <label class="" for="precio">Precio</label>
-                      <input
-                        class="form-control"
-                        type="text"
-                        name="precio"
-                        id="precio"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="form-group col-sm">
-                    <label class="" for="categoria">Categoría</label>
-                    <div class="input-group-prepend">
-                      <select
-                        class="form-control"
-                        id="exampleFormControlSelect1"
-                      >
-                        <option>Telefonía</option>
-                        <option>Computación</option>
-                        <option>Tablets</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
+          <h3>
+            <b>
+              {{ productoSeleccionado.nombre }}
+            </b>
+            <br />
+            <p style="font: small-caption">ID:{{ productoSeleccionado.id }}</p>
+          </h3>
+
+          <div class="row">
+            <div class="col-sm"><mat-icon>remove</mat-icon></div>
+            <div class="col-sm">
+              <input type="text" [(ngModel)]="productoSeleccionado.cantidad" />
+            </div>
+            <div class="col-sm"><mat-icon>add</mat-icon></div>
           </div>
           <!--footer-->
           <div class="modal-footer">
             <button
               class="btn BtnDefault"
-              style="background-color: #1c9d43; color: aliceblue"
+              style="
+                background-color: none;
+                color: #1c9d43;
+                outline: none;
+                border: none;
+              "
               type="reset"
               data-dismiss="modal"
+              (click)="agregarProductoSeleccionado()"
             >
-              Agregar
+              <mat-icon>check</mat-icon>
             </button>
           </div>
         </div>

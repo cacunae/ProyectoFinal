@@ -39,7 +39,7 @@ table {
 
 /* Seccion factura */
 .factura.col-sm {
-  height: auto;
+  height: 660px;
   margin-left: 2em;
   padding: 1em;
   padding-left: 2em;
@@ -49,6 +49,10 @@ table {
 
 .encabezado.row {
   padding-top: 2em;
+}
+
+.cuerpo {
+  height: 400px;
 }
 
 tr.mat-footer-row {

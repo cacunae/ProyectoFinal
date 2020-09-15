@@ -31,6 +31,7 @@ export class VendedorComponent implements OnInit {
   ngOnInit() {
     this.obtenerVendedores();
   }
+
   vendedor: Empleados = {
     usuario: '',
     nombre: '',
@@ -57,16 +58,22 @@ obtenerVendedores() {
     .subscribe((vendedores) => (this.vendedores = vendedores));
   console.log(this.vendedores);
 }
-  
-  agregarVendedor() {
-    console.log(this.vendedor);
-    this.service
-      .agregarVendedor(this.vendedor)
-      .subscribe((vendedor) =>
-        this.vendedores.push(this.vendedor)
-      );
-      this.obtenerVendedores();
-  }
+
+agregarVendedor() {
+  console.log(this.vendedor);
+  this.service.agregarVendedor(this.vendedor).subscribe(
+    (vendedor) => this.vendedores.push(this.vendedor),
+    (error) => {
+      if (error.status == 409) {
+        alert('Este usuario ya esta registrado');
+      } else if (error.status == 411) {
+        alert('Este correo ya esta registrado');
+      }
+    }
+  );
+  this.obtenerVendedores();
+  this.clear();
+}
 
   eliminarVendedor(i: number) {
     this.vendedores[i].usuario;
@@ -90,7 +97,7 @@ obtenerVendedores() {
   };
 
   editarVendedor(i: number): void {
-    console.log(i);
+    this.index = i;
     let usuario = this.vendedores[i].usuario;
     this.cambios.usuario = this.vendedores[i].usuario;
     this.cambios.nombre = this.vendedores[i].nombre;
@@ -99,9 +106,16 @@ obtenerVendedores() {
     this.cambios.contrasenha = this.vendedores[i].contrasenha;
     this.cambios.esAdmin = this.vendedores[i].esAdmin;
     console.log(this.cambios);
+  }
 
+  confirmarCambio() {
+    let usuario = this.vendedores[this.index].usuario;
+    console.log(usuario);
     this.service
-      .editarVendedor(usuario, this.cambios)
+      .editarVendedor(
+        this.vendedores[this.index].usuario,
+        this.cambios
+      )
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerVendedores();
   }

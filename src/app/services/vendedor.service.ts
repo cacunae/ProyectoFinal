@@ -22,12 +22,12 @@ export class VendedorService {
   }
 
   agregarVendedor(Vendedor: Empleados): Observable<Empleados> {
-    return this.http.post<Empleados>(this.apiURL, Vendedor);
+    return this.http.post<Empleados>(this.apiURL, Vendedor, this.httpOptions);
   }
 
   borrarVendedor(usuario: string): Observable<string> {
-    this.apiURL = `${this.apiURL}/${usuario}`;
-    return this.http.delete<string>(this.apiURL, this.httpOptions);
+    let url = `${this.apiURL}/${usuario}`;
+    return this.http.delete<string>(url, this.httpOptions);
   }
 
   editarVendedor(usuario: string, body: Empleados): Observable<{}> {

@@ -65,7 +65,7 @@ export class AdministradoresComponent implements OnInit {
       (administrador) => this.administradores.push(this.administrador),
       (error) => {
         if (error.status == 409) {
-          alert('Este usuario ya esta regristrado');
+          alert('Este usuario ya esta registrado');
         } else if (error.status == 411) {
           alert('Este correo ya esta registrado');
         }

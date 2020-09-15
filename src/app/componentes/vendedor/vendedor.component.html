@@ -3,14 +3,18 @@
 <!--FIN DEL NAVBAR-->
 
 <!--BOTON DE AGREGAR-->
-<div class="container" style="text-align: unset; padding-top: 1em">
+<div
+  class="container"
+  style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
+>
   <button
     mat-raised-button
-    matTooltip="Agregar un vendedor nuevo"
+    matTooltip="Agregar un Vendedor nuevo"
     matTooltipPosition="right"
     class="btn btn-outline-warning mat-elevation-z8"
+    type="reset"
     style="background-color: #1c9d43; color: white"
-    href="#contenido"
+    href="#AGREGAR"
     data-toggle="modal"
     mat-mini-fab
   >
@@ -24,53 +28,55 @@
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
-  <mat-table [dataSource]="estudiantes">
-    <ng-container matColumnDef="rut">
-      <mat-header-cell *matHeaderCellDef> RUT </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante"> {{ estudiante.rut }} </mat-cell>
+  <mat-table [dataSource]="vendedores">
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+      <mat-cell *matCellDef="let vendedores"> 
+        {{ vendedores.usuario }} 
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="nombre">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante">
-        {{ estudiante.nombre }}
+      <mat-cell *matCellDef="let vendedores">
+        {{ vendedores.nombre }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="apellido">
       <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante">
-        {{ estudiante.apellido }}
+      <mat-cell *matCellDef="let vendedores">
+        {{ vendedores.apellido }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="correo">
       <mat-header-cell *matHeaderCellDef> Correo Electrónico </mat-header-cell>
-      <mat-cell *matCellDef="let estudiante">
-        {{ estudiante.correo }}
+      <mat-cell *matCellDef="let vendedores">
+        {{ vendedores.correo }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
-      <mat-header-cell class="titulo" *matHeaderCellDef> </mat-header-cell>
-
+      <mat-header-cell style="justify-content: center" *matHeaderCellDef>
+      </mat-header-cell>
       <mat-cell
         style="justify-content: center"
-        *matCellDef="let estudiante; index as i"
+        *matCellDef="let vendedores; index as i"
       >
         <button
           mat-raised-button
-          matTooltip="Eliminar a este vendedor"
+          matTooltip="Eliminar este vendedor"
           matTooltipPosition="above"
           mat-mini-fab
           style="background-color: #d8473e"
-          (click)="eliminar(i)"
           data-toggle="modal"
           mat-mini-fab
+          (click)="guardar(i)"
           href="#BORRAR"
         >
           <mat-icon>delete</mat-icon>
         </button>
 
         <button
-          mat-raised-button
-          matTooltip="Editar a este vendedor"
+        mat-raised-button
+          matTooltip="Modificar este vendedor"
           matTooltipPosition="above"
           style="
             background-color: #f7ae42;
@@ -78,10 +84,10 @@
             margin-left: 1em;
             padding-left: 0%;
           "
-          (click)="modificar(i)"
           data-toggle="modal"
           mat-mini-fab
           href="#EDITAR"
+          (click)="editarVendedor(i)"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -93,12 +99,12 @@
 </div>
 <!--FIN DE LA TABLA-->
 
-<!--MODAL-->
+<!--MODAL AGREGAR-->
 <div class="text-right mt-4">
   <div>
     <div
       class="modal fade"
-      id="contenido"
+      id="AGREGAR"
       style="margin-top: 40px; margin-bottom: 31px"
     >
       <div class="modal-dialog text-center">
@@ -130,41 +136,68 @@
             </button>
           </div>
           <!--cuerpo del modal-->
+
           <div class="modal-body">
             <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="rut">RUT:</label>
-                <input class="form-control" type="text" name="rut" id="rut" />
+              <div class="container-fluid">
+                <div class ="row">
+                 <div class="form-group col -sm">
+                <label for="usuario">Usuario:</label>
+                <input
+                 class="form-control" 
+                 type="text" 
+                 name="usuario" 
+                 [(ngModel)]="vendedor.usuario"
+                 >
               </div>
-              <div class="form-group">
-                <label class="" for="nombres">Nombres</label>
+              <div class="form-group col-sm">
+                <label for="contrasenha"> Contraseña </label>
+                <input
+                  class="form-control"
+                  type="password"
+                  name="contrasenha"
+                  [(ngModel)]="vendedor.contrasenha"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="form-group col-sm">
+                <label class="" for="nombre">Nombres</label>
                 <input
                   class="form-control"
                   type="text"
                   name="nombres"
-                  id="nombres"
+                  [(ngModel)]="vendedor.nombre"
                 />
               </div>
-              <div class="form-group">
-                <label class="" for="apellidos"> Apellidos </label>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm">
+                <label class="" for="apellido"> Apellidos </label>
                 <input
                   class="form-control"
                   type="text"
                   name="apellidos"
-                  id="apellidos"
+                  [(ngModel)]="vendedor.apellido"
                 />
               </div>
-              <div class="form-group">
+            </div>
+            <div class="row">
+              <div class="form-group col-sm">
                 <label class="" for="correo">Email</label>
                 <input
                   class="form-control"
                   type="email"
                   name="correo"
-                  id="correo"
+                  [(ngModel)]="vendedor.correo"
                 />
               </div>
-            </form>
+            </div>
           </div>
+        </form>
+       </div>
           <!--footer-->
           <div class="modal-footer">
             <button
@@ -172,6 +205,7 @@
               style="background-color: #1c9d43; color: aliceblue"
               type="reset"
               data-dismiss="modal"
+              (click)="agregarVendedor()"
             >
               Agregar
             </button>
@@ -222,39 +256,57 @@
           <!--cuerpo del modal-->
           <div class="modal-body">
             <form class="text-left p-3">
-              <div class="form-group">
-                <label class="" for="rut">RUT:</label>
-                <input class="form-control" type="text" name="rut" id="rut" />
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                <label for="usuario">Usuario</label>
+                <input 
+                class="form-control"
+                 type="text"
+                  name="usuario" 
+                  [(ngModel)]="cambios.usuario"
+                  />
               </div>
-              <div class="form-group">
-                <label class="" for="nombres">Nombres</label>
+              </div>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                <label class="" for="nombre">Nombres</label>
                 <input
                   class="form-control"
                   type="text"
-                  name="nombres"
-                  id="nombres"
+                  name="nombre"
+                  [(ngModel)]="cambios.nombre"
                 />
               </div>
-              <div class="form-group">
-                <label class="" for="apellidos"> Apellidos </label>
-                <input
-                  class="form-control"
-                  type="text"
-                  name="apellidos"
-                  id="apellidos"
+              </div>
+              <div class="row">
+                <div class="form-group col-sm">
+                  <label class="" for="apellido"> Apellidos </label>
+                  <input
+                   class="form-control"
+                   type="text"
+                   name="apellido"
+                   [(ngModel)]="cambios.apellido"
                 />
               </div>
-              <div class="form-group">
+              </div>
+              <div class="row">
+              <div class="form-group col-sm">
                 <label class="" for="correo">Email</label>
                 <input
                   class="form-control"
                   type="email"
                   name="correo"
-                  id="correo"
+                  [(ngModel)]="cambios.correo"
                 />
               </div>
-            </form>
-          </div>
+            </div>
+           </div>
+         </form>
+       </div>
+
           <!--footer-->
           <div class="modal-footer">
             <button
@@ -262,6 +314,7 @@
               style="background-color: #f7ae42; color: aliceblue"
               type="reset"
               data-dismiss="modal"
+              (click)="confirmarCambio()"
             >
               Editar
             </button>
@@ -295,6 +348,7 @@
                 style="background-color: #d8473e; color: aliceblue; width: 89px"
                 type="reset"
                 data-dismiss="modal"
+                (click)="eliminarVendedor(index)"
               >
                 Borrar
               </button>

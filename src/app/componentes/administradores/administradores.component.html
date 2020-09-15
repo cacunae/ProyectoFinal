@@ -31,26 +31,26 @@
   <mat-table [dataSource]="administradores">
     <ng-container matColumnDef="usuario">
       <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
-      <mat-cell *matCellDef="let administrador">
-        {{ administrador.usuario }}
-      </mat-cell>
+      <mat-cell *matCellDef="let administradores">
+         {{ administradores.usuario }}
+         </mat-cell>
     </ng-container>
     <ng-container matColumnDef="nombre">
       <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let administrador">
-        {{ administrador.nombre }}
+      <mat-cell *matCellDef="let administradores">
+        {{ administradores.nombre }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="apellido">
       <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-      <mat-cell *matCellDef="let administrador">
-        {{ administrador.apellido }}
+      <mat-cell *matCellDef="let administradores">
+        {{ administradores.apellido }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="correo">
       <mat-header-cell *matHeaderCellDef> Correo Electrónico </mat-header-cell>
-      <mat-cell *matCellDef="let administrador">
-        {{ administrador.correo }}
+      <mat-cell *matCellDef="let administradores">
+        {{ administradores.correo }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="opciones">
@@ -58,7 +58,7 @@
       </mat-header-cell>
       <mat-cell
         style="justify-content: center"
-        *matCellDef="let administrador; index as i"
+        *matCellDef="let administradores; index as i"
       >
         <button
           mat-raised-button

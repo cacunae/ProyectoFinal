@@ -17,27 +17,27 @@
           <mat-icon class="lupa">search</mat-icon>
         </div>
         <table mat-table [dataSource]="dataSource">
-          <!-- Position Column -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
             <td mat-cell *matCellDef="let producto">{{ producto.id }}</td>
           </ng-container>
 
-          <!-- Name Column -->
           <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let producto">{{ producto.nombre }}</td>
           </ng-container>
 
-          <!-- Weight Column -->
+          <ng-container matColumnDef="marca">
+            <th mat-header-cell *matHeaderCellDef>Marca</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.marca }}</td>
+          </ng-container>
+
           <ng-container matColumnDef="precio">
             <th mat-header-cell *matHeaderCellDef>Precio</th>
             <td mat-cell *matCellDef="let producto">
-              {{ producto.precio | currency }}
+              {{ producto.precio | currency: "CLP":"symbol-narrow" }}
             </td>
           </ng-container>
-
-          <!-- Symbol Column -->
 
           <ng-container matColumnDef="stock">
             <th mat-header-cell *matHeaderCellDef>Stock</th>
@@ -78,9 +78,10 @@
             </td>
           </tr>
         </table>
-        <div>
-          <mat-paginator [pageSizeOptions]="[10]">Productos</mat-paginator>
-        </div>
+        <mat-paginator
+          [pageSizeOptions]="[10]"
+          showFirstLastButtons
+        ></mat-paginator>
       </div>
     </div>
 

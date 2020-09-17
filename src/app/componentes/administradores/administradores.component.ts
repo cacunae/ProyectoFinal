@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 //interface
 import { Empleados } from 'src/app/Models/empleado.model';
 //servicio
 import { AdministradorService } from 'src/app/services/administrador.service';
+
+export interface fil {
+  usuario: string;
+  nombre: string;
+  apellido: string;
+  correo: string;
+}
 
 @Component({
   selector: 'app-administradores',
@@ -10,7 +18,14 @@ import { AdministradorService } from 'src/app/services/administrador.service';
   styleUrls: ['./administradores.component.css'],
 })
 export class AdministradoresComponent implements OnInit {
+  constructor(private service: AdministradorService) {}
+
+  ngOnInit() {
+    this.obtenerAdministradores();
+  }
   administradores: Empleados[] = [];
+  busquedaFiltrada: Empleados[] = [];
+  dataSource = new MatTableDataSource(this.administradores);
   columnasAMostrar: string[] = [
     'usuario',
     'nombre',
@@ -26,11 +41,6 @@ export class AdministradoresComponent implements OnInit {
     console.log(this.administradores[i].usuario);
   }
 
-  constructor(private service: AdministradorService) {}
-
-  ngOnInit() {
-    this.obtenerAdministradores();
-  }
 
   administrador: Empleados = {
     usuario: '',
@@ -119,4 +129,17 @@ export class AdministradoresComponent implements OnInit {
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerAdministradores();
   }
+
+  onKey(event) {
+    console.log(this.busqueda);
+    console.log(this.filtro);
+    if (this.busqueda == '') {
+      this.administradores= this.administradores;
+    }
+    this.administradores = this.administradores.filter((administrador) =>
+      administrador[this.filtro].includes(this.busqueda)
+    );
+  }
+  busqueda: string = '';
+  filtro: string = '';
 }

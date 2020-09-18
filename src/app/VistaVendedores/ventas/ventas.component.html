@@ -102,34 +102,40 @@
         </div>
         <div class="col-3">
           <h2 style="text-align: center">FACTURA N°</h2>
-          <button style="width: 100%" mat-flat-button disabled>00001</button>
+          <button style="width: 100%" mat-flat-button disabled>-----</button>
         </div>
       </div>
       <!--CUERPO-->
       <div class="cuerpo">
         <table
           mat-table
-          [dataSource]="productosSeleccionados"
+          [dataSource]="ventaDataSource"
           class="mat-elevation-z8"
         >
           <!-- Position Column -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>ID</th>
-            <td mat-cell *matCellDef="let productos">{{ productos.id }}</td>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.idProducto }}
+            </td>
             <td mat-footer-cell *matFooterCellDef>Total</td>
           </ng-container>
 
           <!-- Name Column -->
           <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
-            <td mat-cell *matCellDef="let productos">{{ productos.nombre }}</td>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.nombreProducto }}
+            </td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
 
           <!-- Weight Column -->
           <ng-container matColumnDef="precio">
             <th mat-header-cell *matHeaderCellDef>Precio</th>
-            <td mat-cell *matCellDef="let productos">{{ productos.precio }}</td>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.precio | currency: "CLP":"symbol-narrow" }}
+            </td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
 
@@ -145,10 +151,13 @@
           <ng-container matColumnDef="subtotal">
             <th mat-header-cell *matHeaderCellDef>Subtotal</th>
             <td mat-cell *matCellDef="let productos">
-              {{ productos.precio * productos.cantidad }}
+              {{
+                productos.precio * productos.cantidad
+                  | currency: "CLP":"symbol-narrow"
+              }}
             </td>
-            <td mat-footer-cell *matFooterCellDef>
-              {{ total }}
+            <td mat-footer-cell *matFooterCellDef [(ngModel)]="total">
+              {{ total | currency: "CLP":"symbol-narrow" }}
             </td>
           </ng-container>
 
@@ -162,11 +171,15 @@
         <div class="col-7">
           <mat-form-field appearance="fill">
             <mat-label>Formas de pago:</mat-label>
-            <select matNativeControl required>
-              <option value="efectivo">Efectivo</option>
-              <option value="debito">Débito</option>
-              <option value="credito">Crédito</option>
-              <option value="otros">Otros</option>
+            <select
+              matNativeControl
+              required
+              [(ngModel)]="ventaEnCurso.formaDePago"
+            >
+              <option value="EFECTIVO">Efectivo</option>
+              <option value="DEBITO">Débito</option>
+              <option value="CREDITO">Crédito</option>
+              <option value="OTRO">Otros</option>
             </select>
           </mat-form-field>
         </div>
@@ -176,7 +189,7 @@
             mat-stroked-button
             color="warn"
             class="pagar"
-            (click)="obtenerTotal()"
+            (click)="guardarVenta()"
           >
             GENERAR VENTA
           </button>
@@ -218,7 +231,7 @@
 
           <h3>
             <b>
-              {{ productoSeleccionado.nombre }}
+              {{ productoSeleccionado.nombreProducto }}
             </b>
             <br />
             <p style="font: small-caption">ID:{{ productoSeleccionado.id }}</p>

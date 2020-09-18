@@ -2,15 +2,14 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+//INTERFACES
 import { Productos } from './../../Models/producto.model';
+import { Venta } from '../../Models/venta.model';
+import { DetallesVenta } from '../../Models/detallesVenta.model';
+//SERVICIOS
 import { ProductosService } from 'src/app/services/productos.service';
-
-export interface enSeleccion {
-  id: number;
-  nombre: string;
-  precio: number;
-  cantidad: number;
-}
+import { DetalleVentaService } from 'src/app/services/detalle-venta.service';
+import { VentasService } from 'src/app/services/ventas.service';
 
 @Component({
   selector: 'app-ventas',
@@ -18,7 +17,11 @@ export interface enSeleccion {
   styleUrls: ['./ventas.component.css'],
 })
 export class VentasComponent implements OnInit {
-  constructor(private service: ProductosService) {}
+  constructor(
+    private service: ProductosService,
+    private serviceVenta: VentasService,
+    private serviceDetalleVenta: DetalleVentaService
+  ) {}
 
   ngOnInit(): void {
     console.log('Obteniendo stock');
@@ -32,6 +35,7 @@ export class VentasComponent implements OnInit {
 
   stock: any;
   dataSource = new MatTableDataSource();
+  ventaDataSource = new MatTableDataSource();
   columnasBusqueda: string[] = [
     'id',
     'nombre',
@@ -52,11 +56,14 @@ export class VentasComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  productoSeleccionado: enSeleccion = {
+  productoSeleccionado: DetallesVenta = {
     id: null,
-    nombre: '',
-    precio: 0,
+    idVenta: null,
+    idProducto: null,
+    nombreProducto: '',
+    precio: null,
     cantidad: 1,
+    descuento: 0,
   };
 
   seleccionar(producto: Productos) {
@@ -64,12 +71,23 @@ export class VentasComponent implements OnInit {
     console.log(this.stock);
     let i = this.stock.indexOf(producto);
     console.log(i);
-    this.productoSeleccionado.id = this.stock[i].id;
-    this.productoSeleccionado.nombre = this.stock[i].nombre;
+    this.productoSeleccionado.idProducto = this.stock[i].id;
+    this.productoSeleccionado.nombreProducto = this.stock[i].nombre;
     this.productoSeleccionado.precio = this.stock[i].precio;
   }
   agregarProductoSeleccionado() {
-    this.productosSeleccionados.push(this.productoSeleccionado);
+    let temp: DetallesVenta = {
+      id: null,
+      idVenta: null,
+      idProducto: null,
+      nombreProducto: '',
+      precio: 0,
+      cantidad: 1,
+      descuento: 0,
+    };
+    temp = Object.assign(temp, this.productoSeleccionado);
+    this.productosSeleccionados.push(temp);
+    this.ventaDataSource.data = this.productosSeleccionados;
     console.log(this.productosSeleccionados);
     this.obtenerTotal();
   }
@@ -81,18 +99,21 @@ export class VentasComponent implements OnInit {
           resolve(producto);
         },
         (error) => {
+<<<<<<< HEAD
           console.log(error);
+=======
+          console.log('exploto estooo');
+>>>>>>> a73363f16fdbc29677920f4d7bd0f9cd0fad83f2
           reject('ERROR AL OBTENER EL STOCK');
         }
       );
-      console.log(this.stock);
     });
     return promise;
   }
 
   // FIN DE BUSQUEDA DE PRODUCTOS
 
-  productosSeleccionados: enSeleccion[] = [];
+  productosSeleccionados: DetallesVenta[] = [];
 
   columnasFactura: string[] = [
     'id',
@@ -104,11 +125,57 @@ export class VentasComponent implements OnInit {
 
   total = 0;
   obtenerTotal() {
-    let i: number = 0;
-    for (i = 0; i < this.productosSeleccionados.length; i++) {
-      this.total +=
-        this.productosSeleccionados[i].precio *
-        this.productosSeleccionados[i].cantidad;
-    }
+    let x = this.productosSeleccionados.length - 1;
+    this.total +=
+      this.productosSeleccionados[x].precio *
+      this.productosSeleccionados[x].cantidad;
+
+    console.log(this.total);
+  }
+
+  ventaEnCurso: Venta = {
+    idVenta: null,
+    idVendedor: 'vendedor',
+    fechaHora: new Date(),
+    formaDePago: '',
+    total: null,
+  };
+
+  guardarVenta() {
+    this.ventaEnCurso.total = this.total;
+    this.serviceVenta.agregarVenta(this.ventaEnCurso).subscribe();
+    this.obtenerIdVenta();
+    //this.total = 0;
+    this.guardarDetalleVenta();
+  }
+
+  obtenerIdVenta() {
+    let promise = new Promise<Venta>((resolve, reject) => {
+      this.serviceVenta.obtenerIdVenta(this.ventaEnCurso.idVendedor).subscribe(
+        (data) => {
+          resolve(data);
+          console.log(data);
+        },
+        (error) => {
+          console.log('no obtuve el idVenta');
+          reject('error al obtener el idVenta');
+        }
+      );
+    });
+
+    return promise;
+  }
+
+  guardarDetalleVenta() {
+    this.obtenerIdVenta().then((ultimaVenta) => {
+      console.log('La ultima venta es esta: ', ultimaVenta);
+      for (let i = 0; i < this.productosSeleccionados.length; i++) {
+        this.productosSeleccionados[i].idVenta = ultimaVenta.idVenta;
+      }
+      this.serviceDetalleVenta
+        .agregarDetallesVentas(this.productosSeleccionados)
+        .subscribe();
+      console.log('LLEGUÉ AQUI');
+    });
   }
 }

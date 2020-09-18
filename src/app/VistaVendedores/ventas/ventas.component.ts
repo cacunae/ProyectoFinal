@@ -24,16 +24,10 @@ export class VentasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Obteniendo stock');
-    this.obtenerStock().then((productos) => {
-      console.log('productos obtenidos', productos);
-      this.stock = productos;
-      this.dataSource.data = this.stock;
-      console.log(this.dataSource);
-    });
+    this.actualizarStock();
   }
 
-  stock: any;
+  stock: Productos[];
   dataSource = new MatTableDataSource();
   ventaDataSource = new MatTableDataSource();
   columnasBusqueda: string[] = [
@@ -93,7 +87,7 @@ export class VentasComponent implements OnInit {
   }
   //SERVICIOS
   obtenerStock() {
-    let promise = new Promise((resolve, reject) => {
+    let promise = new Promise<Productos[]>((resolve, reject) => {
       this.service.obtenerStock().subscribe(
         (producto) => {
           resolve(producto);
@@ -105,6 +99,15 @@ export class VentasComponent implements OnInit {
       );
     });
     return promise;
+  }
+  actualizarStock() {
+    console.log('Obteniendo stock');
+    this.obtenerStock().then((productos) => {
+      console.log('productos obtenidos', productos);
+      this.stock = productos;
+      this.dataSource.data = this.stock;
+      console.log(this.dataSource);
+    });
   }
 
   // FIN DE BUSQUEDA DE PRODUCTOS
@@ -173,5 +176,6 @@ export class VentasComponent implements OnInit {
         .subscribe();
       console.log('LLEGUÉ AQUI');
     });
+    this.obtenerStock();
   }
 }

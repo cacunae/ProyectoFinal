@@ -81,7 +81,7 @@ export class VentasComponent implements OnInit {
           resolve(producto);
         },
         (error) => {
-          console.log('EXPLOTO ESTO');
+          console.log(error);
           reject('ERROR AL OBTENER EL STOCK');
         }
       );

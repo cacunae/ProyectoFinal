@@ -18,6 +18,6 @@ export class ProductosService {
   };
 
   obtenerStock(): Observable<Productos[]> {
-    return this.http.get<Productos[]>(this.apiURL);
+    return this.http.get<Productos[]>(this.apiURL, this.httpOptions);
   }
 }

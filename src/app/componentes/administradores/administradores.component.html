@@ -24,7 +24,19 @@
 <!--FIN DEL BOTON DE AGREGAR-->
 
 <!--TABLA-->
+<br />
+<div>
+  <div style="width: 80%; margin: 1em auto; text-align: center">
+  <mat-form-field style="align-content: center; width: 80%;"> 
+    <mat-label >Busqueda</mat-label>
+    <input matInput class="form-control" (keyup)="onKey($event)" placeholder="Ingrese nombre, apellido, correo o usuario " [(ngModel)]="busqueda" #input>
+  </mat-form-field>
+  
+  <mat-icon class="lupa">search</mat-icon>
+  </div>
+
 <div
+
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
@@ -96,6 +108,7 @@
     <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
     <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
   </mat-table>
+</div>
 </div>
 <!--FIN DE LA TABLA-->
 

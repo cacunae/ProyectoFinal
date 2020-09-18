@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 //interface
 import { Empleados } from 'src/app/Models/empleado.model';
 //servicio
@@ -10,7 +11,17 @@ import { VendedorService } from 'src/app/services/vendedor.service';
   styleUrls: ['./vendedor.component.css'],
 })
 export class VendedorComponent implements OnInit {
+  ngOnInit() {
+    console.log('Obteniendo admins');
+    this.obtenerVendedores().then((empleado) => {
+      console.log('empleados obtenidos', empleado);
+      this.vendedores = empleado;
+      this.dataSource.data = this.vendedores;
+    });
+    
+  }
   vendedores: Empleados[] = [];
+  dataSource = new MatTableDataSource();
   columnasAMostrar: string[] = [
     'usuario',
     'nombre',
@@ -27,10 +38,6 @@ export class VendedorComponent implements OnInit {
   }
 
   constructor(private service: VendedorService) {}
-
-  ngOnInit() {
-    this.obtenerVendedores();
-  }
 
   vendedor: Empleados = {
     usuario: '',
@@ -52,13 +59,6 @@ export class VendedorComponent implements OnInit {
     };
   }
 
-obtenerVendedores() {
-  this.service
-    .obtenerVendedores()
-    .subscribe((vendedores) => (this.vendedores = vendedores));
-  console.log(this.vendedores);
-}
-
 agregarVendedor() {
   console.log(this.vendedor);
   this.service.agregarVendedor(this.vendedor).subscribe(
@@ -73,6 +73,20 @@ agregarVendedor() {
   );
   this.obtenerVendedores();
   this.clear();
+}
+obtenerVendedores() {
+  let promise = new Promise<Empleados[]>((resolve, reject) => {
+    this.service.obtenerVendedores().subscribe(
+      (vendedor) => {
+        resolve(vendedor);
+      },
+      (error) => {
+        console.log('exploto estooo');
+        reject('ERROR AL OBTENER EL STOCK');
+      }
+    );
+  });
+  return promise;
 }
 
   eliminarVendedor(i: number) {
@@ -118,5 +132,9 @@ agregarVendedor() {
       )
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerVendedores();
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

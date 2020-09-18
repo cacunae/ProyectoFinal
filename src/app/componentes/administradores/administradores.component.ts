@@ -21,11 +21,15 @@ export class AdministradoresComponent implements OnInit {
   constructor(private service: AdministradorService) {}
 
   ngOnInit() {
-    this.obtenerAdministradores();
+    console.log('Obteniendo admins');
+    this.obtenerAdministradores().then((empleado) => {
+      console.log('empleados obtenidos', empleado);
+      this.administradores = empleado;
+      this.dataSource.data = this.administradores;
+    });
   }
   administradores: Empleados[] = [];
-  busquedaFiltrada: Empleados[] = [];
-  dataSource = new MatTableDataSource(this.administradores);
+  dataSource = new MatTableDataSource();
   columnasAMostrar: string[] = [
     'usuario',
     'nombre',
@@ -62,13 +66,6 @@ export class AdministradoresComponent implements OnInit {
     };
   }
 
-  obtenerAdministradores() {
-    this.service
-      .obtenerAdministradores()
-      .subscribe((administradores) => (this.administradores = administradores));
-    console.log(this.administradores);
-  }
-
   agregarAdministrador() {
     console.log(this.administrador);
     this.service.agregarAdministrador(this.administrador).subscribe(
@@ -83,6 +80,20 @@ export class AdministradoresComponent implements OnInit {
     );
     this.obtenerAdministradores();
     this.clear();
+  }
+  obtenerAdministradores() {
+    let promise = new Promise<Empleados[]>((resolve, reject) => {
+      this.service.obtenerAdministradores().subscribe(
+        (empleado) => {
+          resolve(empleado);
+        },
+        (error) => {
+          console.log('exploto estooo');
+          reject('ERROR AL OBTENER EL STOCK');
+        }
+      );
+    });
+    return promise;
   }
 
   eliminarAdministrador(i: number) {
@@ -130,16 +141,8 @@ export class AdministradoresComponent implements OnInit {
     this.obtenerAdministradores();
   }
 
-  onKey(event) {
-    console.log(this.busqueda);
-    console.log(this.filtro);
-    if (this.busqueda == '') {
-      this.administradores= this.administradores;
-    }
-    this.administradores = this.administradores.filter((administrador) =>
-      administrador[this.filtro].includes(this.busqueda)
-    );
-  }
-  busqueda: string = '';
-  filtro: string = '';
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value;
+  this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 }

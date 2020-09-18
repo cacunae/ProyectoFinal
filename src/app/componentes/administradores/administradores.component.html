@@ -1,7 +1,6 @@
 <!-- navbar -->
 <app-navbar-administrador></app-navbar-administrador>
 <!--FIN DEL NAVBAR-->
-
 <!--BOTON DE AGREGAR-->
 <div
   class="container"
@@ -29,9 +28,9 @@
   <div style="width: 80%; margin: 1em auto; text-align: center">
   <mat-form-field style="align-content: center; width: 80%;"> 
     <mat-label >Busqueda</mat-label>
-    <input matInput class="form-control" (keyup)="onKey($event)" placeholder="Ingrese nombre, apellido, correo o usuario " [(ngModel)]="busqueda" #input>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese nombre, apellido, correo o usuario "#input>
   </mat-form-field>
-  
+
   <mat-icon class="lupa">search</mat-icon>
   </div>
 
@@ -40,74 +39,73 @@
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
-  <mat-table [dataSource]="administradores">
-    <ng-container matColumnDef="usuario">
-      <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
-      <mat-cell *matCellDef="let administradores">
-         {{ administradores.usuario }}
-         </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="nombre">
-      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
-      <mat-cell *matCellDef="let administradores">
-        {{ administradores.nombre }}
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="apellido">
-      <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
-      <mat-cell *matCellDef="let administradores">
-        {{ administradores.apellido }}
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="correo">
-      <mat-header-cell *matHeaderCellDef> Correo Electrónico </mat-header-cell>
-      <mat-cell *matCellDef="let administradores">
-        {{ administradores.correo }}
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="opciones">
-      <mat-header-cell style="justify-content: center" *matHeaderCellDef>
-      </mat-header-cell>
-      <mat-cell
-        style="justify-content: center"
-        *matCellDef="let administradores; index as i"
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="usuario">
+    <mat-header-cell *matHeaderCellDef> Usuario </mat-header-cell>
+    <mat-cell *matCellDef="let administradores">
+       {{ administradores.usuario }}
+       </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+    <mat-cell *matCellDef="let administradores">
+      {{ administradores.nombre }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="apellido">
+    <mat-header-cell *matHeaderCellDef> Apellido </mat-header-cell>
+    <mat-cell *matCellDef="let administradores">
+      {{ administradores.apellido }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="correo">
+    <mat-header-cell *matHeaderCellDef> Correo Electrónico </mat-header-cell>
+    <mat-cell *matCellDef="let administradores">
+      {{ administradores.correo }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="opciones">
+    <mat-header-cell style="justify-content: center" *matHeaderCellDef>
+    </mat-header-cell>
+    <mat-cell
+      style="justify-content: center"
+      *matCellDef="let administradores; index as i"
+    >
+      <button
+        mat-raised-button
+        matTooltip="Eliminar este administrador"
+        matTooltipPosition="above"
+        mat-mini-fab
+        style="background-color: #d8473e"
+        data-toggle="modal"
+        mat-mini-fab
+        (click)="guardar(i)"
+        href="#BORRAR"
       >
-        <button
-          mat-raised-button
-          matTooltip="Eliminar este administrador"
-          matTooltipPosition="above"
-          mat-mini-fab
-          style="background-color: #d8473e"
-          data-toggle="modal"
-          mat-mini-fab
-          (click)="guardar(i)"
-          href="#BORRAR"
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
-
-        <button
-          mat-raised-button
-          matTooltip="Modificar este administrador"
-          matTooltipPosition="above"
-          style="
-            background-color: #f7ae42;
-            color: white;
-            margin-left: 1em;
-            padding-left: 0%;
-          "
-          data-toggle="modal"
-          mat-mini-fab
-          href="#EDITAR"
-          (click)="editarAdmin(i)"
-        >
-          <mat-icon>edit</mat-icon>
-        </button>
-      </mat-cell>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
-    <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
-  </mat-table>
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        mat-raised-button
+        matTooltip="Modificar este administrador"
+        matTooltipPosition="above"
+        style="
+          background-color: #f7ae42;
+          color: white;
+          margin-left: 1em;
+          padding-left: 0%;
+        "
+        data-toggle="modal"
+        mat-mini-fab
+        href="#EDITAR"
+        (click)="editarAdmin(i)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
+  <mat-row *matRowDef="let myRowData; columns: columnasAMostrar"></mat-row>
+</mat-table>
 </div>
 </div>
 <!--FIN DE LA TABLA-->
@@ -138,7 +136,6 @@
                 Agregar Administrador
               </h2>
             </div>
-
             <button
               type="button"
               class="close"
@@ -149,7 +146,6 @@
             </button>
           </div>
           <!--cuerpo del modal-->
-
           <div class="modal-body">
             <form class="text-left p-3">
               <div class="container-fluid">
@@ -229,7 +225,6 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
-
 <!--MODAL EDITAR-->
 <div class="text-right mt-4">
   <div>
@@ -256,7 +251,6 @@
                 Editar Administrador
               </h2>
             </div>
-
             <button
               type="button"
               class="close"
@@ -319,7 +313,6 @@
               </div>
             </form>
           </div>
-
           <!--footer-->
           <div class="modal-footer">
             <button
@@ -338,7 +331,6 @@
   </div>
 </div>
 <!--FIN DEL MODAL-->
-
 <!--MODAL BORRAR-->
 <div class="text-right mt-4">
   <div class="modal fade" id="BORRAR">
@@ -353,7 +345,6 @@
               ¿Está seguro de que quiere borrar este administrador?
             </h2>
           </div>
-
           <div style="text-align: center">
             <div style="padding: 1em 1em 1em 1em; width: 100%">
               <button

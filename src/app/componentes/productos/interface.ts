@@ -1,9 +1,9 @@
 export interface interfas {
-  id: string;
+  id: number;
   nombre: string;
   marca: string;
-  precio: string;
-  stock: string;
-  minimo: string;
+  precio: number;
+  stock: number;
+  minimo: number;
   categoria: string;
 }

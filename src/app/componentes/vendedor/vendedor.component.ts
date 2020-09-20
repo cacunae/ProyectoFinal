@@ -18,7 +18,6 @@ export class VendedorComponent implements OnInit {
       this.vendedores = empleado;
       this.dataSource.data = this.vendedores;
     });
-    
   }
   vendedores: Empleados[] = [];
   dataSource = new MatTableDataSource();
@@ -59,42 +58,40 @@ export class VendedorComponent implements OnInit {
     };
   }
 
-agregarVendedor() {
-  console.log(this.vendedor);
-  this.service.agregarVendedor(this.vendedor).subscribe(
-    (vendedor) => this.vendedores.push(this.vendedor),
-    (error) => {
-      if (error.status == 409) {
-        alert('Este usuario ya esta registrado');
-      } else if (error.status == 411) {
-        alert('Este correo ya esta registrado');
-      }
-    }
-  );
-  this.obtenerVendedores();
-  this.clear();
-}
-obtenerVendedores() {
-  let promise = new Promise<Empleados[]>((resolve, reject) => {
-    this.service.obtenerVendedores().subscribe(
-      (vendedor) => {
-        resolve(vendedor);
-      },
+  agregarVendedor() {
+    console.log(this.vendedor);
+    this.service.agregarVendedor(this.vendedor).subscribe(
+      (vendedor) => this.vendedores.push(this.vendedor),
       (error) => {
-        console.log('exploto estooo');
-        reject('ERROR AL OBTENER EL STOCK');
+        if (error.status == 409) {
+          alert('Este usuario ya esta registrado');
+        } else if (error.status == 411) {
+          alert('Este correo ya esta registrado');
+        }
       }
     );
-  });
-  return promise;
-}
+    this.obtenerVendedores();
+    this.clear();
+  }
+  obtenerVendedores() {
+    let promise = new Promise<Empleados[]>((resolve, reject) => {
+      this.service.obtenerVendedores().subscribe(
+        (vendedor) => {
+          resolve(vendedor);
+        },
+        (error) => {
+          console.log('exploto estooo');
+          reject('ERROR AL OBTENER EL STOCK');
+        }
+      );
+    });
+    return promise;
+  }
 
   eliminarVendedor(i: number) {
     this.vendedores[i].usuario;
     console.log(this.vendedores[i].usuario);
-    this.service
-      .borrarVendedor(this.vendedores[i].usuario)
-      .subscribe();
+    this.service.borrarVendedor(this.vendedores[i].usuario).subscribe();
     //actualiza tabla
     this.vendedores = this.vendedores.filter(
       (c) => c.usuario != this.vendedores[i].usuario
@@ -126,10 +123,7 @@ obtenerVendedores() {
     let usuario = this.vendedores[this.index].usuario;
     console.log(usuario);
     this.service
-      .editarVendedor(
-        this.vendedores[this.index].usuario,
-        this.cambios
-      )
+      .editarVendedor(this.vendedores[this.index].usuario, this.cambios)
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerVendedores();
   }

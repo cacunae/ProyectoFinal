@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { interfas } from './interface';
+
+import { ProductosService } from 'src/app/services/productos.service';
+import { Productos } from './../../Models/producto.model';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-productos',
@@ -7,8 +10,17 @@ import { interfas } from './interface';
   styleUrls: ['./productos.component.css'],
 })
 export class ProductosComponent implements OnInit {
-  constructor() {}
+  ngOnInit() {
+    console.log('Obteniendo products');
+    this.obtenerProductos().then((productos) => {
+      console.log('empleados obtenidos', productos);
+      this.productitos = productos;
+      this.dataSource.data = this.productitos;
+    });
+  }
 
+  productitos: Productos[] = [];
+  dataSource = new MatTableDataSource();
   columnasAMostrar: string[] = [
     'id',
     'nombre',
@@ -19,53 +31,74 @@ export class ProductosComponent implements OnInit {
     'opciones',
   ];
 
-  productos = [
-    {
-      id: '123',
-      nombre: 'iphone',
-      marca: 'apple',
-      precio: 900000,
-      stock: 50,
-      categoria: 'Telefonia',
-    },
-    {
-      id: '1012',
-      nombre: 'Moto g6 play',
-      marca: 'Motorola',
-      precio: 270000,
-      stock: 25,
-      categoria: 'Telefonia',
-    },
-  ];
+  index: number = null;
+  guardar(i: number) {
+    this.index = i;
+    console.log(this.index);
+    console.log(this.productitos[i].id);
+  }
+  constructor(private service: ProductosService) {}
 
-  busquedafiltrada = [
-    {
-      id: '123',
-      nombre: 'iphone',
-      marca: 'apple',
-      precio: 900000,
-      stock: 50,
-      categoria: 'Telefonia',
-    },
-    {
-      id: '1012',
-      nombre: 'Moto g6 play',
-      marca: 'Motorola',
-      precio: 270000,
-      stock: 25,
-      categoria: 'Telefonia',
-    },
-  ];
+  productos: Productos = {
+    id: 0,
+    nombre: '',
+    marca: '',
+    precio: 0,
+    stock: 0,
+    minimo: 0,
+    categoria: '',
+  };
 
-  ngOnInit(): void {}
+  clear() {
+    this.productos = {
+      id: 0,
+      nombre: '',
+      marca: '',
+      precio: 0,
+      stock: 0,
+      minimo: 0,
+      categoria: '',
+    };
+  }
 
-  onKey(event) {
+  agregarProducto() {
+    console.log(this.productos);
+    this.service.agregarProducto(this.productos).subscribe(
+      (productos) => this.productitos.push(this.productos),
+      (error) => {
+        if (error.status == 409) {
+          alert('Este usuario ya esta registrado');
+        } else if (error.status == 411) {
+          alert('Este correo ya esta registrado');
+        }
+      }
+    );
+    this.obtenerProductos();
+    this.clear();
+  }
+
+  obtenerProductos() {
+    let promise = new Promise<Productos[]>((resolve, reject) => {
+      this.service.obtenerStock().subscribe(
+        (productos) => {
+          resolve(productos);
+        },
+        (error) => {
+          console.log('exploto estooo');
+          reject('ERROR AL OBTENER EL STOCK');
+        }
+      );
+    });
+    return promise;
+  }
+
+  onKey(event: Event) {
     console.log(this.busqueda);
     console.log(this.filtro);
     if (this.busqueda == '') {
-      this.busquedafiltrada = this.productos;
+      this.dataSource.data = this.dataSource.data;
     }
-    this.busquedafiltrada = this.busquedafiltrada.filter((producto) =>
+    this.dataSource.data = this.productitos.filter((producto) =>
       producto[this.filtro].includes(this.busqueda)
     );
 
@@ -75,6 +108,64 @@ export class ProductosComponent implements OnInit {
     // )
     //);
   }
+
   busqueda: string = '';
   filtro: string = '';
+
+  cambios: Productos = {
+    id: 0,
+    nombre: '',
+    marca: '',
+    precio: 0,
+    stock: 0,
+    minimo: 0,
+    categoria: '',
+  };
+
+  editarProducto(i: number): void {
+    this.index = i;
+    let producto = this.productitos[i].id;
+    this.cambios.id = this.productitos[i].id;
+    this.cambios.nombre = this.productitos[i].nombre;
+    this.cambios.marca = this.productitos[i].marca;
+    this.cambios.precio = this.productitos[i].precio;
+    this.cambios.stock = this.productitos[i].stock;
+    this.cambios.minimo = this.productitos[i].minimo;
+    this.cambios.categoria = this.productitos[i].categoria;
+    console.log(this.cambios);
+  }
+
+  confirmarCambio() {
+    let producto = this.productitos[this.index].id;
+    console.log(producto);
+    this.service
+      .editarProducto(this.productitos[this.index].id, this.cambios)
+      .subscribe((resp) => console.log('cambios realizados'));
+    this.obtenerStock();
+  }
+
+  eliminarProducto(i: number) {
+    this.productitos[i].id;
+    console.log(this.productitos[i].id);
+    this.service.borrarProducto(this.productitos[i].id).subscribe();
+
+    this.productitos = this.productitos.filter(
+      (c) => c.id != this.productitos[i].id
+    );
+  }
+
+  obtenerStock() {
+    let promise = new Promise<Productos[]>((resolve, reject) => {
+      this.service.obtenerStock().subscribe(
+        (producto) => {
+          resolve(producto);
+        },
+        (error) => {
+          console.log('exploto estooo');
+          reject('ERROR AL OBTENER EL STOCK');
+        }
+      );
+    });
+    return promise;
+  }
 }

@@ -189,7 +189,9 @@
             mat-stroked-button
             color="warn"
             class="pagar"
+            data-toggle="modal"
             (click)="guardarVenta()"
+            href="#VENTA"
           >
             GENERAR VENTA
           </button>
@@ -267,3 +269,70 @@
   </div>
 </div>
 <!--FINAL DEL MODAL AGREGAR PRODUCTOS A LA FACTURA-->
+<!--MODAL DE CONFIMACION DE VENTA-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="VENTA"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: center">Seleccione cantidad</h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+
+          <h3>
+            <b>
+              {{ productoSeleccionado.nombreProducto }}
+            </b>
+            <br />
+            <p style="font: small-caption">ID:{{ productoSeleccionado.id }}</p>
+          </h3>
+
+          <div class="row">
+            <div class="col-sm"><mat-icon>remove</mat-icon></div>
+            <div class="col-sm">
+              <input type="text" [(ngModel)]="productoSeleccionado.cantidad" />
+            </div>
+            <div class="col-sm"><mat-icon>add</mat-icon></div>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="
+                background-color: none;
+                color: #1c9d43;
+                outline: none;
+                border: none;
+              "
+              type="reset"
+              data-dismiss="modal"
+              (click)="actualizarStock()"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,328 @@
+<!-- navbar -->
+<app-navbar-vendedor></app-navbar-vendedor>
+<!--FIN DEL NAVBAR-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-5">
+      <div>
+        <div>
+          <input
+            class="busqueda"
+            (keyup)="applyFilter($event)"
+            placeholder="Buscar productos"
+            onfocus="this.placeholder = ''"
+            onblur="this.placeholder = 'Buscar productos'"
+            #input
+          />
+          <mat-icon class="lupa">search</mat-icon>
+        </div>
+        <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.nombre }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="marca">
+            <th mat-header-cell *matHeaderCellDef>Marca</th>
+            <td mat-cell *matCellDef="let producto">{{ producto.marca }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let producto">
+              {{ producto.precio | currency: "CLP":"symbol-narrow" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let producto">
+              <div *ngIf="producto.stock > producto.minimo; else elseBlock">
+                {{ producto.stock }}
+              </div>
+              <ng-template #elseBlock>
+                <span style="color: #d8473e">
+                  <b>{{ producto.stock }} </b>
+                </span>
+              </ng-template>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="agregar">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let producto; index as i">
+              <button
+                href="#AGREGAR"
+                mat-icon-button
+                data-toggle="modal"
+                class="boton-agregar"
+                (click)="seleccionar(producto)"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasBusqueda"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasBusqueda"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">
+              Ningún producto con este nombre: "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+        <mat-paginator
+          [pageSizeOptions]="[10]"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+
+    <!--Simulacion de la factura-->
+    <div class="factura col-7">
+      <!--ENCABEZADO-->
+      <div class="encabezado row">
+        <div class="col-2" style="padding-top: 0">
+          <img src="./../../../assets/logopng.png" width="120 " height="120" />
+        </div>
+        <div class="col-7">
+          <h3>SDI-GROUP</h3>
+          <p style="width: 100%">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id
+            reiciendis minima voluptates labore, excepturi doloribus, explicabo
+            vitae
+          </p>
+        </div>
+        <div class="col-3">
+          <h2 style="text-align: center">FACTURA N°</h2>
+          <button style="width: 100%" mat-flat-button disabled>-----</button>
+        </div>
+      </div>
+      <div class="row">
+        <button mat-icon-button class="boton-editar">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <!--CUERPO-->
+      <div class="cuerpo">
+        <table
+          mat-table
+          [dataSource]="ventaDataSource"
+          class="mat-elevation-z8"
+        >
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.idProducto }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef>Total</td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.nombreProducto }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef>Precio</th>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.precio | currency: "CLP":"symbol-narrow" }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="cantidad">
+            <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+            <td mat-cell *matCellDef="let productos">
+              {{ productos.cantidad }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+          <ng-container matColumnDef="subtotal">
+            <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+            <td mat-cell *matCellDef="let productos">
+              {{
+                productos.precio * productos.cantidad
+                  | currency: "CLP":"symbol-narrow"
+              }}
+            </td>
+            <td mat-footer-cell *matFooterCellDef [(ngModel)]="total">
+              {{ total | currency: "CLP":"symbol-narrow" }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnasFactura"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnasFactura"></tr>
+          <tr mat-footer-row *matFooterRowDef="columnasFactura"></tr>
+        </table>
+      </div>
+      <!--PIE DE FACTURA-->
+      <div class="row" style="padding-top: 1em">
+        <div class="col-7">
+          <mat-form-field appearance="fill">
+            <mat-label>Formas de pago:</mat-label>
+            <select
+              matNativeControl
+              required
+              [(ngModel)]="ventaEnCurso.formaDePago"
+            >
+              <option value="EFECTIVO">Efectivo</option>
+              <option value="DEBITO">Débito</option>
+              <option value="CREDITO">Crédito</option>
+              <option value="OTRO">Otros</option>
+            </select>
+          </mat-form-field>
+        </div>
+        <div class="col-5">
+          <button
+            style="width: 100%; padding: 8px; margin: 0%"
+            mat-stroked-button
+            color="warn"
+            class="pagar"
+            data-toggle="modal"
+            (click)="guardarVenta()"
+            href="#VENTA"
+          >
+            GENERAR VENTA
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL AGREGAR PRODUCTOS A LA FACTURA-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="AGREGAR"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: center">Seleccione cantidad</h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+
+          <h3>
+            <b>
+              {{ productoSeleccionado.nombreProducto }}
+            </b>
+            <br />
+            <p style="font: small-caption">ID:{{ productoSeleccionado.id }}</p>
+          </h3>
+
+          <div class="row">
+            <div class="col-sm"><mat-icon>remove</mat-icon></div>
+            <div class="col-sm">
+              <input type="text" [(ngModel)]="productoSeleccionado.cantidad" />
+            </div>
+            <div class="col-sm"><mat-icon>add</mat-icon></div>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="
+                background-color: none;
+                color: #1c9d43;
+                outline: none;
+                border: none;
+              "
+              type="reset"
+              data-dismiss="modal"
+              (click)="agregarProductoSeleccionado()"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FINAL DEL MODAL AGREGAR PRODUCTOS A LA FACTURA-->
+<!--MODAL DE CONFIMACION DE VENTA-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="VENTA"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: center">VENTA REALIZADA</h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="
+                background-color: none;
+                color: #1c9d43;
+                outline: none;
+                border: none;
+              "
+              type="reset"
+              data-dismiss="modal"
+              (click)="actualizarStock()"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

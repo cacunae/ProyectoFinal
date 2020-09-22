@@ -4,7 +4,7 @@ table {
 /* Sección busqueda */
 .busqueda {
   margin-top: 1px;
-  width: 100%;
+  width: 97%;
   border: none;
   outline: none;
   padding: 1em;
@@ -39,11 +39,11 @@ table {
 
 /* Seccion factura */
 .factura.col-sm {
-  height: 660px;
+  height: 500px;
   margin-left: 2em;
   padding: 1em;
   padding-left: 2em;
-  border-left: solid;
+  border-left: none;
   border-left-color: #343a40;
 }
 
@@ -52,7 +52,7 @@ table {
 }
 
 .cuerpo {
-  height: 400px;
+  height: 350px;
 }
 
 tr.mat-footer-row {

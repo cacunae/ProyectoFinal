@@ -3,7 +3,7 @@
 <!--FIN DEL NAVBAR-->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-5 container">
+    <div class="col-5">
       <div>
         <div>
           <input
@@ -86,7 +86,7 @@
     </div>
 
     <!--Simulacion de la factura-->
-    <div class="factura col-sm">
+    <div class="factura col-7">
       <!--ENCABEZADO-->
       <div class="encabezado row">
         <div class="col-2" style="padding-top: 0">
@@ -104,6 +104,11 @@
           <h2 style="text-align: center">FACTURA N°</h2>
           <button style="width: 100%" mat-flat-button disabled>-----</button>
         </div>
+      </div>
+      <div class="row">
+        <button mat-icon-button class="boton-editar">
+          <mat-icon>edit</mat-icon>
+        </button>
       </div>
       <!--CUERPO-->
       <div class="cuerpo">
@@ -285,7 +290,7 @@
               class="modal-title"
               style="padding: 3em 0em 0em 1em; width: 100%"
             >
-              <h2 style="text-align: center">Seleccione cantidad</h2>
+              <h2 style="text-align: center">VENTA REALIZADA</h2>
             </div>
 
             <button
@@ -299,21 +304,6 @@
           </div>
           <!--cuerpo del modal-->
 
-          <h3>
-            <b>
-              {{ productoSeleccionado.nombreProducto }}
-            </b>
-            <br />
-            <p style="font: small-caption">ID:{{ productoSeleccionado.id }}</p>
-          </h3>
-
-          <div class="row">
-            <div class="col-sm"><mat-icon>remove</mat-icon></div>
-            <div class="col-sm">
-              <input type="text" [(ngModel)]="productoSeleccionado.cantidad" />
-            </div>
-            <div class="col-sm"><mat-icon>add</mat-icon></div>
-          </div>
           <!--footer-->
           <div class="modal-footer">
             <button

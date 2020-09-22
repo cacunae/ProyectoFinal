@@ -4,7 +4,7 @@
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
-  <mat-table [dataSource]="productos">
+  <mat-table [dataSource]="stockDataSource">
     <ng-container matColumnDef="status">
       <mat-header-cell style="width: fit-content" *matHeaderCellDef>
         Estado
@@ -42,7 +42,7 @@
     <ng-container matColumnDef="precio">
       <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
       <mat-cell *matCellDef="let productos">
-        {{ productos.precio }}
+        {{ productos.precio | currency: "CLP":"symbol-narrow" }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stock">

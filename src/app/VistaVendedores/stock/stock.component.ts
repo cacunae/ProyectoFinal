@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+//INTERFACES
+import { Productos } from 'src/app/Models/producto.model';
+//SERVICIOS
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-stock',
@@ -6,28 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock.component.css'],
 })
 export class StockComponent implements OnInit {
-  constructor() {}
+  constructor(private ProductosService: ProductosService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.actualizarStock();
+  }
 
-  productos = [
-    {
-      id: 123456789,
-      nombre: 'S7',
-      marca: 'Samsung',
-      precio: 500000,
-      stock: 5,
-      minimo: 10,
-    },
-    {
-      id: 123456789,
-      nombre: 'P20',
-      marca: 'huawei',
-      precio: 2300000,
-      stock: 20,
-      minimo: 10,
-    },
-  ];
+  stock = [];
+  stockDataSource = new MatTableDataSource();
 
   columnasAMostrar: string[] = [
     'status',
@@ -37,4 +28,28 @@ export class StockComponent implements OnInit {
     'precio',
     'stock',
   ];
+
+  obtenerStock() {
+    let promise = new Promise<Productos[]>((resolve, reject) => {
+      this.ProductosService.obtenerStock().subscribe(
+        (producto) => {
+          resolve(producto);
+        },
+        (error) => {
+          console.log('exploto estooo');
+          reject('ERROR AL OBTENER EL STOCK');
+        }
+      );
+    });
+    return promise;
+  }
+  actualizarStock() {
+    console.log('Obteniendo stock');
+    this.obtenerStock().then((productos) => {
+      console.log('productos obtenidos', productos);
+      this.stock = productos;
+      this.stockDataSource.data = this.stock;
+      console.log(this.stockDataSource);
+    });
+  }
 }

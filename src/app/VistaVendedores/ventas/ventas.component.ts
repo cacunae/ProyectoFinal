@@ -2,6 +2,13 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 //INTERFACES
 import { Productos } from './../../Models/producto.model';
 import { Venta } from '../../Models/venta.model';
@@ -21,7 +28,9 @@ export class VentasComponent implements OnInit {
     private service: ProductosService,
     private serviceVenta: VentasService,
     private serviceDetalleVenta: DetalleVentaService
-  ) {}
+  ) {
+    expandedElement: null;
+  }
 
   ngOnInit(): void {
     this.actualizarStock();

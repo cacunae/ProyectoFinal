@@ -2,73 +2,78 @@
 <app-navbar-administrador></app-navbar-administrador>
 
 <div class="container">
-<div
-  class="container"
-  style="text-align: begin; margin: auto; padding-right: 18%; padding-top: 1em"
->
-  <button
-    mat-raised-button
-    matTooltip="Agregar un nuevo producto"
-    matTooltipPosition="right"
-    class="btn btn-outline-warning mat-elevation-z8"
-    style="background-color: #1c9d43; color: white"
-    href="#AGREGAR"
-    data-toggle="modal"
-    mat-mini-fab
+  <div
+    class="container"
+    style="
+      text-align: begin;
+      margin: auto;
+      padding-right: 18%;
+      padding-top: 1em;
+    "
   >
-    <mat-icon>add</mat-icon>
-  </button>
-</div>
- <!--Barra de busqueda-->
- <br />
- <div>
-  <div class="row">
-    <div id="busqueda">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <select class="form-control" [(ngModel)]="filtro">
-            <option value="nombre">Nombre</option>
-            <option value="marca">Marca</option>
-          </select>
+    <button
+      mat-raised-button
+      matTooltip="Agregar un nuevo producto"
+      matTooltipPosition="right"
+      class="btn btn-outline-warning mat-elevation-z8"
+      style="background-color: #1c9d43; color: white"
+      href="#AGREGAR"
+      data-toggle="modal"
+      mat-mini-fab
+    >
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <!--Barra de busqueda-->
+  <br />
+  <div>
+    <div class="row">
+      <div id="busqueda">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <select class="form-control" [(ngModel)]="filtro">
+              <option value="nombre">Nombre</option>
+              <option value="marca">Marca</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            aria-label="Text input with dropdown button"
+            placeholder="Busqueda"
+            [(ngModel)]="busqueda"
+            (keyup)="onKey($event)"
+          />
+          <span class="input-group-text" style="border: 0ch; margin: 0%">
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              class="bi bi-search"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+              />
+              <path
+                fill-rule="evenodd"
+                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+              />
+            </svg>
+          </span>
         </div>
-        <input
-          type="text"
-          class="form-control"
-          aria-label="Text input with dropdown button"
-          placeholder="Busqueda"
-          [(ngModel)]="busqueda"
-          (keyup)="onKey($event)"
-        />
-        <span class="input-group-text" style="border: 0ch; margin: 0%">
-          <svg
-            width="1em"
-            height="1em"
-            viewBox="0 0 16 16"
-            class="bi bi-search"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-            />
-            <path
-              fill-rule="evenodd"
-              d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-            />
-          </svg>
-        </span>
       </div>
     </div>
   </div>
-</div>
 </div>
 
 <div
   style="width: 70%; margin: 1em auto; text-align: center"
   class="mat-elevation-z12"
 >
-  <mat-table [dataSource]="busquedafiltrada">
+  <mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
       <mat-cell *matCellDef="let productos"> {{ productos.id }} </mat-cell>
@@ -88,14 +93,21 @@
     <ng-container matColumnDef="precio">
       <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
       <mat-cell *matCellDef="let productos">
-        {{ productos.precio }}
+        {{ productos.precio | currency: "CLP":"symbol-narrow" }}
       </mat-cell>
     </ng-container>
     <ng-container matColumnDef="stock">
-      <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
-      <mat-cell *matCellDef="let productos">
-        {{ productos.stock }}
-      </mat-cell>
+      <th mat-header-cell *matHeaderCellDef>stock</th>
+      <td mat-cell *matCellDef="let producto">
+        <div *ngIf="producto.stock > producto.minimo; else elseBlock">
+          {{ producto.stock }}
+        </div>
+        <ng-template #elseBlock>
+          <span style="color: #d8473e">
+            <b>{{ producto.stock }} </b>
+          </span>
+        </ng-template>
+      </td>
     </ng-container>
     <ng-container matColumnDef="categoria">
       <mat-header-cell *matHeaderCellDef> Categoría </mat-header-cell>
@@ -108,7 +120,7 @@
       </mat-header-cell>
       <mat-cell
         style="justify-content: center"
-        *matCellDef="let estudiante; index as i"
+        *matCellDef="let productos; index as i"
       >
         <button
           mat-raised-button
@@ -118,6 +130,7 @@
           style="background-color: #d8473e"
           data-toggle="modal"
           mat-mini-fab
+          (click)="guardar(i)"
           href="#BORRAR"
         >
           <mat-icon>delete</mat-icon>
@@ -136,6 +149,7 @@
           data-toggle="modal"
           mat-mini-fab
           href="#EDITAR"
+          (click)="editarProducto(i)"
         >
           <mat-icon>edit</mat-icon>
         </button>
@@ -198,6 +212,7 @@
                       type="text"
                       name="marca"
                       id="marca"
+                      [(ngModel)]="productos.marca"
                     />
                   </div>
                 </div>
@@ -212,6 +227,7 @@
                       type="text"
                       name="nombres"
                       id="nombres"
+                      [(ngModel)]="productos.nombre"
                     />
                   </div>
                 </div>
@@ -226,6 +242,7 @@
                         type="text"
                         name="stock"
                         id="stock"
+                        [(ngModel)]="productos.stock"
                       />
                     </div>
                   </div>
@@ -237,6 +254,7 @@
                         type="text"
                         name="precio"
                         id="precio"
+                        [(ngModel)]="productos.precio"
                       />
                     </div>
                   </div>
@@ -268,6 +286,7 @@
               style="background-color: #1c9d43; color: aliceblue"
               type="reset"
               data-dismiss="modal"
+              (click)="agregarProducto()"
             >
               Agregar
             </button>
@@ -319,16 +338,23 @@
           <div class="modal-body">
             <form class="text-left p-3">
               <div class="form-group">
-                <label class="" for="id">ID:</label>
-                <input class="form-control" type="text" name="id" id="id" />
+                <label for="id">ID:</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  name="id"
+                  id="id"
+                  [(ngModel)]="cambios.id"
+                />
               </div>
               <div class="form-group">
-                <label class="" for="nombre">Nombre</label>
+                <label for="nombre">Nombre</label>
                 <input
                   class="form-control"
                   type="text"
                   name="nombres"
                   id="nombres"
+                  [(ngModel)]="cambios.nombre"
                 />
               </div>
               <div class="form-group">
@@ -338,6 +364,7 @@
                   type="text"
                   name="marca"
                   id="marca"
+                  [(ngModel)]="cambios.marca"
                 />
               </div>
               <div class="form-group">
@@ -347,6 +374,7 @@
                   type="text"
                   name="precio"
                   id="precio"
+                  [(ngModel)]="cambios.precio"
                 />
               </div>
               <div class="form-group">
@@ -368,6 +396,7 @@
               style="background-color: #f7ae42; color: aliceblue"
               type="reset"
               data-dismiss="modal"
+              (click)="confirmarCambio()"
             >
               Editar
             </button>
@@ -401,6 +430,7 @@
                 style="background-color: #d8473e; color: aliceblue; width: 89px"
                 type="reset"
                 data-dismiss="modal"
+                (click)="eliminarProducto(index)"
               >
                 Borrar
               </button>

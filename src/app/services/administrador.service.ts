@@ -18,7 +18,7 @@ export class AdministradorService {
   };
 
   obtenerAdministradores(): Observable<Empleados[]> {
-    return this.http.get<Empleados[]>(this.apiURL);
+    return this.http.get<Empleados[]>(this.apiURL, this.httpOptions);
   }
 
   agregarAdministrador(administrador: Empleados): Observable<Empleados> {
@@ -38,5 +38,4 @@ export class AdministradorService {
     let url = `${this.apiURL}/${usuario}`;
     return this.http.put(url, body, this.httpOptions);
   }
-
 }

@@ -1,10 +1,5 @@
 <div class="main">
   <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
   <div class="body">
     <h1 class="titulo">SDI Group</h1>
     <br />
@@ -16,7 +11,7 @@
         position: relative;
       "
     >
-      <mat-icon>work_outline</mat-icon> Bienvenido al portal de vendedores
+      <mat-icon>work_outline</mat-icon> Bienvenido al portal de Empleados
     </p>
     <br />
     <div class="bordes" style="width: 35%; margin: 2em auto">
@@ -26,12 +21,13 @@
       >
         <div class="container">
           <div class="row">
-            <h2 class="col">Iniciar sesión</h2>
+            <h2 class="col" style="font-size: 25px; margin-top: 0.5cm; color: gray;">Iniciar sesión</h2>
             <mat-slide-toggle
               name="toogle"
               class="col"
               color="primary"
               (change)="onChange()"
+              style="margin-left: 4cm; margin-top: 0.5cm;"
             >
               {{ tag }}
             </mat-slide-toggle>
@@ -39,7 +35,7 @@
         </div>
 
         <mat-form-field style="width: 100%" appearance="outline">
-          <mat-label style="width: 100%">Usuario</mat-label>
+          <mat-label>Usuario</mat-label>
           <input
             matInput
             required
@@ -69,12 +65,9 @@
           Ingresar
         </button>
         <br />
-        <p style="margin-right: 6cm">¿Olvidaste tu contraseña?</p>
-        <a style="margin-right: 8cm" href="#">Haz click aquí.</a>
+        <a style="margin-right: 8cm" href="#" style="color: rgb(97, 168, 216); margin-top: 0.5cm; font-size: 15px;">¿Olvidaste tu contraseña?</a>
       </form>
     </div>
   </div>
-  <br />
-  <br />
   <br />
 </div>

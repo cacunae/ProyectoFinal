@@ -1,10 +1,5 @@
 <div class="main">
   <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
   <div class="body">
     <h1 class="titulo">SDI Group</h1>
     <br />
@@ -26,12 +21,14 @@
       >
         <div class="container">
           <div class="row">
-            <h2 class="col">Iniciar sesión</h2>
+            <h2 class="col" style="font-size: 25px; color: gray; margin-top: 0.5cm;">Iniciar sesión</h2>
             <mat-slide-toggle
               name="toogle"
               class="col"
               color="primary"
+              style="margin-top: 0.5cm; margin-left:4cm"
               (change)="onChange()"
+            
             >
               {{ tag }}
             </mat-slide-toggle>
@@ -55,7 +52,7 @@
           <input
             matInput
             type="password"
-            required
+            requiredz
             placeholder="Tu Contraseña"
             name="contraseña"
             ng-required
@@ -72,12 +69,11 @@
           Ingresar
         </button>
         <br />
-        <p style="margin-right: 6cm">¿Olvidaste tu contraseña?</p>
-        <a style="margin-right: 8cm" href="#">Haz click aquí.</a>
+        <a style="margin-right: 8cm" href="#" style="font-size: 16px; color: rgb(64, 175, 175);">¿Olvidaste tu contraseña?</a>
+        <br/>
+        <br />
       </form>
     </div>
   </div>
-  <br />
-  <br />
   <br />
 </div>

@@ -17,3 +17,20 @@ img {
 img:hover {
   filter: invert(0%);
 }
+
+.btn-group {
+  margin-right: 3em;
+}
+.dropdown-item:active {
+  background-color: #404040;
+  color: antiquewhite;
+  outline: none;
+}
+.dropdown-item:hover {
+  background-color: whitesmoke;
+  color: #404040;
+  font-weight: bold;
+}
+.dropdown-menu {
+  background-color: whitesmoke;
+}

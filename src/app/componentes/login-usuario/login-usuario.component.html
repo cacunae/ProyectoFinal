@@ -16,7 +16,7 @@
         position: relative;
       "
     >
-      <mat-icon>work_outline</mat-icon> Bienvenido al portal de vendedores
+      <mat-icon>work_outline</mat-icon> Bienvenido al portal de empleados
     </p>
     <br />
     <div class="bordes" style="width: 35%; margin: 2em auto">
@@ -44,6 +44,7 @@
             matInput
             required
             placeholder="Tu usuario"
+            ng-required
             [(ngModel)]="empleado.usuario"
             name="usuario"
           />
@@ -57,14 +58,16 @@
             required
             placeholder="Tu Contraseña"
             name="contraseña"
+            ng-required
             [(ngModel)]="empleado.contrasenha"
           />
         </mat-form-field>
         <br />
         <button
-          type="button"
+          type="submit"
           class="btn btn-info btn-lg btn-block"
           (click)="validarLogin()"
+          ng-disabled="!myForm.$valid"
         >
           Ingresar
         </button>

@@ -7,7 +7,6 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { AdministradorComponent } from './componentes/administrador/administrador.component';
 import { ProductosComponent } from './componentes/productos/productos.component';
 import { VendedorComponent } from './componentes/vendedor/vendedor.component';
-import { LoginAdminComponent } from './componentes/login-admin/login-admin.component';
 import { LoginUsuarioComponent } from './componentes/login-usuario/login-usuario.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdministradoresComponent } from './componentes/administradores/administradores.component';
@@ -24,7 +23,6 @@ import { NavbarVendedorComponent } from './componentes/navbar-vendedor/navbar-ve
     AdministradorComponent,
     ProductosComponent,
     VendedorComponent,
-    LoginAdminComponent,
     LoginUsuarioComponent,
     AdministradoresComponent,
     VentasComponent,

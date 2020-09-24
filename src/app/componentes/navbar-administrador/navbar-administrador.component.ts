@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AutentificacionService } from 'src/app/services/autentificacion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-administrador',
@@ -6,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar-administrador.component.css'],
 })
 export class NavbarAdministradorComponent implements OnInit {
-  constructor() {}
+  constructor(
+    private loginService: AutentificacionService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user = sessionStorage.getItem('nombre');
+  }
+
+  user: string = null;
+
+  logOut() {
+    this.loginService.logOut();
+    this.router.navigate(['']);
+  }
 }

@@ -15,9 +15,6 @@ export class LoginUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-  admin() {
-    this.router.navigate(['login-admin']);
-  }
 
   tag: string = 'Vendedor';
   empleado: Empleados = {
@@ -34,7 +31,6 @@ export class LoginUsuarioComponent implements OnInit {
       this.empleado.esAdmin = 0;
       this.tag = 'Vendedor';
     }
-    console.log(this.empleado.esAdmin);
   }
 
   redireccionar() {
@@ -49,12 +45,21 @@ export class LoginUsuarioComponent implements OnInit {
     let temp = this.loginService.autentificar(this.empleado).subscribe(
       (resp) => {
         if (resp) {
+          sessionStorage.setItem('usuario', resp.usuario);
+          sessionStorage.setItem('nombre', resp.nombre);
+          sessionStorage.setItem('apellido', resp.apellido);
+          sessionStorage.setItem('rol', resp.esAdmin.toString());
+
           this.redireccionar();
         } else {
           alert('DATOS INVALIDOS');
         }
       },
-      (error) => alert('error')
+      (error) => {
+        if (error.status == 409) {
+          alert('Datos Invalidos');
+        }
+      }
     );
   }
 

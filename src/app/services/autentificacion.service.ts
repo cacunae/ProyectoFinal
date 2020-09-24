@@ -15,17 +15,21 @@ export class AutentificacionService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
+  empleado: Empleados;
+
   autentificar(usuario: Empleados) {
     return this.http.post<Empleados>(this.apiURL, usuario, this.httpOptions);
   }
 
   logeado() {
-    let user = sessionStorage.getItem('username');
-    console.log(!(user === null));
+    let user = sessionStorage.getItem('usuario');
     return !(user === null);
   }
 
   logOut() {
-    sessionStorage.removeItem('username');
+    sessionStorage.removeItem('usuario');
+    sessionStorage.removeItem('nombre');
+    sessionStorage.removeItem('apellido');
+    sessionStorage.removeItem('rol');
   }
 }

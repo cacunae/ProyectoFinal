@@ -13,10 +13,20 @@ import { ProductosService } from 'src/app/services/productos.service';
 export class StockComponent implements OnInit {
   constructor(private ProductosService: ProductosService) {}
 
+  busqueda: string = '';
+  filtro: string = '';
+
+
   ngOnInit(): void {
     this.actualizarStock();
+    console.log('Obteniendo productos');
+    this.obtenerStock().then((productos) => {
+      console.log('productos obtenidos', productos);
+      this.productitos = productos;
+      this.stockDataSource.data = this.productitos;
+    });
   }
-
+  productitos: Productos[] = [];
   stock = [];
   stockDataSource = new MatTableDataSource();
 
@@ -51,5 +61,16 @@ export class StockComponent implements OnInit {
       this.stockDataSource.data = this.stock;
       console.log(this.stockDataSource);
     });
+  }
+
+  onKey(event: Event) {
+    console.log(this.busqueda);
+    console.log(this.filtro);
+    if (this.busqueda == '') {
+      this.stockDataSource.data = this.stockDataSource.data;
+    }
+    this.stockDataSource.data = this.productitos.filter((producto) =>
+      producto[this.filtro].includes(this.busqueda)
+    );
   }
 }

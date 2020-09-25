@@ -13,7 +13,7 @@ export class ProductosComponent implements OnInit {
   ngOnInit() {
     console.log('Obteniendo products');
     this.obtenerProductos().then((productos) => {
-      console.log('empleados obtenidos', productos);
+      console.log('productos obtenidos', productos);
       this.productitos = productos;
       this.dataSource.data = this.productitos;
     });

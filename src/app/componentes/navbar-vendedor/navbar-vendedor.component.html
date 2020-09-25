@@ -8,15 +8,22 @@
   </div>
   <div>
     <div class="text-left">
-      <a>
+      <div class="btn-group">
         <button
-          (click)="logOut()"
-          class="btn btn-outline-warning"
-          style="margin-left: 1em"
+          type="button"
+          class="btn btn-outline-warning dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
         >
-          Cerrar Sesión
+          {{ user }}
         </button>
-      </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <button class="dropdown-item" (click)="logOut()">
+            Cerrar Sesión
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

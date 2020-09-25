@@ -13,7 +13,11 @@ export class NavbarVendedorComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.user = sessionStorage.getItem('nombre');
+  }
+
+  user: string = null;
 
   logOut() {
     this.loginService.logOut();

@@ -32,9 +32,32 @@ table {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.mat-column-boton {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 15% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
 .boton-agregar {
   text-decoration: none;
   outline: none;
+}
+.botones-editar {
+  padding: 0%;
+  margin: 0 0 0 0;
+  min-width: 5px;
+  line-height: 5px;
+  margin-left: 5px;
 }
 
 /* Seccion factura */
@@ -45,6 +68,15 @@ table {
   padding-left: 2em;
   border-left: none;
   border-left-color: #343a40;
+}
+.input-editar {
+  border: #343a40;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  outline-width: 5ch;
+  width: 40%;
+  text-align: center;
 }
 
 .encabezado.row {

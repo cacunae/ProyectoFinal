@@ -187,4 +187,12 @@ export class VentasComponent implements OnInit {
     });
     this.obtenerStock();
   }
+
+  toggleOpciones() {
+    if (!this.columnasFactura.includes('boton')) {
+      this.columnasFactura.push('boton');
+    } else {
+      this.columnasFactura.splice(5, 5);
+    }
+  }
 }

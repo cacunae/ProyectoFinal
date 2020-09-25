@@ -101,12 +101,6 @@ export class ProductosComponent implements OnInit {
     this.dataSource.data = this.productitos.filter((producto) =>
       producto[this.filtro].includes(this.busqueda)
     );
-
-    //console.log(
-    //this.productos.filter((producto) =>
-    // producto[this.filtro].includes(this.busqueda)
-    // )
-    //);
   }
 
   busqueda: string = '';

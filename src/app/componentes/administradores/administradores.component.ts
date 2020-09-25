@@ -45,7 +45,6 @@ export class AdministradoresComponent implements OnInit {
     console.log(this.administradores[i].usuario);
   }
 
-
   administrador: Empleados = {
     usuario: '',
     nombre: '',
@@ -103,6 +102,7 @@ export class AdministradoresComponent implements OnInit {
       .borrarAdministrador(this.administradores[i].usuario)
       .subscribe();
     //actualiza tabla
+
     this.administradores = this.administradores.filter(
       (c) => c.usuario != this.administradores[i].usuario
     );
@@ -141,8 +141,8 @@ export class AdministradoresComponent implements OnInit {
     this.obtenerAdministradores();
   }
 
-applyFilter(event: Event) {
-  const filterValue = (event.target as HTMLInputElement).value;
-  this.dataSource.filter = filterValue.trim().toLowerCase();
-}
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

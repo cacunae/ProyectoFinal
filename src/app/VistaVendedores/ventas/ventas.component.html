@@ -88,18 +88,18 @@
     <!--Simulacion de la factura-->
     <div class="factura col-7">
       <!--ENCABEZADO-->
-      <div class="encabezado row">
-        <div class="col-2" style="padding-top: 0">
-          <img src="./../../../assets/logopng.png" width="120 " height="120" />
-        </div>
-        <div class="col-7"></div>
-        <div class="col-3"></div>
-      </div>
       <div class="row">
-        <button mat-icon-button class="boton-editar" (click)="toggleOpciones()">
-          <mat-icon>edit</mat-icon>
-        </button>
+        <div class="col-3">
+          <button
+            mat-stroked-button
+            style="justify-content: right"
+            (click)="toggleOpciones()"
+          >
+            Editar
+          </button>
+        </div>
       </div>
+
       <!--CUERPO-->
       <div class="cuerpo">
         <table

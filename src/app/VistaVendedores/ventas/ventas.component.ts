@@ -132,12 +132,15 @@ export class VentasComponent implements OnInit {
   ];
 
   total = 0;
-  obtenerTotal() {
-    let x = this.productosSeleccionados.length - 1;
-    this.total +=
-      this.productosSeleccionados[x].precio *
-      this.productosSeleccionados[x].cantidad;
 
+  obtenerTotal() {
+    this.total = 0;
+    let x = this.productosSeleccionados.length - 1;
+    for (let index = 0; index < this.productosSeleccionados.length; index++) {
+      this.total +=
+        this.productosSeleccionados[index].precio *
+        this.productosSeleccionados[index].cantidad;
+    }
     console.log(this.total);
   }
 

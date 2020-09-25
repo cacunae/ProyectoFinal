@@ -48,10 +48,6 @@ table {
   hyphens: auto;
 }
 
-.boton-agregar {
-  text-decoration: none;
-  outline: none;
-}
 .botones-editar {
   padding: 0%;
   margin: 0 0 0 0;
@@ -59,7 +55,11 @@ table {
   line-height: 5px;
   margin-left: 5px;
 }
-
+.boton-editar {
+  justify-content: right;
+  justify-self: end;
+  align-self: flex-end;
+}
 /* Seccion factura */
 .factura.col-sm {
   height: 500px;

@@ -191,11 +191,27 @@ export class VentasComponent implements OnInit {
     this.obtenerStock();
   }
 
+  tablaEnEdicion = false;
   toggleOpciones() {
     if (!this.columnasFactura.includes('boton')) {
       this.columnasFactura.push('boton');
     } else {
       this.columnasFactura.splice(5, 5);
     }
+    this.tablaEnEdicion = !this.tablaEnEdicion;
+    this.obtenerTotal();
+    console.log(this.total);
+  }
+
+  borrarProductoSeleccionado(i: number) {
+    this.ventaDataSource.data = this.ventaDataSource.data.filter(
+      (productos) => productos !== this.productosSeleccionados[i]
+    );
+    this.productosSeleccionados.splice(i, 1);
+    this.obtenerTotal();
+    if (this.productosSeleccionados.length == 0) {
+      this.tablaEnEdicion = false;
+    }
+    console.log(this.productosSeleccionados);
   }
 }

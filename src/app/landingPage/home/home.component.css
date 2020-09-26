@@ -1,0 +1,141 @@
+
+:root {
+  --dark: #1a1a1a;
+  --white: #ffffff;
+  --light-grey: #efefef;
+  --gold: #ecd5a7;
+}
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 0.05rem;
+  background-color: var(--dark) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  font-family: "Oswald", sans-serif;
+  font-weight: 500 !important;
+  line-height: 1.5 !important;
+}
+
+a {
+  color: var(--light);
+}
+
+a:hover {
+  color: var(--light);
+  text-decoration: none;
+}
+
+.bg-light {
+  background-color: var(--white) !important;
+}
+
+.bg-light-grey {
+  background-color: var(--light-grey);
+}
+
+.bg-dark {
+  background-color: var(--dark) !important;
+}
+
+.bg-gold {
+  background-color: var(--gold);
+}
+
+.text-dark {
+  color: var(--dark) !important;
+}
+.text-gold {
+  color: var(--gold) !important;
+}
+
+.btn {
+  padding: 0.5rem 1.8rem;
+  border-radius: 0.2rem;
+}
+
+.btn-primary {
+  background-color: var(--white) !important;
+  color: var(--dark);
+  border-color: var(--dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--light) !important;
+  color: var(--dark);
+  border-color: var(--dark);
+}
+
+.btn-secondary {
+  background-color: var(--dark);
+}
+
+.btn-gold {
+  background-color: var(--gold);
+  color: var(--dark);
+}
+
+.mt-6 {
+  margin-top: 4rem;
+}
+
+.mb-6 {
+  margin-bottom: 4rem;
+}
+
+.navbar {
+  background-color: var(--dark);
+  min-height: 5rem;
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.navbar-toggler {
+  color: var(--white);
+}
+
+.badge {
+  font-weight: 500;
+  padding: 0.5rem 1.5rem;
+  line-height: 1.5;
+}
+
+section {
+  padding: 6rem 0;
+}
+
+#slider {
+  padding: 5rem 0 0 0;
+}
+
+.blog-info {
+  color: var(--white);
+  bottom: 1rem;
+  left: 1.5rem;
+}
+
+.form-control {
+  padding: 1.5rem 1rem;
+  font-weight: 300;
+  border: 0;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid var(--dark);
+}

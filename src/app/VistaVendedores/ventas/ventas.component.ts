@@ -146,7 +146,7 @@ export class VentasComponent implements OnInit {
 
   ventaEnCurso: Venta = {
     idVenta: null,
-    idVendedor: 'vendedor',
+    idVendedor: '20948593-4',
     fechaHora: new Date(),
     formaDePago: '',
     total: null,

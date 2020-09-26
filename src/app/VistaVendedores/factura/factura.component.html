@@ -1,0 +1,116 @@
+<div style="margin: 1cm auto; margin-left: 2cm; margin-right: 2cm">
+  <div class="mat-elevation-z1" style="border: 1px solid black ">
+    <div class="row">
+      <div class="col-6 col-md-4">
+        <div>
+          <h1><img src="./../../../assets/SDI.png" height="200" width="200" /></h1>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-8">
+        <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M-3.15,-1.68 C107.44,157.20 269.97,39.76 342.77,77.26 L502.48,135.49 L500.00,0.00 Z" style="stroke: none; fill:rgb(53, 53, 85);"></path></svg></div>
+      </div>
+    </div>
+    <div class="row no-gutters">
+      <div class="col-6 com-md-4;" style="margin-left: 1cm;">
+        <h3>Dirección : Santiago de Chile, Ñuñoa Irarrázaval 3665​</h3>
+        <h3>Teléfono : (59 9) 5799 9343​</h3>
+        <h3>Correo   : sdi.system.group2020@gmail.com </h3>
+      </div>
+    </div>
+    <br/>
+    <hr/>
+    <div class="row" style="margin: 1cm auto; margin-left: 1cm">
+      <div class="col">
+        <h2>Datos del clientes</h2>
+        <P>RUT:   
+            <input type="text" class="sinborde" placeholder="'Rut cliente'" name="rut">
+        </P>
+        <p>Cliente:
+          <input type="text" class="sinborde" placeholder="'Nombre cliente'" name="nombre">
+        </p>
+        <p>Teléfono:
+        <input type="text" class="sinborde" placeholder="'Telefono cliente'">
+        </p>
+      </div>
+      <div class="col">
+        <h2>Datos del vendedor</h2>
+        <p>RUT: {{id}}</p>
+        <P>Vendedor(a): {{nombre}}  {{apellido}}</P>
+        <p></p>
+      </div>
+      <div class="col" style="background-color: rgb(231, 214, 117); margin-right: 2cm; text-align: center; border: 1px solid black;" >
+        <h2>Factura</h2>
+        <p>Nro. boleta: {{venta.idVenta}}</p>
+        <p>Fecha y hora: {{venta.fechaHora}}</p>
+      </div>
+    </div>
+    <br />
+    <hr />
+    <br />
+    <div>
+    <table mat-table [dataSource]="detalleVenta" class="mat-elevation-z8" style="margin-bottom: 2cm;">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+    
+      <!-- Name Column -->
+      <hr />
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef style="background-color: rgb(240, 235, 164);">Producto</th>
+        <td mat-cell *matCellDef="let productos"> {{productos.nombreProducto}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef style="background-color: rgb(240, 235, 164);">Precio</th>
+        <td mat-cell *matCellDef="let productos">{{productos.precio| currency: "CLP":"symbol-narrow" }}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef style="background-color: rgb(240, 235, 164);">Cantidad</th>
+        <td mat-cell *matCellDef="let productos">{{productos.cantidad}} </td>
+        <td mat-footer-cell *matFooterCellDef style="background-color: gold;">Total:</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="subtotal">
+        <th mat-header-cell *matHeaderCellDef style="background-color: rgb(240, 235, 164);">Subtotal</th>
+        <td mat-cell *matCellDef="let productos">
+          {{
+            productos.precio * productos.cantidad
+              | currency: "CLP":"symbol-narrow"
+          }}
+        </td>
+        <td mat-footer-cell *matFooterCellDef style="background-color: gold;">
+          {{ venta.total | currency: "CLP":"symbol-narrow" }}
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef=" columnasFactura"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasFactura"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnasFactura"></tr>
+    </table>
+    <br/>
+    </div>
+    <div class="row">
+      <div class="col-6 col-md-4">
+        <div>
+          <h2 class="tipoDePago">Tipo de Pago: {{venta.formaDePago}}</h2>
+        </div>
+      </div>
+   </div>
+      <br />
+        <div class="col" style="margin-left: 2cm; margin-top: 0.5cm; margin-bottom: 2cm;">
+          <h2>Gracias por su compra!</h2>
+        </div>
+        <div class="col-sm-6 col-md-8" style="text-align: right; margin-left: 7cm;">
+          <h2 class="codigo">07394{{venta.idVenta}}</h2>
+        </div>
+        <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M70.76,80.23 C157.67,119.70 315.12,-23.39 507.56,153.25 L0.00,150.00 L-3.15,23.98 Z" style="stroke: none; fill: rgb(53, 53, 85);"></path></svg></div>
+      </div>
+

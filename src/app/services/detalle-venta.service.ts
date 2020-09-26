@@ -8,6 +8,7 @@ import { DetallesVenta } from './../Models/detallesVenta.model';
 export class DetalleVentaService {
   constructor(private http: HttpClient) {}
 
+  DetalleVenta: DetallesVenta[] = [];
   apiURl = 'http://localhost:8080/api/ventaDetalle';
 
   httpOptions = {
@@ -23,4 +24,8 @@ export class DetalleVentaService {
       this.httpOptions
     );
   }
+  obtenerUltimoDetalleVenta(): Observable<DetallesVenta[]> {
+    return this.http.get<DetallesVenta[]>(this.apiURl, this.httpOptions);
+  }
+
 }

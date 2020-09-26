@@ -1,0 +1,104 @@
+h1{
+    margin-top: 1cm;
+    margin-left: 1cm;
+    font-family: 'Bebas Neue', cursive ;
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(202, 173, 7);
+
+}
+table {
+    width: 80%;
+    align-content: center;
+    margin-left: 2.5cm;
+    margin-top: 2cm;
+  }
+  .mat-column-nombre{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 28% !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+  }
+  .mat-column-precio{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 28% !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+  }
+  .mat-column-cantidad{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 28% !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+  }
+  .mat-column-subtotal{
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 28% !important;
+    width: 25% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-align: center;
+  }
+ 
+  /* Seccion factura */
+  .factura.col-sm {
+    height: 500px;
+    margin-left: 2em;
+    padding: 1em;
+    padding-left: 2em;
+    border-left: none;
+    border-left-color: #343a40;
+  }
+  tr.mat-footer-row {
+    font-weight: bold;
+    text-align: start !important;
+  }
+  .sinborde {
+    border: 0;
+  }
+  .tipoDePago{
+      margin-left: 2.5cm;
+  }
+  .codigo{
+    font-family: 'Libre Barcode 39 Text', cursive;
+    font-size: 45px;
+  }
+  

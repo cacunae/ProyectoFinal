@@ -61,14 +61,7 @@ table {
   align-self: flex-end;
 }
 /* Seccion factura */
-.factura.col-sm {
-  height: 500px;
-  margin-left: 2em;
-  padding: 1em;
-  padding-left: 2em;
-  border-left: none;
-  border-left-color: #343a40;
-}
+
 .input-editar {
   border: #343a40;
   border: solid;
@@ -89,6 +82,7 @@ table {
 
 tr.mat-footer-row {
   font-weight: bold;
+  font-size: larger;
 }
 .pagar {
   background-color: #343a40;

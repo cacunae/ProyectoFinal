@@ -153,6 +153,24 @@
         >
           <mat-icon>edit</mat-icon>
         </button>
+        <button
+          mat-raised-button
+          matTooltip="Aumentar stock"
+          matTooltipPosition="above"
+          mat-mini-fab
+          style="
+            background-color: #1c9d43;
+            color: white;
+            margin-left: 1em;
+            padding-left: 0%;
+          "
+          data-toggle="modal"
+          mat-mini-fab
+          (click)="aumentarStock(i)"
+          href="#AUMENTAR"
+        >
+          <mat-icon>library_add</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="columnasAMostrar"></mat-header-row>
@@ -211,7 +229,6 @@
                       class="form-control"
                       type="text"
                       name="marca"
-                      id="marca"
                       [(ngModel)]="productos.marca"
                     />
                   </div>
@@ -226,7 +243,6 @@
                       class="form-control"
                       type="text"
                       name="nombres"
-                      id="nombres"
                       [(ngModel)]="productos.nombre"
                     />
                   </div>
@@ -241,7 +257,6 @@
                         class="form-control"
                         type="text"
                         name="stock"
-                        id="stock"
                         [(ngModel)]="productos.stock"
                       />
                     </div>
@@ -253,7 +268,6 @@
                         class="form-control"
                         type="text"
                         name="precio"
-                        id="precio"
                         [(ngModel)]="productos.precio"
                       />
                     </div>
@@ -265,10 +279,7 @@
                   <div class="form-group col-sm">
                     <label class="" for="categoria">Categoría</label>
                     <div class="input-group-prepend">
-                      <select
-                        class="form-control"
-                        id="exampleFormControlSelect1"
-                      >
+                      <select class="form-control">
                         <option>Telefonía</option>
                         <option>Computación</option>
                         <option>Tablets</option>
@@ -341,9 +352,9 @@
                 <label for="id">ID:</label>
                 <input
                   class="form-control"
+                  disabled
                   type="text"
                   name="id"
-                  id="id"
                   [(ngModel)]="cambios.id"
                 />
               </div>
@@ -353,7 +364,6 @@
                   class="form-control"
                   type="text"
                   name="nombres"
-                  id="nombres"
                   [(ngModel)]="cambios.nombre"
                 />
               </div>
@@ -363,7 +373,6 @@
                   class="form-control"
                   type="text"
                   name="marca"
-                  id="marca"
                   [(ngModel)]="cambios.marca"
                 />
               </div>
@@ -373,14 +382,13 @@
                   class="form-control"
                   type="text"
                   name="precio"
-                  id="precio"
                   [(ngModel)]="cambios.precio"
                 />
               </div>
               <div class="form-group">
                 <label class="" for="categoria">Categoría</label>
                 <div class="input-group-prepend">
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control">
                     <option>Telefonía</option>
                     <option>Computación</option>
                     <option>Tablets</option>
@@ -452,3 +460,85 @@
   </div>
 </div>
 <!--FIN DEL MODAL BORRAR-->
+<!--INICIO MODAL AGREGAR AL STOCK-->
+<div class="text-right mt-4">
+  <div>
+    <div
+      class="modal fade"
+      id="AUMENTAR"
+      style="margin-top: 40px; margin-bottom: 30px"
+    >
+      <div class="modal-dialog modal-lg text-center">
+        <div class="modal-content">
+          <!--encabezado del modal-->
+          <div class="modal-header">
+            <div
+              class="modal-title"
+              style="padding: 3em 0em 0em 1em; width: 100%"
+            >
+              <h2 style="text-align: left">
+                <img
+                  src="https://cdn2.iconfinder.com/data/icons/bitsies/128/Add-256.png"
+                  height="30"
+                  width="30"
+                  style="margin-right: 3px"
+                />
+                Agregar al stock de {{ nombre }}
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-hidden="true"
+            >
+              &times;
+            </button>
+          </div>
+          <!--cuerpo del modal-->
+          <div class="modal-body">
+            <form class="text-left p-3">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="form-group col-sm">
+                    <label for="stockActual">Stock:</label>
+                    <input
+                      class="form-control"
+                      disabled
+                      type="text"
+                      name="stockActual"
+                      [(ngModel)]="stockActual"
+                    />
+                  </div>
+                  <div class="form-group col-sm">
+                    <label>Ingreso:</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="ingreso"
+                      [(ngModel)]="ingreso"
+                    />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="background-color: #1c9d43; color: aliceblue"
+              type="reset"
+              data-dismiss="modal"
+              (click)="confirmarAumentoDeStock()"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--FIN DEL MODAL-->

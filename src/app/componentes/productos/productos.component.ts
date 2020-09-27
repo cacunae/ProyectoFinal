@@ -11,12 +11,7 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class ProductosComponent implements OnInit {
   ngOnInit() {
-    console.log('Obteniendo products');
-    this.obtenerProductos().then((productos) => {
-      console.log('productos obtenidos', productos);
-      this.productitos = productos;
-      this.dataSource.data = this.productitos;
-    });
+    this.actualizarProductos();
   }
 
   productitos: Productos[] = [];
@@ -74,6 +69,7 @@ export class ProductosComponent implements OnInit {
       }
     );
     this.obtenerProductos();
+    this.actualizarProductos();
     this.clear();
   }
 
@@ -91,10 +87,18 @@ export class ProductosComponent implements OnInit {
     });
     return promise;
   }
+  actualizarProductos() {
+    this.obtenerProductos().then((productos) => {
+      console.log('productos obtenidos', productos);
+      this.productitos = productos;
+      this.dataSource.data = this.productitos;
+    });
+  }
 
   onKey(event: Event) {
     console.log(this.busqueda);
     console.log(this.filtro);
+
     if (this.busqueda == '') {
       this.dataSource.data = this.dataSource.data;
     }
@@ -135,31 +139,32 @@ export class ProductosComponent implements OnInit {
     this.service
       .editarProducto(this.productitos[this.index].id, this.cambios)
       .subscribe((resp) => console.log('cambios realizados'));
-    this.obtenerStock();
+    this.obtenerProductos();
+    this.actualizarProductos();
   }
 
   eliminarProducto(i: number) {
     this.productitos[i].id;
     console.log(this.productitos[i].id);
     this.service.borrarProducto(this.productitos[i].id).subscribe();
-
-    this.productitos = this.productitos.filter(
-      (c) => c.id != this.productitos[i].id
-    );
+    this.obtenerProductos();
+    this.actualizarProductos();
   }
 
-  obtenerStock() {
-    let promise = new Promise<Productos[]>((resolve, reject) => {
-      this.service.obtenerStock().subscribe(
-        (producto) => {
-          resolve(producto);
-        },
-        (error) => {
-          console.log('exploto estooo');
-          reject('ERROR AL OBTENER EL STOCK');
-        }
-      );
-    });
-    return promise;
+  nombre: string;
+  stockActual: number;
+  ingreso: number;
+  id: number;
+  aumentarStock(i: number) {
+    this.nombre = this.productitos[i].nombre;
+    this.stockActual = this.productitos[i].stock;
+    this.ingreso = 0;
+    this.id = this.productitos[i].id;
+  }
+  confirmarAumentoDeStock() {
+    this.service.aumentarStockDeProducto(this.id, this.ingreso).subscribe();
+
+    this.obtenerProductos();
+    this.actualizarProductos();
   }
 }

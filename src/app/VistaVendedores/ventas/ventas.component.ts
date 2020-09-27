@@ -2,13 +2,7 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+
 //INTERFACES
 import { Productos } from './../../Models/producto.model';
 import { Venta } from '../../Models/venta.model';
@@ -91,10 +85,9 @@ export class VentasComponent implements OnInit {
     temp = Object.assign(temp, this.productoSeleccionado);
     this.productosSeleccionados.push(temp);
     this.ventaDataSource.data = this.productosSeleccionados;
-    this.filtrarPrincipal();
     this.obtenerTotal();
   }
-  filtrarPrincipal() {
+  /* filtrarPrincipal() {
     if (this.productosSeleccionados.length !== 0) {
       for (let index = 0; index < this.productosSeleccionados.length; index++) {
         this.dataSource.data = this.stock.filter(
@@ -105,7 +98,7 @@ export class VentasComponent implements OnInit {
     } else {
       this.dataSource.data = this.stock.filter((productos) => !null);
     }
-  }
+  }*/
   //SERVICIOS
   obtenerStock() {
     let promise = new Promise<Productos[]>((resolve, reject) => {
@@ -157,7 +150,7 @@ export class VentasComponent implements OnInit {
 
   ventaEnCurso: Venta = {
     idVenta: null,
-    idVendedor: '20948593-4',
+    idVendedor: sessionStorage.getItem('usuario'),
     fechaHora: new Date(),
     formaDePago: '',
     total: null,
@@ -169,6 +162,7 @@ export class VentasComponent implements OnInit {
     this.obtenerIdVenta();
     //this.total = 0;
     this.guardarDetalleVenta();
+    this.clear();
   }
 
   obtenerIdVenta() {
@@ -188,6 +182,12 @@ export class VentasComponent implements OnInit {
     return promise;
   }
 
+  clear() {
+    this.productosSeleccionados = [];
+    this.ventaDataSource.data = this.productosSeleccionados;
+    this.total = 0;
+  }
+
   guardarDetalleVenta() {
     this.obtenerIdVenta().then((ultimaVenta) => {
       console.log('La ultima venta es esta: ', ultimaVenta);
@@ -200,6 +200,7 @@ export class VentasComponent implements OnInit {
       console.log('LLEGUÉ AQUI');
     });
     this.obtenerStock();
+    this.clear();
   }
 
   tablaEnEdicion = false;
@@ -225,6 +226,5 @@ export class VentasComponent implements OnInit {
       this.columnasFactura.splice(5, 1);
     }
     console.log(this.productosSeleccionados);
-    this.filtrarPrincipal();
   }
 }

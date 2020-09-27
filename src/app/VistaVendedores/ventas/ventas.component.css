@@ -32,6 +32,13 @@ table {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
 .mat-column-boton {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -77,7 +84,7 @@ table {
 }
 
 .cuerpo {
-  height: 350px;
+  height: 600px;
 }
 
 tr.mat-footer-row {

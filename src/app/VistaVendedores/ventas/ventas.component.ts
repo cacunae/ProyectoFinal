@@ -91,8 +91,20 @@ export class VentasComponent implements OnInit {
     temp = Object.assign(temp, this.productoSeleccionado);
     this.productosSeleccionados.push(temp);
     this.ventaDataSource.data = this.productosSeleccionados;
-    console.log(this.productosSeleccionados);
+    this.filtrarPrincipal();
     this.obtenerTotal();
+  }
+  filtrarPrincipal() {
+    if (this.productosSeleccionados.length !== 0) {
+      for (let index = 0; index < this.productosSeleccionados.length; index++) {
+        this.dataSource.data = this.stock.filter(
+          (productos) =>
+            productos.id !== this.productosSeleccionados[index].idProducto
+        );
+      }
+    } else {
+      this.dataSource.data = this.stock.filter((productos) => !null);
+    }
   }
   //SERVICIOS
   obtenerStock() {
@@ -135,7 +147,6 @@ export class VentasComponent implements OnInit {
 
   obtenerTotal() {
     this.total = 0;
-    let x = this.productosSeleccionados.length - 1;
     for (let index = 0; index < this.productosSeleccionados.length; index++) {
       this.total +=
         this.productosSeleccionados[index].precio *
@@ -211,7 +222,9 @@ export class VentasComponent implements OnInit {
     this.obtenerTotal();
     if (this.productosSeleccionados.length == 0) {
       this.tablaEnEdicion = false;
+      this.columnasFactura.splice(5, 1);
     }
     console.log(this.productosSeleccionados);
+    this.filtrarPrincipal();
   }
 }

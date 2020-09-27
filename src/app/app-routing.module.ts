@@ -10,11 +10,17 @@ import { StockComponent } from './VistaVendedores/stock/stock.component';
 import { VentasComponent } from './VistaVendedores/ventas/ventas.component';
 import { AuthGaurdService } from 'src/app/services/auth-gaurd.service';
 import { FacturaComponent } from './VistaVendedores/factura/factura.component';
+import { HomeComponent } from './landingPage/home/home.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { PerfilVendedorComponent } from './VistaVendedores/perfil-vendedor/perfil-vendedor.component';
 let vendedor: string = '0';
 let admin: string = '1';
 
 const routes: Routes = [
-  { path: '', component: LoginUsuarioComponent },
+  { path: 'login', component: LoginUsuarioComponent },
+  { path: '', component: HomeComponent },
+  { path: 'mi-perfil-admin', component: PerfilComponent },
+  { path: 'perfil-vendedor', component: PerfilVendedorComponent },
   {
     path: 'portalventas',
     component: InicioComponent,

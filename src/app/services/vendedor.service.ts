@@ -5,7 +5,7 @@ import { Empleados } from 'src/app/Models/empleado.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VendedorService {
   constructor(private http: HttpClient) {}
@@ -21,8 +21,8 @@ export class VendedorService {
     return this.http.get<Empleados[]>(this.apiURL);
   }
 
-  agregarVendedor(Vendedor: Empleados): Observable<Empleados> {
-    return this.http.post<Empleados>(this.apiURL, Vendedor, this.httpOptions);
+  agregarVendedor(vendedor: Empleados): Observable<Empleados> {
+    return this.http.post<Empleados>(this.apiURL, vendedor, this.httpOptions);
   }
 
   borrarVendedor(usuario: string): Observable<string> {
@@ -30,9 +30,8 @@ export class VendedorService {
     return this.http.delete<string>(url, this.httpOptions);
   }
 
-  editarVendedor(usuario: string, body: Empleados): Observable<{}> {
+  editarVendedor(usuario: string, body: Empleados): Observable<Empleados> {
     let url = `${this.apiURL}/${usuario}`;
-    return this.http.put(url, body, this.httpOptions);
+    return this.http.put<Empleados>(url, body, this.httpOptions);
   }
 }
-

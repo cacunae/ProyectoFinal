@@ -63,7 +63,7 @@
                 class="boton-agregar"
                 (click)="seleccionar(producto)"
               >
-                <mat-icon>add</mat-icon>
+                <mat-icon>add_shopping_cart</mat-icon>
               </button>
             </td>
           </ng-container>
@@ -191,7 +191,10 @@
         </table>
       </div>
       <!--PIE DE FACTURA-->
-      <div class="row" style="padding-top: 1em">
+      <div
+        class="row"
+        style="padding-top: 1em; justify-content: right; text-align: right"
+      >
         <div class="col-7">
           <mat-form-field appearance="fill">
             <mat-label>Formas de pago:</mat-label>
@@ -277,15 +280,26 @@
               {{ productoSeleccionado.nombreProducto }}
             </b>
             <br />
-            <p style="font: small-caption">ID:{{ productoSeleccionado.id }}</p>
+            <p style="font: small-caption">
+              ID:{{ productoSeleccionado.idProducto }}
+            </p>
           </h3>
 
           <div class="row">
-            <div class="col-sm"><mat-icon>remove</mat-icon></div>
-            <div class="col-sm">
-              <input type="text" [(ngModel)]="productoSeleccionado.cantidad" />
+            <div class="col-12">
+              <mat-form-field style="width: 70%" appearance="outline">
+                <mat-label>Cantidad</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  required
+                  placeholder="cantidad"
+                  ng-required
+                  [(ngModel)]="productoSeleccionado.cantidad"
+                  name="cantidad"
+                />
+              </mat-form-field>
             </div>
-            <div class="col-sm"><mat-icon>add</mat-icon></div>
           </div>
           <!--footer-->
           <div class="modal-footer">
@@ -339,6 +353,15 @@
             </button>
           </div>
           <!--cuerpo del modal-->
+          <div
+            style="text-align: center; justify-content: center; padding: 1em"
+          >
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/miscellaneous-80/60/check-256.png"
+              width="200px"
+              height="200px"
+            />
+          </div>
 
           <!--footer-->
           <div class="modal-footer">

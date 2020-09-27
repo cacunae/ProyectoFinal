@@ -23,4 +23,7 @@ export class NavbarVendedorComponent implements OnInit {
     this.loginService.logOut();
     this.router.navigate(['']);
   }
+  perfil(){
+    this.router.navigate(['perfil-vendedor']);
+  }
 }

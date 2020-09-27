@@ -34,4 +34,9 @@ export class ProductosService {
     let url = `${this.apiURL}/${producto}`;
     return this.http.put(url, body, this.httpOptions);
   }
+  aumentarStockDeProducto(id: number, ingreso: number): Observable<{}> {
+    let url = this.apiURL + '/stock';
+    url = `${url}/${id}`;
+    return this.http.put(url, ingreso, this.httpOptions);
+  }
 }

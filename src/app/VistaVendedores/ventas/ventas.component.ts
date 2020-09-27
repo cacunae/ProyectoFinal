@@ -2,13 +2,7 @@ import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { DataSource } from '@angular/cdk/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+
 //INTERFACES
 import { Productos } from './../../Models/producto.model';
 import { Venta } from '../../Models/venta.model';
@@ -91,9 +85,20 @@ export class VentasComponent implements OnInit {
     temp = Object.assign(temp, this.productoSeleccionado);
     this.productosSeleccionados.push(temp);
     this.ventaDataSource.data = this.productosSeleccionados;
-    console.log(this.productosSeleccionados);
     this.obtenerTotal();
   }
+  /* filtrarPrincipal() {
+    if (this.productosSeleccionados.length !== 0) {
+      for (let index = 0; index < this.productosSeleccionados.length; index++) {
+        this.dataSource.data = this.stock.filter(
+          (productos) =>
+            productos.id !== this.productosSeleccionados[index].idProducto
+        );
+      }
+    } else {
+      this.dataSource.data = this.stock.filter((productos) => !null);
+    }
+  }*/
   //SERVICIOS
   obtenerStock() {
     let promise = new Promise<Productos[]>((resolve, reject) => {
@@ -135,7 +140,6 @@ export class VentasComponent implements OnInit {
 
   obtenerTotal() {
     this.total = 0;
-    let x = this.productosSeleccionados.length - 1;
     for (let index = 0; index < this.productosSeleccionados.length; index++) {
       this.total +=
         this.productosSeleccionados[index].precio *
@@ -146,7 +150,7 @@ export class VentasComponent implements OnInit {
 
   ventaEnCurso: Venta = {
     idVenta: null,
-    idVendedor: '20948593-4',
+    idVendedor: sessionStorage.getItem('usuario'),
     fechaHora: new Date(),
     formaDePago: '',
     total: null,
@@ -157,6 +161,7 @@ export class VentasComponent implements OnInit {
     this.serviceVenta.agregarVenta(this.ventaEnCurso).subscribe();
     this.obtenerIdVenta();
     //this.total = 0;
+    console.log(this.obtenerIdVenta);
     this.guardarDetalleVenta();
   }
 
@@ -177,6 +182,12 @@ export class VentasComponent implements OnInit {
     return promise;
   }
 
+  clear() {
+    this.actualizarStock();
+    this.productosSeleccionados = [];
+    this.total = 0;
+  }
+
   guardarDetalleVenta() {
     this.obtenerIdVenta().then((ultimaVenta) => {
       console.log('La ultima venta es esta: ', ultimaVenta);
@@ -189,6 +200,7 @@ export class VentasComponent implements OnInit {
       console.log('LLEGUÉ AQUI');
     });
     this.obtenerStock();
+    this.actualizarStock();
   }
 
   tablaEnEdicion = false;
@@ -211,6 +223,7 @@ export class VentasComponent implements OnInit {
     this.obtenerTotal();
     if (this.productosSeleccionados.length == 0) {
       this.tablaEnEdicion = false;
+      this.columnasFactura.splice(5, 1);
     }
     console.log(this.productosSeleccionados);
   }

@@ -16,3 +16,17 @@ img {
 img:hover {
   filter: invert(0%);
 }
+.user-circle-container[_ngcontent-pjb-c18] {
+  position: relative;
+  background-color: #5fb9e6;
+  color: #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  text-align: center;
+  padding: 0;
+  min-height: auto;
+  height: 50px;
+  width: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

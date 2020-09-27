@@ -54,6 +54,7 @@ export class LoginUsuarioComponent implements OnInit {
           sessionStorage.setItem('usuario', resp.usuario);
           sessionStorage.setItem('nombre', resp.nombre);
           sessionStorage.setItem('apellido', resp.apellido);
+          sessionStorage.setItem('correo', resp.correo);
           sessionStorage.setItem('rol', resp.esAdmin.toString());
 
           this.redireccionar();

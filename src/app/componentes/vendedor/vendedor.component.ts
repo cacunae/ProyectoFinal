@@ -12,13 +12,10 @@ import { VendedorService } from 'src/app/services/vendedor.service';
 })
 export class VendedorComponent implements OnInit {
   ngOnInit() {
-    console.log('Obteniendo admins');
-    this.obtenerVendedores().then((empleado) => {
-      console.log('empleados obtenidos', empleado);
-      this.vendedores = empleado;
-      this.dataSource.data = this.vendedores;
-    });
+    this.actualizarVendedores();
   }
+  constructor(private service: VendedorService) {}
+  //DECLARACION DE VARIABLES
   vendedores: Empleados[] = [];
   dataSource = new MatTableDataSource();
   columnasAMostrar: string[] = [
@@ -28,15 +25,7 @@ export class VendedorComponent implements OnInit {
     'correo',
     'opciones',
   ];
-
   index: number = null;
-  guardar(i: number) {
-    this.index = i;
-    console.log(this.index);
-    console.log(this.vendedores[i].usuario);
-  }
-
-  constructor(private service: VendedorService) {}
 
   vendedor: Empleados = {
     usuario: '',
@@ -47,15 +36,37 @@ export class VendedorComponent implements OnInit {
     esAdmin: 0,
   };
 
-  clear() {
-    this.vendedor = {
-      usuario: '',
-      nombre: '',
-      apellido: '',
-      correo: '',
-      contrasenha: '',
-      esAdmin: 0,
-    };
+  cambios: Empleados = {
+    usuario: '',
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasenha: '',
+    esAdmin: 0,
+  };
+
+  //DECLARACION DE METODOS
+
+  obtenerVendedores() {
+    let promise = new Promise<Empleados[]>((resolve, reject) => {
+      this.service.obtenerVendedores().subscribe(
+        (vendedor) => {
+          resolve(vendedor);
+        },
+        (error) => {
+          console.log('exploto estooo');
+          reject('ERROR AL OBTENER EL STOCK');
+        }
+      );
+    });
+    return promise;
+  }
+  actualizarVendedores() {
+    this.obtenerVendedores().then((vendedores) => {
+      console.log('Vendedores obtenidos', vendedores);
+      this.vendedores = vendedores;
+      this.dataSource.data = this.vendedores;
+    });
   }
 
   agregarVendedor() {
@@ -71,41 +82,17 @@ export class VendedorComponent implements OnInit {
       }
     );
     this.obtenerVendedores();
+    this.actualizarVendedores();
     this.clear();
-  }
-  obtenerVendedores() {
-    let promise = new Promise<Empleados[]>((resolve, reject) => {
-      this.service.obtenerVendedores().subscribe(
-        (vendedor) => {
-          resolve(vendedor);
-        },
-        (error) => {
-          console.log('exploto estooo');
-          reject('ERROR AL OBTENER EL STOCK');
-        }
-      );
-    });
-    return promise;
   }
 
   eliminarVendedor(i: number) {
     this.vendedores[i].usuario;
     console.log(this.vendedores[i].usuario);
     this.service.borrarVendedor(this.vendedores[i].usuario).subscribe();
-    //actualiza tabla
-    this.vendedores = this.vendedores.filter(
-      (c) => c.usuario != this.vendedores[i].usuario
-    );
+    this.obtenerVendedores();
+    this.actualizarVendedores();
   }
-
-  cambios: Empleados = {
-    usuario: '',
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contrasenha: '',
-    esAdmin: 0,
-  };
 
   editarVendedor(i: number): void {
     this.index = i;
@@ -126,7 +113,24 @@ export class VendedorComponent implements OnInit {
       .editarVendedor(this.vendedores[this.index].usuario, this.cambios)
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerVendedores();
+    this.actualizarVendedores();
   }
+
+  clear() {
+    this.vendedor = {
+      usuario: '',
+      nombre: '',
+      apellido: '',
+      correo: '',
+      contrasenha: '',
+      esAdmin: 0,
+    };
+  }
+
+  guardar(i: number) {
+    this.index = i;
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

@@ -23,4 +23,7 @@ export class NavbarAdministradorComponent implements OnInit {
     this.loginService.logOut();
     this.router.navigate(['']);
   }
+  miPerfil(){
+    this.router.navigate(['mi-perfil-admin'])
+  }
 }

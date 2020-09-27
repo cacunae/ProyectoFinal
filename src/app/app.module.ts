@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarAdministradorComponent } from './componentes/navbar-administrador/navbar-administrador.component';
 import { NavbarVendedorComponent } from './componentes/navbar-vendedor/navbar-vendedor.component';
 import { FacturaComponent } from './VistaVendedores/factura/factura.component';
+import { HomeComponent } from './landingPage/home/home.component';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { PerfilVendedorComponent } from './VistaVendedores/perfil-vendedor/perfil-vendedor.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { FacturaComponent } from './VistaVendedores/factura/factura.component';
     NavbarAdministradorComponent,
     NavbarVendedorComponent,
     FacturaComponent,
+    HomeComponent,
+    PerfilComponent,
+    PerfilVendedorComponent,
   ],
   imports: [
     BrowserModule,

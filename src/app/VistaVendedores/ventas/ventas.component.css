@@ -32,6 +32,13 @@ table {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
 .mat-column-boton {
   word-wrap: break-word !important;
   white-space: unset !important;
@@ -61,14 +68,7 @@ table {
   align-self: flex-end;
 }
 /* Seccion factura */
-.factura.col-sm {
-  height: 500px;
-  margin-left: 2em;
-  padding: 1em;
-  padding-left: 2em;
-  border-left: none;
-  border-left-color: #343a40;
-}
+
 .input-editar {
   border: #343a40;
   border: solid;
@@ -84,11 +84,12 @@ table {
 }
 
 .cuerpo {
-  height: 350px;
+  height: 600px;
 }
 
 tr.mat-footer-row {
   font-weight: bold;
+  font-size: larger;
 }
 .pagar {
   background-color: #343a40;

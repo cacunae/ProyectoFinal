@@ -27,5 +27,4 @@ export class DetalleVentaService {
   obtenerUltimoDetalleVenta(): Observable<DetallesVenta[]> {
     return this.http.get<DetallesVenta[]>(this.apiURl, this.httpOptions);
   }
-
 }

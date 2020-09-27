@@ -5,13 +5,6 @@ import { Empleados } from 'src/app/Models/empleado.model';
 //servicio
 import { AdministradorService } from 'src/app/services/administrador.service';
 
-export interface fil {
-  usuario: string;
-  nombre: string;
-  apellido: string;
-  correo: string;
-}
-
 @Component({
   selector: 'app-administradores',
   templateUrl: './administradores.component.html',
@@ -21,12 +14,7 @@ export class AdministradoresComponent implements OnInit {
   constructor(private service: AdministradorService) {}
 
   ngOnInit() {
-    console.log('Obteniendo admins');
-    this.obtenerAdministradores().then((empleado) => {
-      console.log('empleados obtenidos', empleado);
-      this.administradores = empleado;
-      this.dataSource.data = this.administradores;
-    });
+    this.actualizarAdministradores();
   }
   administradores: Empleados[] = [];
   dataSource = new MatTableDataSource();
@@ -78,8 +66,10 @@ export class AdministradoresComponent implements OnInit {
       }
     );
     this.obtenerAdministradores();
+    this.actualizarAdministradores();
     this.clear();
   }
+
   obtenerAdministradores() {
     let promise = new Promise<Empleados[]>((resolve, reject) => {
       this.service.obtenerAdministradores().subscribe(
@@ -95,17 +85,23 @@ export class AdministradoresComponent implements OnInit {
     return promise;
   }
 
+  actualizarAdministradores() {
+    this.obtenerAdministradores().then((administradores) => {
+      console.log('productos obtenidos', administradores);
+      this.administradores = administradores;
+      this.dataSource.data = this.administradores;
+    });
+  }
+
   eliminarAdministrador(i: number) {
     this.administradores[i].usuario;
     console.log(this.administradores[i].usuario);
     this.service
       .borrarAdministrador(this.administradores[i].usuario)
-      .subscribe();
-    //actualiza tabla
+      .subscribe((resp) => this.obtenerAdministradores());
 
-    this.administradores = this.administradores.filter(
-      (c) => c.usuario != this.administradores[i].usuario
-    );
+    this.obtenerAdministradores();
+    this.actualizarAdministradores();
   }
 
   cambios: Empleados = {
@@ -139,6 +135,7 @@ export class AdministradoresComponent implements OnInit {
       )
       .subscribe((resp) => console.log('cambios realizados'));
     this.obtenerAdministradores();
+    this.actualizarAdministradores();
   }
 
   applyFilter(event: Event) {

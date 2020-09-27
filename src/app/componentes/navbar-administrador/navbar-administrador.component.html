@@ -14,16 +14,21 @@
       <div class="btn-group">
         <button
           type="button"
+          style="border: none;"
           class="btn btn-outline-warning dropdown-toggle"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
         >
-          {{ user }}
+        <img src="https://www.flaticon.es/svg/static/icons/svg/634/634011.svg" style="margin-right: 0.2cm;" height="30px" alt="">
+        {{user}}
         </button>
         <div class="dropdown-menu dropdown-menu-right">
           <button class="dropdown-item" (click)="logOut()">
             Cerrar Sesión
+          </button>
+          <button class="dropdown-item" (click)="miPerfil()">
+            Mi perfil
           </button>
         </div>
       </div>

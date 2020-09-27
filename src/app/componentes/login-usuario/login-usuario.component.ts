@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { Empleados } from 'src/app/Models/empleado.model';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-usuario',
@@ -15,6 +16,11 @@ export class LoginUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
 
   tag: string = 'Vendedor';
   empleado: Empleados = {

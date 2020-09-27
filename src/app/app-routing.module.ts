@@ -10,13 +10,11 @@ import { StockComponent } from './VistaVendedores/stock/stock.component';
 import { VentasComponent } from './VistaVendedores/ventas/ventas.component';
 import { AuthGaurdService } from 'src/app/services/auth-gaurd.service';
 import { FacturaComponent } from './VistaVendedores/factura/factura.component';
-import { HomeComponent } from './landingPage/home/home.component';
 let vendedor: string = '0';
 let admin: string = '1';
 
 const routes: Routes = [
-  { path: 'login', component: LoginUsuarioComponent },
-  { path: '', component: HomeComponent},
+  { path: '', component: LoginUsuarioComponent },
   {
     path: 'portalventas',
     component: InicioComponent,
@@ -46,7 +44,7 @@ const routes: Routes = [
     component: FacturaComponent,
     canActivate: [AuthGaurdService],
     data: {
-      expectedRole: vendedor
+      expectedRole: vendedor,
     },
   },
   {

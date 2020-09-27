@@ -75,7 +75,8 @@
         <br />
         <a
           style="margin-right: 8cm"
-          href="#"
+          data-toggle="modal"
+          href="#RECUPERAR"
           style="font-size: 16px; color: rgb(64, 175, 175)"
           >¿Olvidaste tu contraseña?</a
         >
@@ -85,4 +86,54 @@
     </div>
   </div>
   <br />
+</div>
+
+<div class="text-right mt-4">
+  <div class="modal fade" id="RECUPERAR">
+    <div class="modal-dialog text-center">
+      <div class="modal-content">
+        <div
+          class="modal-header"
+          style="display: flex; flex-wrap: wrap; justify-content: center"
+        >
+          <div class="modal-title" style="width: 100%">
+            <h2 style="text-align: center">
+              Si su correo existe, recibirá un mensaje con instrucciones.
+            </h2>
+          </div>
+
+          <div style="text-align: center">
+            <div>
+              <form class="example-form">
+                <mat-form-field style="width: 260px" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Ej. cris@correo.com" />
+                  <mat-error
+                    *ngIf="
+                      emailFormControl.hasError('email') &&
+                      !emailFormControl.hasError('required')
+                    "
+                  >
+                    Por favor, ingrese un correo válido
+                  </mat-error>
+                  <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Correo electrónico <strong>requerido</strong>
+                  </mat-error>
+                </mat-form-field>
+              </form>
+            </div>
+            <div>
+              <button
+                class="btn BtnDefault"
+                style="background-color: #1c9d43; color: aliceblue"
+                data-dismiss="modal"
+              >
+                Recuperar Contraseña
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

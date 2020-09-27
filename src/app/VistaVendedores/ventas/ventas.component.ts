@@ -161,8 +161,8 @@ export class VentasComponent implements OnInit {
     this.serviceVenta.agregarVenta(this.ventaEnCurso).subscribe();
     this.obtenerIdVenta();
     //this.total = 0;
+    console.log(this.obtenerIdVenta);
     this.guardarDetalleVenta();
-    this.clear();
   }
 
   obtenerIdVenta() {
@@ -183,8 +183,8 @@ export class VentasComponent implements OnInit {
   }
 
   clear() {
+    this.actualizarStock();
     this.productosSeleccionados = [];
-    this.ventaDataSource.data = this.productosSeleccionados;
     this.total = 0;
   }
 
@@ -200,7 +200,7 @@ export class VentasComponent implements OnInit {
       console.log('LLEGUÉ AQUI');
     });
     this.obtenerStock();
-    this.clear();
+    this.actualizarStock();
   }
 
   tablaEnEdicion = false;

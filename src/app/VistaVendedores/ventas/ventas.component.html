@@ -191,8 +191,25 @@
         </table>
       </div>
       <!--PIE DE FACTURA-->
-      <div class="row" style="padding-top: 1em">
-        <div class="col-7"></div>
+      <div
+        class="row"
+        style="padding-top: 1em; justify-content: right; text-align: right"
+      >
+        <div class="col-7">
+          <mat-form-field appearance="fill">
+            <mat-label>Formas de pago:</mat-label>
+            <select
+              matNativeControl
+              required
+              [(ngModel)]="ventaEnCurso.formaDePago"
+            >
+              <option value="EFECTIVO">Efectivo</option>
+              <option value="DEBITO">Débito</option>
+              <option value="CREDITO">Crédito</option>
+              <option value="OTRO">Otros</option>
+            </select>
+          </mat-form-field>
+        </div>
         <div class="col-5">
           <div
             *ngIf="
@@ -216,6 +233,7 @@
               color="warn"
               class="pagar"
               data-toggle="modal"
+              (click)="guardarVenta()"
               href="#VENTA"
             >
               GENERAR VENTA
@@ -322,7 +340,7 @@
               class="modal-title"
               style="padding: 3em 0em 0em 1em; width: 100%"
             >
-              <h2 style="text-align: center">GENERAR VENTA</h2>
+              <h2 style="text-align: center">VENTA REALIZADA</h2>
             </div>
 
             <button
@@ -335,51 +353,33 @@
             </button>
           </div>
           <!--cuerpo del modal-->
-          <mat-horizontal-stepper #stepper>
-            <mat-step label="Método de pago">
-              <mat-form-field appearance="fill">
-                <mat-label>Formas de pago:</mat-label>
-                <select
-                  matNativeControl
-                  required
-                  [(ngModel)]="ventaEnCurso.formaDePago"
-                >
-                  <option value="EFECTIVO">Efectivo</option>
-                  <option value="DEBITO">Débito</option>
-                  <option value="CREDITO">Crédito</option>
-                  <option value="OTRO">Otros</option>
-                </select>
-              </mat-form-field>
-              <div>
-                <button mat-button matStepperNext type="button">
-                  Siguiente
-                </button>
-              </div>
-            </mat-step>
-            <mat-step label="Listo" class="row">
-              <div class="col-12">
-                <img
-                  src="https://cdn0.iconfinder.com/data/icons/sport-achievment-badges/128/sport_badges-04-256.png"
-                  width="100"
-                  height="100"
-                />
-              </div>
-              <div class="col-12">
-                <button
-                  mat-button
-                  type="button"
-                  data-dismiss="modal"
-                  (click)="guardarVenta()"
-                >
-                  Finalizar
-                </button>
-              </div>
-            </mat-step>
-            <!--Definicion de iconos-->
-            <ng-template matStepperIcon="edit">
-              <mat-icon>payment</mat-icon>
-            </ng-template>
-          </mat-horizontal-stepper>
+          <div
+            style="text-align: center; justify-content: center; padding: 1em"
+          >
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/miscellaneous-80/60/check-256.png"
+              width="200px"
+              height="200px"
+            />
+          </div>
+
+          <!--footer-->
+          <div class="modal-footer">
+            <button
+              class="btn BtnDefault"
+              style="
+                background-color: none;
+                color: #1c9d43;
+                outline: none;
+                border: none;
+              "
+              type="reset"
+              data-dismiss="modal"
+              (click)="actualizarStock()"
+            >
+              <mat-icon>check</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
     </div>

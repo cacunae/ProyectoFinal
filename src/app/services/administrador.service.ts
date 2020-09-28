@@ -38,4 +38,10 @@ export class AdministradorService {
     let url = `${this.apiURL}/${usuario}`;
     return this.http.put(url, body, this.httpOptions);
   }
+
+  cambiarContrasenha(usuario: string, body: string): Observable<{}> {
+    let url = 'http://localhost:8080/api/admin/';
+    url = `${url}/${usuario}`;
+    return this.http.put<{}>(url, body, this.httpOptions);
+  }
 }

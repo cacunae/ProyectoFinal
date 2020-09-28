@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -8,7 +9,10 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  constructor(private loginService: AutentificacionService) {}
+  constructor(
+    private loginService: AutentificacionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.user = sessionStorage.getItem('nombre');
@@ -20,4 +24,8 @@ export class PerfilComponent implements OnInit {
   id: string = null;
   apellido: string = null;
   correo: string = null;
+
+  enroutar() {
+    this.router.navigate(['cambiar-password']);
+  }
 }

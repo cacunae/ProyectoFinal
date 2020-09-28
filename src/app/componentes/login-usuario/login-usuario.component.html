@@ -55,13 +55,14 @@
           <mat-label>Contraseña</mat-label>
           <input
             matInput
-            type="password"
+            [type]="hide ? 'password' : 'text'" 
             required
-            placeholder="Tu Contraseña"
+            placeholder="Tu Contraseña nueva"
             name="contraseña"
             ng-required
             [(ngModel)]="empleado.contrasenha"
           />
+        <mat-icon matSuffix style="cursor:pointer;" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </mat-form-field>
         <br />
         <button

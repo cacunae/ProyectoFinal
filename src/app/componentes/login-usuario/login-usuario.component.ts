@@ -16,6 +16,7 @@ export class LoginUsuarioComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+  hide=true;
 
   emailFormControl = new FormControl('', [
     Validators.required,

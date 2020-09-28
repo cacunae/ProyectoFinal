@@ -20,6 +20,7 @@ import { FacturaComponent } from './VistaVendedores/factura/factura.component';
 import { HomeComponent } from './landingPage/home/home.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { PerfilVendedorComponent } from './VistaVendedores/perfil-vendedor/perfil-vendedor.component';
+import { CambiarContrasenhaComponent } from './componentes/cambiar-contrasenha/cambiar-contrasenha.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PerfilVendedorComponent } from './VistaVendedores/perfil-vendedor/perfi
     HomeComponent,
     PerfilComponent,
     PerfilVendedorComponent,
+    CambiarContrasenhaComponent,
   ],
   imports: [
     BrowserModule,

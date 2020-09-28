@@ -13,6 +13,7 @@ import { FacturaComponent } from './VistaVendedores/factura/factura.component';
 import { HomeComponent } from './landingPage/home/home.component';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { PerfilVendedorComponent } from './VistaVendedores/perfil-vendedor/perfil-vendedor.component';
+import { CambiarContrasenhaComponent } from './componentes/cambiar-contrasenha/cambiar-contrasenha.component';
 let vendedor: string = '0';
 let admin: string = '1';
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'mi-perfil-admin', component: PerfilComponent },
   { path: 'perfil-vendedor', component: PerfilVendedorComponent },
+  { path: 'cambiar-password', component: CambiarContrasenhaComponent},
   {
     path: 'portalventas',
     component: InicioComponent,

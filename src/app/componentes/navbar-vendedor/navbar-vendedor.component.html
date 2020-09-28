@@ -4,7 +4,7 @@
       <img src="./../../../assets/cja.png" height="60" width="60" />
     </a>
     <a class="boton" mat-button href="ventas">Ventas</a>
-    <a class="boton" mat-button href="stock">Stock</a>
+    <a class="boton" mat-button href="stock" matBadge="" matBadgeColor="warn" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()">Stock</a>
   </div>
   <div>
       <div class="btn-group">

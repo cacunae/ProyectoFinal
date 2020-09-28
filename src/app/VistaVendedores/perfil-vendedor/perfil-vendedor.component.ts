@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AutentificacionService } from 'src/app/services/autentificacion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-vendedor',
@@ -8,7 +9,8 @@ import { AutentificacionService } from 'src/app/services/autentificacion.service
 })
 export class PerfilVendedorComponent implements OnInit {
 
-  constructor(private loginService: AutentificacionService,) { }
+  constructor(private loginService: AutentificacionService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.user = sessionStorage.getItem('nombre');
@@ -20,5 +22,10 @@ export class PerfilVendedorComponent implements OnInit {
   id: string = null;
   apellido: string = null;
   correo: string = null;
+
+  recuperarPassword(){
+    this.router.navigate(['cambiar-password']);
+
+  }
 
 }

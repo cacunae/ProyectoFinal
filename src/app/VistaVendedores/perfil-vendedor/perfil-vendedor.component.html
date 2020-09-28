@@ -18,24 +18,10 @@
               mat-raised-button
               class="btn mat-raised-button"
               style="background-color: #f7ae42; color: white; margin-left: 3%"
+              (click)="recuperarPassword()"
             >
               Cambiar Contraseña
             </button>
-            <!--<div *ngIf="mostrar">-->
-              <input
-                ng-required
-                matInput
-                required
-                name="coontraseñaCambiar"
-                type="password"
-              />
-              <button
-                mat-raised-button
-                class="btn mat-raised-button"
-                style="background-color: #f7ae42; color: white; margin-left: 3%"
-              >
-                Confirmar
-              </button>
             </div>
           </div>
         </div>

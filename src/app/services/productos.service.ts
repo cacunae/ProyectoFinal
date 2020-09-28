@@ -39,4 +39,9 @@ export class ProductosService {
     url = `${url}/${id}`;
     return this.http.put(url, ingreso, this.httpOptions);
   }
+  notificacion(): Observable<number>{
+    const url = "/notificacion"
+    return this.http.get<number>(this.apiURL+url, this.httpOptions);
+  }
+
 }

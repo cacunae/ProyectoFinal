@@ -75,4 +75,8 @@ export class LoginUsuarioComponent implements OnInit {
     this.validarLogin();
     this.redireccionar();
   }
+
+  enroutar() {
+    this.router.navigate(['cambiar-password']);
+  }
 }

@@ -34,4 +34,10 @@ export class VendedorService {
     let url = `${this.apiURL}/${usuario}`;
     return this.http.put<Empleados>(url, body, this.httpOptions);
   }
+
+  cambiarContrasenha(usuario: string, body: string): Observable<Empleados> {
+    let url = this.apiURL + '/vendedor/restar/';
+    url = `${url}/${usuario}`;
+    return this.http.put<Empleados>(url, body, this.httpOptions);
+  }
 }

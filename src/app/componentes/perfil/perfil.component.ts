@@ -9,8 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  constructor(private loginService: AutentificacionService,
-    private router: Router) {}
+  constructor(
+    private loginService: AutentificacionService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.user = sessionStorage.getItem('nombre');
@@ -23,9 +25,8 @@ export class PerfilComponent implements OnInit {
   apellido: string = null;
   correo: string = null;
 
-  recuperarPassword(){
+  enroutar() {
     this.router.navigate(['cambiar-password']);
-
   }
 }
 

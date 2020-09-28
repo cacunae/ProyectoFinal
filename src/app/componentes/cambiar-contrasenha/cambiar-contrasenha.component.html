@@ -35,10 +35,10 @@
             <mat-label> Contraseña nueva</mat-label>
             <input
               matInput
-              type="password"
+              [type]="hide ? 'password' : 'text'" 
               required
               placeholder="Tu Contraseña"
-              name="contraseña"
+              name="contraseña" 
               ng-required
             />
             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

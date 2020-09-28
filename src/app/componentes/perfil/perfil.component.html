@@ -32,11 +32,10 @@
             mat-raised-button
             class="btn mat-raised-button"
             style="background-color: #f7ae42; color: white; margin-left: 3%"
-            (click)="mostrar = true"
           >
             Cambiar Contraseña
           </button>
-          <div *ngIf="mostrar">
+          <!--<div *ngIf="mostrar">-->
             <input
               ng-required
               matInput
@@ -48,7 +47,6 @@
               mat-raised-button
               class="btn mat-raised-button"
               style="background-color: #f7ae42; color: white; margin-left: 3%"
-              (click)="mostrar = false"
             >
               Confirmar
             </button>
@@ -56,5 +54,4 @@
         </div>
       </div>
     </div>
-  </div>
 </body>

@@ -101,4 +101,11 @@ table {
     font-family: 'Libre Barcode 39 Text', cursive;
     font-size: 45px;
   }
+
+  @media print {
+
+    button{
+      display: none;
+    }
+  }
   

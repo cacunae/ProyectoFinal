@@ -1,5 +1,15 @@
 <app-navbar-vendedor></app-navbar-vendedor>
 
+<!--Etiqueta de Productos-->
+<div class="row" style="background-color: rgb(190, 205, 238);">
+  <div class="col">
+  <h1>Stock de Productos
+    <img src="https://www.flaticon.es/svg/static/icons/svg/644/644458.svg" height="30px" alt="">
+    <img src="https://www.flaticon.es/svg/static/icons/svg/644/644422.svg" height="30px" alt="">
+  </h1>
+  </div>
+</div>
+
 <!--Barra de busqueda-->
 <br />
 <div>
@@ -57,13 +67,22 @@
         style="width: fit-content"
         *matCellDef="let productos; index as i"
       >
-        <div *ngIf="productos.stock > productos.minimo; else elseBlock">
-          <span style="color: #1c9d43" class="material-icons">
+        <div *ngIf="productos.stock> productos.minimo; else elseBlock">
+          <span 
+          style="color: #1c9d43" 
+          class="material-icons"
+          matTooltip="Stock disponible"
+          matTooltipPosition="left">
             check_circle
           </span>
         </div>
         <ng-template #elseBlock>
-          <span style="color: #d8473e" class="material-icons"> error </span>
+          <span 
+          style="color: #d8473e" 
+          class="material-icons"
+          matTooltip="Bajo stock"
+          matTooltipPosition="left">
+           error </span>
         </ng-template>
       </mat-cell>
     </ng-container>

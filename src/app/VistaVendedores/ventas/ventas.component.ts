@@ -7,6 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { Productos } from './../../Models/producto.model';
 import { Venta } from '../../Models/venta.model';
 import { DetallesVenta } from '../../Models/detallesVenta.model';
+import { Router } from '@angular/router';
 //SERVICIOS
 import { ProductosService } from 'src/app/services/productos.service';
 import { DetalleVentaService } from 'src/app/services/detalle-venta.service';
@@ -21,7 +22,8 @@ export class VentasComponent implements OnInit {
   constructor(
     private service: ProductosService,
     private serviceVenta: VentasService,
-    private serviceDetalleVenta: DetalleVentaService
+    private serviceDetalleVenta: DetalleVentaService,
+    private router: Router
   ) {
     expandedElement: null;
   }
@@ -226,5 +228,8 @@ export class VentasComponent implements OnInit {
       this.columnasFactura.splice(5, 1);
     }
     console.log(this.productosSeleccionados);
+  }
+  factura(){
+    this.router.navigate(['factura'])
   }
 }

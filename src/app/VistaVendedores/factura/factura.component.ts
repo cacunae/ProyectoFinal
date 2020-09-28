@@ -59,6 +59,9 @@ export class FacturaComponent implements OnInit {
  obtenerDetalleVenta(){
    this.serviceDetalleVenta.obtenerUltimoDetalleVenta().subscribe((Response)=> this.detalleVenta= Response);
  }
+ print(){
+   window.print()
+ }
 }
     
 

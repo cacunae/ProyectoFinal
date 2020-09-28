@@ -1,4 +1,4 @@
-<div style="margin: 1cm auto; margin-left: 2cm; margin-right: 2cm">
+<div style="margin: 1cm auto; margin-left: 2cm; margin-right: 2cm; margin-top: 0cm;">
   <div class="mat-elevation-z1" style="border: 1px solid black ">
     <div class="row">
       <div class="col-6 col-md-4">
@@ -19,29 +19,17 @@
     </div>
     <br/>
     <hr/>
-    <div class="row" style="margin: 1cm auto; margin-left: 1cm">
-      <div class="col">
-        <h2>Datos del clientes</h2>
-        <P>RUT:   
-            <input type="text" class="sinborde" placeholder="'Rut cliente'" name="rut">
-        </P>
-        <p>Cliente:
-          <input type="text" class="sinborde" placeholder="'Nombre cliente'" name="nombre">
-        </p>
-        <p>Teléfono:
-        <input type="text" class="sinborde" placeholder="'Telefono cliente'">
-        </p>
-      </div>
-      <div class="col">
+    <div class="row" style="margin: 1cm auto; margin-left: 4.5cm;">
+      <div class="col-sm-4" style="margin-right: 2cm;">
         <h2>Datos del vendedor</h2>
         <p>RUT: {{id}}</p>
         <P>Vendedor(a): {{nombre}}  {{apellido}}</P>
         <p></p>
       </div>
-      <div class="col" style="background-color: rgb(231, 214, 117); margin-right: 2cm; text-align: center; border: 1px solid black;" >
+      <div class="col-sm-4" style="background-color: rgb(231, 214, 117); margin-right: 2cm; text-align: center; border: 1px solid black;" >
         <h2>Factura</h2>
         <p>Nro. boleta: {{venta.idVenta}}</p>
-        <p>Fecha y hora: {{venta.fechaHora}}</p>
+        <p>Fecha: 28/09/2020</p>
       </div>
     </div>
     <br />
@@ -100,7 +88,7 @@
       </div>
    </div>
       <br />
-        <div class="col" style="margin-left: 2cm; margin-top: 0.5cm; margin-bottom: 2cm;">
+        <div class="col" style="margin-left: 2cm; margin-top: 0.5cm; margin-bottom: 0cm;">
           <h2>Gracias por su compra!</h2>
         </div>
         <div class="col-sm-6 col-md-8" style="text-align: right; margin-left: 7cm;">
@@ -108,4 +96,8 @@
         </div>
         <div style="height: 150px; overflow: hidden;" ><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;"><path d="M70.76,80.23 C157.67,119.70 315.12,-23.39 507.56,153.25 L0.00,150.00 L-3.15,23.98 Z" style="stroke: none; fill: rgb(53, 53, 85);"></path></svg></div>
       </div>
+      <br />
+      <button class="btn btn-info" (click)="print()">Imprimir Factura <img src="https://www.flaticon.es/svg/static/icons/svg/1042/1042374.svg" alt="" height="20px"></button>
+
+</div>
 

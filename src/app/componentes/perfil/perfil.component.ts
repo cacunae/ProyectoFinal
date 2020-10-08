@@ -29,3 +29,4 @@ export class PerfilComponent implements OnInit {
     this.router.navigate(['cambiar-password']);
   }
 }
+

@@ -24,7 +24,7 @@ export class PerfilVendedorComponent implements OnInit {
   apellido: string = null;
   correo: string = null;
 
-  enroutar() {
+  recuperarPassword() {
     this.router.navigate(['cambiar-password']);
   }
 }

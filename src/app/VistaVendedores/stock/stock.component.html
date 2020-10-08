@@ -69,7 +69,7 @@
       >
         <div *ngIf="productos.stock> productos.minimo; else elseBlock">
           <span 
-          style="color: #1c9d43" 
+          style="color: #1c9d43; cursor: pointer;" 
           class="material-icons"
           matTooltip="Stock disponible"
           matTooltipPosition="left">
@@ -78,7 +78,7 @@
         </div>
         <ng-template #elseBlock>
           <span 
-          style="color: #d8473e" 
+          style="color: #d8473e; cursor: pointer;" 
           class="material-icons"
           matTooltip="Bajo stock"
           matTooltipPosition="left">

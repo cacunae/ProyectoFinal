@@ -31,5 +31,6 @@ export class AutentificacionService {
     sessionStorage.removeItem('nombre');
     sessionStorage.removeItem('apellido');
     sessionStorage.removeItem('rol');
+    sessionStorage.removeItem('correo');
   }
 }

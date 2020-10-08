@@ -58,6 +58,8 @@ export class ProductosComponent implements OnInit {
 
   agregarProducto() {
     console.log(this.productos);
+    console.log(this.productos.categoria);
+    console;
     this.service.agregarProducto(this.productos).subscribe(
       (productos) => this.productitos.push(this.productos),
       (error) => {

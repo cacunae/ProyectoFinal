@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+
 //INTERFACES
 import { Productos } from './../../Models/producto.model';
 import { Venta } from '../../Models/venta.model';
@@ -13,55 +15,55 @@ import { VentasService } from 'src/app/services/ventas.service';
   selector: 'app-factura',
   templateUrl: './factura.component.html',
   styleUrls: ['./factura.component.css'],
-
 })
 export class FacturaComponent implements OnInit {
-
-  constructor(private service: ProductosService, private serviceVenta: VentasService,  private serviceDetalleVenta: DetalleVentaService)
-      {
-        expandedElement: null;
-      }
-  venta:Venta = { 
+  constructor(
+    private service: ProductosService,
+    private serviceVenta: VentasService,
+    private serviceDetalleVenta: DetalleVentaService,
+    private router: Router
+  ) {
+    expandedElement: null;
+  }
+  venta: Venta = {
     idVenta: null,
     idVendedor: null,
     fechaHora: null,
-    formaDePago: "",
+    formaDePago: '',
     total: null,
-  } 
-  columnasFactura: string[] = [
-    'nombre',
-    'precio',
-    'cantidad',
-    'subtotal',
-  ];
-  
-  id = sessionStorage.getItem("usuario");
-  nombre = sessionStorage.getItem("nombre");
-  apellido = sessionStorage.getItem("apellido");
-  
+  };
+  columnasFactura: string[] = ['nombre', 'precio', 'cantidad', 'subtotal'];
 
-  detalleVenta : DetallesVenta[]; 
+  id = sessionStorage.getItem('usuario');
+  nombre = sessionStorage.getItem('nombre');
+  apellido = sessionStorage.getItem('apellido');
+
+  detalleVenta: DetallesVenta[];
 
   ngOnInit(): void {
     this.obtenerVenta();
     this.obtenerDetalleVenta();
   }
 
-  obtenerVenta(){
-    this.serviceVenta.obtenerIdVenta(this.id).subscribe((ultimaVenta)=> {
-    this.venta.idVenta = ultimaVenta.idVenta,
-    this.venta.idVendedor= ultimaVenta.idVendedor,
-    this.venta.fechaHora = ultimaVenta.fechaHora,
-    this.venta.formaDePago = ultimaVenta.formaDePago,
-    this.venta.total = ultimaVenta.total
-  });
- }
- obtenerDetalleVenta(){
-   this.serviceDetalleVenta.obtenerUltimoDetalleVenta().subscribe((Response)=> this.detalleVenta= Response);
- }
- print(){
-   window.print()
- }
-}
-    
+  obtenerVenta() {
+    this.serviceVenta.obtenerIdVenta(this.id).subscribe((ultimaVenta) => {
+      (this.venta.idVenta = ultimaVenta.idVenta),
+        (this.venta.idVendedor = ultimaVenta.idVendedor),
+        (this.venta.fechaHora = ultimaVenta.fechaHora),
+        (this.venta.formaDePago = ultimaVenta.formaDePago),
+        (this.venta.total = ultimaVenta.total);
+    });
+  }
+  obtenerDetalleVenta() {
+    this.serviceDetalleVenta
+      .obtenerUltimoDetalleVenta()
+      .subscribe((Response) => (this.detalleVenta = Response));
+  }
+  print() {
+    window.print();
+  }
 
+  enroutar() {
+    this.router.navigate(['ventas']);
+  }
+}

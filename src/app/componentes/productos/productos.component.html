@@ -2,12 +2,21 @@
 <app-navbar-administrador></app-navbar-administrador>
 
 <!--Etiqueta de Productos-->
-<div class="row" style="background-color: rgb(190, 205, 238);">
+<div class="row" style="background-color: rgb(190, 205, 238)">
   <div class="col">
-  <h1>Productos SDI
-    <img src="https://www.flaticon.es/svg/static/icons/svg/644/644458.svg" height="30px" alt="">
-    <img src="https://www.flaticon.es/svg/static/icons/svg/644/644422.svg" height="30px" alt="">
-  </h1>
+    <h1>
+      Productos SDI
+      <img
+        src="https://www.flaticon.es/svg/static/icons/svg/644/644458.svg"
+        height="30px"
+        alt=""
+      />
+      <img
+        src="https://www.flaticon.es/svg/static/icons/svg/644/644422.svg"
+        height="30px"
+        alt=""
+      />
+    </h1>
   </div>
 </div>
 
@@ -230,11 +239,7 @@
             <form class="text-left p-3">
               <div class="container-fluid">
                 <div class="row">
-                  <div class="form-group col-sm">
-                    <label for="id">ID:</label>
-                    <input class="form-control" type="text" name="id" id="id" />
-                  </div>
-                  <div class="form-group col-sm">
+                  <div class="form-group col-12">
                     <label for="marca"> Marca </label>
                     <input
                       class="form-control"
@@ -289,11 +294,16 @@
                 <div class="row">
                   <div class="form-group col-sm">
                     <label class="" for="categoria">Categoría</label>
+
                     <div class="input-group-prepend">
-                      <select class="form-control">
-                        <option>Telefonía</option>
-                        <option>Computación</option>
-                        <option>Tablets</option>
+                      <select
+                        class="form-control"
+                        name="categoria"
+                        [(ngModel)]="productos.categoria"
+                      >
+                        <option value="Telefonía">Telefonía</option>
+                        <option value="Computación">Computación</option>
+                        <option value="Tablets">Tablets</option>
                       </select>
                     </div>
                   </div>
